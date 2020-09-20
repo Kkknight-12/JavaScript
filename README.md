@@ -1,2 +1,2 @@
 # JavaScript
-This Section cover the fundamental/baiscs of javascript
+This Section covers the fundamental, Dom, Oops, Ajax, Fetch API, Error Handling, Patterns in javascript
