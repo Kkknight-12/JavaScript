@@ -1,39 +1,60 @@
-//document.getElementById()
+// local storage remain  untill you manually clear you setting
+// session storage leave as you close the browser
+// API is same for both
 
-console.log(document.getElementById("main"));
+// set local storage item
+localStorage.setItem("name", "jhon");
+localStorage.setItem("age", 29);
 
-console.log(document.getElementById("task-title"));
+//set session storage item
+sessionStorage.setItem("name", "Knight");
 
-//get things from the element
-console.log(document.getElementById("task-title").id);
+//remove from storage
+localStorage.removeItem("name");
 
-//change styling
-let taskTItle = document.getElementById("task-title");
-taskTItle.style.background = "red";
+//get from storage
+const name = localStorage.getItem("name");
+const age = localStorage.getItem("age");
+console.log(name, age);
 
-taskTItle.style.color = "#f4f4f4";
+//clear local storage
+localStorage.clear();
+console.log(name, age);
 
-taskTItle.style.padding = "10px";
+//
+//taking input and saving it to local storage
+document.querySelector("form").addEventListener("submit", function (e) {
+  const task = document.getElementById("task").value;
+  // console.log(task);
 
-//Change contant
-taskTItle.textContent = "Task LIst";
-taskTItle.innerText = "My LIst of Task";
-taskTItle.innerHTML = "<span style='color:blue'>My LIst </span> of Task";
+  // taking the input
+  // storing the input from user to local storage
+  localStorage.setItem("task", task);
+  alert("Task saved");
 
-//document.querySelector()
-//we dont have to select element by id
-// it works like jquery
-//  # for id , . for class like css
-console.log(document.querySelector("#task-title"));
-console.log(document.querySelector(".card-title"));
+  e.preventDefault();
+});
+//above code will replace the old task with new to prevent this  we need to change code
+//
+// document.querySelector("form").addEventListener("submit", function (e) {
+//   const task = document.getElementById("task").value;
+//   // console.log(task);
 
-// note if there is more than 1 h5 it will fetch the 1st one
-document.querySelector("li").style.color = "red";
+//   // initialling let
+//   let tasks;
+//   //pulling out of local storage whatever in there or checking is something is in there
+//   if (localStorage.getItem("tasks") === null) {
+//     tasks = [];
+//   } else {
+//     tasks = JSON.parse(localStorage.getItem("tasks"));
+//   }
 
-// target element when there are multiple elements
-document.querySelector("li:last-child").style.color = "blue";
-document.querySelector("li:nth-child(3)").style.color = "green";
-document.querySelector("li:nth-child(3)").textContent = "hey how are you";
-// this will target single first element
-document.querySelector("li:nth-child(odd)").style.background = "#ccc";
-document.querySelector("li:nth-child(even)").style.background = "#f4f4";
+//   tasks.push(task);
+
+//   localStorage.setItem("tasks", JSON.stringify("tasks"));
+//   // taking the input
+//   // storing the input from user to local storage
+//   alert("Task saved");
+
+//   e.preventDefault();
+// });

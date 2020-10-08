@@ -77,4 +77,4 @@ function under33(num) {
 }
 
 val = numbers2.find(under33);
-console.log(val);
+console.log(val); // first number less then 33 will be returned

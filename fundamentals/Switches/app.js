@@ -41,6 +41,42 @@ switch (color) {
     break;
 }
 
+//
+let dayy = 1;
+
+switch (dayy) {
+  case 1:
+    console.log("MONDAY");
+    break;
+
+  case 2:
+    console.log("TUESDAY");
+    break;
+
+  case 3:
+    console.log("WEDNESDAY");
+    break;
+
+  case 4:
+    console.log("THURSDAY");
+    break;
+
+  case 5:
+    console.log("FRIDAY");
+    break;
+
+  case 6:
+    console.log("SATURDAY");
+    break;
+
+  case 7:
+    console.log("SATURDAY");
+    break;
+  // instead of else we write here default
+  default:
+    console.log("INVALID DAY");
+}
+
 // checking what day is today
 let d = new Date().getDay();
 console.log(`Today is ${d}`);
@@ -71,3 +107,22 @@ switch (new Date().getDay()) {
     break;
 }
 console.log(`Today is ${day}`);
+
+// combining cases when they have same output
+let emoji = "happy face";
+
+switch (emoji) {
+  case "happy face":
+  case "sad face":
+    console.log("pink");
+    break;
+
+  case "eggplant":
+    console.log("purple");
+    break;
+
+  case "heart":
+  case "lips":
+    console.log("red");
+    break;
+}

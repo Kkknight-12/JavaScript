@@ -43,11 +43,13 @@ function runEvent(e) {
 //
 //EventDelegation=> opposite of bubbling, run in downward direction
 
-const delItem = document.querySelector(".delete-item");
-delItem.addEventListener("click", deleteItem);
-function deleteItem() {
-  console.log(`delete item`);
-}
+// running the below code will work on only first link which is why we use event delegation
+// note: it will also not work if you dynamically insert something with javascript that was not there when page loaded.
+// const delItem = document.querySelector(".delete-item");
+// delItem.addEventListener("click", deleteItem);
+// function deleteItem() {
+//   console.log(`delete item`);
+// }
 
 // document.body.addEventListener("click", deleteItem);
 // function deleteItem(e) {
