@@ -74,13 +74,6 @@ console.log(everyStartWithD);
 const any2Authors = books.some(
     book => book.author.length ===2
 )
-console.log(any2Authors)
-
-
-
-
-
-
-
+console.log(any2Authors);
 
 
