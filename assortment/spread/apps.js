@@ -33,4 +33,3 @@ console.log(catDog)
 //  value will be updated
 const dog = { ...canine, isPet:true }
 console.log(dog)
-
