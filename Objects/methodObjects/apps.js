@@ -1,7 +1,7 @@
 // Methods
 // We can add functions as properties on objects
 // We call them methods !
-// it help grouping dofferent functions together
+// it help grouping different functions together
 
 // simple function
 const add =  function(x,y){

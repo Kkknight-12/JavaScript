@@ -56,3 +56,36 @@ const parityList1 = nums.map(
 });
 
 console.log(parityList1);
+
+// object
+// 
+// implicite return with object
+const team001 = {team:'a',class:'b'}
+
+const addprop = (obj, key, value)=> ({...obj,[key]:value})
+
+// adding key value 
+console.log(addprop(team001,'happy', ':)'));
+
+// 
+// 
+const prop = (x,y)=>( {x,y} );
+console.log(prop(9,2));
+
+// replacing the parenthesis with
+// curly breaket and return 
+const por =(x,y)=>{ return {x,y} };
+console.log(por(9,2));
+
+// 
+const addP = (x,y)=>(
+    x+y
+);
+console.log(addP(9,2));
+
+
+const addCB =(x,y)=>{ 
+    const add = x+y
+    return add
+ };
+console.log(addCB(9,2));

@@ -92,7 +92,7 @@ const person4 = {
         last,
         nickName
     } = this;
-        return (`${first} ${last}`);
+        return (`${first} ${last} not to mention also known as ${nickName}`);
     },
     // creating a method which will call
     // above method 
@@ -103,7 +103,17 @@ const person4 = {
 }
 person4.printBio();
 
-// //////////////////////////////////////////
-// The value of "this" depends on the invocation
-//  context of the function it is used in.
-// ///////////////////////////////////////////
+// ///////////////////////////////////////////////
+// The value of "this" depends on the invocation /
+//  context of the function it is used in.       / 
+// ///////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+

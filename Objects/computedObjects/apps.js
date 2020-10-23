@@ -51,6 +51,14 @@ console.log(res)
 // 
 // using computed property to write same function
 // using arrow function
+
+// using parenthesis for implicit return, return word is not used
+// const addprop = (obj,k,v)=>({
+//     ...obj,
+//     [k]:v
+// })
+
+// using bracket with return
 const addProperty =(obj, key, value)=>{
     return {
         ...obj,
@@ -61,3 +69,5 @@ const result = addProperty(team1, 'happy', ':)')
 console.log(result);
 
 // 
+const team001 = {}
+console.log(addprop(team001, role, person));
