@@ -7,14 +7,16 @@ console.log(p.style)
 // you can't access                 /  
 // style property with .style       /
 // you can  access style properties /
-// that you have set through html 
-// called inline.
+// that you have set through html   /
+// called inline.                   /
 // But you can change the existing  /
 // property                         /
-// 
+//                                  /
 // //////////////////////////////////
 
-// accessing peroperty set through html
+// accessing peroperty 
+// inline css (set through html)
+// over write all other property set before
 const  h1 = document.querySelector('h1')
 console.log(h1.style.color)
 
@@ -37,7 +39,12 @@ console.log(allLis);
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 
 // assigning color to each li
-allLis.forEach((el,i)=>{
+// it will overwrite the color set before
+
+allLis.forEach((li,i)=>{
     const color = colors[i];
-    console.log(el, color)
+    console.log(li, color)
+    // changing style
+    li.style.color = color;
 });
+
