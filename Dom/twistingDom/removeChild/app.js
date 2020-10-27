@@ -34,5 +34,18 @@ const rem = ul1.remove()
 console.log(rem)
 
 // removing first heading 
-document.querySelector('h1').remove()
+document.querySelector('h1').remove();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
