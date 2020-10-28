@@ -42,4 +42,4 @@ for(let color of colors) {
     // })
 
     box.addEventListener('click', printColor)
-}
+};
