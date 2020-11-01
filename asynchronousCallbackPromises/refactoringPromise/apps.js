@@ -10,7 +10,7 @@ const moVEX  = ( element, amount, delay  ) => {
         
         if ( elRight + amount > bodyBoundry ) {
             console.log("Bas Kero Limit Agai")
-            reject();
+            reject( { bodyBoundry, elRight } );
         }else {
             element.style.transform = `translateX( ${ currLeft + amount }px )`;
             // callback will call the function again
@@ -33,6 +33,7 @@ const moVEX  = ( element, amount, delay  ) => {
 //     })
 
 // with arrow function we can implicit return
+
 moVEX( btn, 50, 1000 )
     .then( () => moVEX( btn, 50, 1000 ) )
     .then( () => moVEX( btn, 100, 1000 ) )
@@ -44,3 +45,5 @@ moVEX( btn, 50, 1000 )
         console.log( `Element is at ${elRight}px, ${amount}px is too large` );
     });
 
+
+    
