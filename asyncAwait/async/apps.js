@@ -1,0 +1,66 @@
+// Async functions always return a promise
+// If the function returns a value, the promise will be resolved
+// with that value
+// if the function throws an exception, the promise will be rejected
+
+async function hello() {
+    return 'Heyyyy!'
+}
+// console.log(hello());
+hello().then( (val) => {
+    console.log('PROMISE RESOLVED WITH', val);
+})
+;
+
+// 
+async function add(x, y) {
+    if ( typeof x !== 'number' || typeof y !== 'number' ) {
+        throw 'X and Y must be numbers!';
+    }
+    return x + y;
+}
+
+add(2,4)
+    .then( (val) => {
+        console.log('PROMISE RESOLVED', val);
+    })
+    .catch( (err) => {
+        console.log('PROMISE REJECTED', val);
+    })
+
+
+add('four',4)
+    .then( (val) => {
+        console.log('PROMISE RESOLVED', val);
+})
+    .catch( (err) => {
+        console.log('PROMISE REJECTED', err);
+})
+
+
+// Rewrite above function
+
+function multiply(x, y) {
+    return new Promise(( resolve, reject ) => {
+        if ( typeof x !== 'number' || typeof y !== 'number' ) {
+            reject('X and Y must be numbers!');
+        }
+        resolve(x * y);
+    })
+}
+
+multiply(4,4)
+    .then( (val) => {
+        console.log('PROMISE RESOLVED', val);
+})
+    .catch( (err) => {
+        console.log('PROMISE REJECTED', err);
+})
+
+multiply('four',4)
+    .then( (val) => {
+        console.log('PROMISE RESOLVED', val);
+})
+    .catch( (err) => {
+        console.log('PROMISE REJECTED', err);
+})
