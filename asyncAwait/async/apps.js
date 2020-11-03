@@ -64,3 +64,6 @@ multiply('four',4)
     .catch( (err) => {
         console.log('PROMISE REJECTED', err);
 })
+
+
+
