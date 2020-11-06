@@ -75,6 +75,7 @@ button:active {
   width: 50rem;
   max-width: 90%;
   border-radius: 7px;
+  min-width: 100px;
 }
 
 .product-item img {
@@ -90,6 +91,18 @@ button:active {
 }
 
 .product-item h2,
-.product-item h3 {
+.product-item h3,
+.product-item p,
+.button-center {
   margin: 0 0 1rem 0;
+  text-align: center;
 }
+
+/* .button-center {
+  margin: 0;
+  position: absolute;
+  top: 60%;
+  /* left: 50%; */
+/* -ms-transform: translateY(50%); */
+/* transform: translateY(50%); */
+/* }  */
