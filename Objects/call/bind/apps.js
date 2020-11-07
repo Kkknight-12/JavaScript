@@ -51,7 +51,7 @@ function btn2() {
 }
 addToCart2.addEventListener( 'click', this.btn2.bind(this) )
 
+
 // try different input like
 const addToCart3 = document.querySelector('.btn3');
-addToCart3.addEventListener( 'click',this.greet.bind(sushma, 'Himachal', 'India'));
-
+addToCart3.addEventListener( 'click', this.greet.bind(sushma, 'Himachal', 'India'));
