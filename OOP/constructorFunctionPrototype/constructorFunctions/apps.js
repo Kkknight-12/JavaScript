@@ -68,15 +68,3 @@ const color2 = new color(40, 50, 60);
 console.log(color2.hex())
 
 console.log(color1.hex());
-
-
-
-
-
-
-
-
-
-
-
-

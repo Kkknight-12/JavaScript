@@ -24,9 +24,23 @@ info.printInfo()
 class ShoppingCart {
     items = [];
 
-    addProduct(product){
-        this.items.push(product);
-        this.totalOutput.innerHTML = `<h2>Total: \$${1}</h2>`;
+    set cartItems( value ) {
+        this.items = value;
+        this.totalOutput.innerHTML = 
+        `<h2>Total: \$${this.totalAmount.toFixed(2)}</h2>`;
+    }
+
+    get totalAmount() {
+        const sum = this.items.reduce( (prevValue, curItem) => {
+            return prevValue + curItem.price
+        }, 0);
+        return sum;
+    }
+
+    addProduct( product ){
+        const updatedItems = [...this.items];
+        updatedItems.push(product);
+        this.cartItems = updatedItems;
     }
 
     render() {
@@ -45,6 +59,7 @@ class ShoppingCart {
         this.totalOutput = cartEl.querySelector('h2');
         return cartEl;
     }
+
 }
 
 // Item Class
@@ -54,7 +69,7 @@ class ProductItem {
     }
 
     addToCart() {
-        App.addProductToCart(this.product);
+        App.addProductToCart( this.product );
         // console.log( 'Adding product to card....' );
         // console.log( this.product );
         // console.log( this.product.title );
@@ -66,7 +81,8 @@ class ProductItem {
             prodEl.innerHTML = `
             <div class="container">
                 <img src="${this.product.imageUrl}" alt="${this.product.title}" />
-                <div class="product-item_content">
+                <div
+                class="product-item_content">
                     <h2>${this.product.title}</h2>
                     <p>${this.product.description}</p>
                     <h3>\$${this.product.price}</h3>
@@ -83,8 +99,6 @@ class ProductItem {
         return prodEl;
     }
 }; 
-
-
 
 // List of all Products
 class ProductList {
@@ -105,29 +119,28 @@ class ProductList {
 
             'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQGOGVv80DZW3qNCUnzp4krvrtUz1fwA_t_qvCjDO4LML30v4N0cCauKnsfASoRyL1RTxN2OeZd8_ahxnw_rMkEVjVltNAel_hzWnavGfk&usqp=CAE',
             "A carpet which you might like - or not.",
-            89.99,
-        
-        )
-    
+            89.99,       
+        )   
     ];
 
     constructor () { }
 
     render() {
-        const renderHook = document.getElementById('app');
         const prodList = document.createElement('ul');
         prodList.className = 'product-list';
 
-        for ( const prod  of this.products ) {
+        for ( const prod of this.products ) {
 
         const productItem = new ProductItem( prod );
         const prodEl = productItem.render();
         prodList.append(prodEl);
 
         }   
-        renderHook.append(prodList);
+        return prodList;
     }
 };
+
+
 
 class  Shop {
     render() {
@@ -145,6 +158,9 @@ class  Shop {
 }
 
 class App {
+
+    static cart;
+
     static init() {
         const shop = new Shop()
         shop.render()

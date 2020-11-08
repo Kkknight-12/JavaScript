@@ -110,3 +110,14 @@ button:active {
 /* -ms-transform: translateY(50%); */
 /* transform: translateY(50%); */
 /* }  */
+
+/* 
+<div class="cart_content" >
+            <div>
+            <h2>Total: \$${0}</h2>
+            </div>
+            <div class="button-cart-center">
+                <button>Order Now!</button>
+            </div>
+        </div>
+*/
