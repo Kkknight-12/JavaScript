@@ -8,6 +8,7 @@ const jaya = {
     // }
 }
 console.log(jaya.name, jaya.age)
+
 const sushma = {
     name: 'sushma',
     age : 21,

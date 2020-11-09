@@ -1,8 +1,154 @@
-// get set allow us to write custom
-// logic
+// // get set allow us to write custom
+// // logic
+
+// The get syntax binds an object property to a
+// function that will be called when that property is looked up.
+
+const obj = {
+  log: ['a', 'b', 'c'],
+
+  get latest() {
+    if (this.log.length === 0) {
+      return undefined;
+    }
+    return this.log[this.log.length - 1];
+  }
+};
+console.log(obj.latest);
+// function get() will return the last element
+// creating new arry of log
+obj.log = ['c', 'd', 'e']
+console.log(obj.latest);
+// expected output: "c"
+// obj.log->['a','b','c']
+// obj.log.length - 1 -> 2
+console.log(obj.log[obj.log.length -1])
+
+// set
+// The set syntax binds an object property to a
+// function to be called WHEN THERE IS AN
+// AN ATTMEPT TO SET THAT PROPERTY
+// parameter can be defined in set
+// but only one parameter can be set
+const language = {
+  set current(name) {
+      // setting the log property
+    this.log.push(name);
+  },
+  // every time log is used the get property
+  // will be accessed
+  log: ['FN']
+};
+
+language.current = 'EN';
+language.current = 'FA';
+
+console.log(language.log);
+// expected output: Array ["EN", "FA"]
+
+//
+class ShoppingCart {
+
+    items = [1,2,3,4,5];
+    updatedItems = [ ]
+
+    set cartItems( value ) {
+        this.items = value;
+        console.log(this.items)
+        console.log(this.totalAmount.toFixed(2))
+        
+  }
+
+    get totalAmount() {
+    const sum = this.items.reduce( (prevValue, curItem) => {
+        return prevValue + curItem
+    }, 0);
+    return sum;
+  }
+
+    addProduct( product ){
+    // const updatedItems = [...this.items];
+    this.updatedItems = [...this.items];
+    this.updatedItems.push(product);
+    console.log(this.updatedItems)
+
+    this.cartItems = this.updatedItems; //
+  }
+
+}
+const newShop = new ShoppingCart();
+
+// accessing the get
+// check the list
+console.log(newShop.items)
+// check total amount in list
+console.log(newShop.totalAmount)
+
+// add item in list
+newShop.addProduct(5)
+// again check what is the amount now
+console.log(newShop.totalAmount)
+
+// accessing the set
+console.log(newShop.cartItems)
+
+// newShop.cartItems = [12,23]
+newShop.cartItems
+
+
+const la = {
+    li : ['a', 'b'],
+
+    set current(name) {
+        // setting the log property
+        this.li = name,
+        console.log(this.li.reverse())
+      
+    },
+
+    // every time log is used the get property
+    // will be accessed
+    jodo(naya) {
+      this.newli = [...this.li],
+      this.newli.push(naya),
+      console.log(this.newli)
+      this.current = this.newli
+  }
+};
+
+la.jodo('bachan')
+console.log(la.newli);
+
+
+const ge = {
+  items : [10,10],
+  // newitems : [], 
+
+  get totalAmount() {
+        const sum = this.newitems.reduce( (prevValue, curItem) => {
+            return prevValue + curItem
+        }, 0);
+        return sum;
+      },
+
+  jodo(naya) {
+    this.newitems = [...this.items],
+    this.newitems.push(naya),
+    console.log(this.newitems)
+    // this.items = this.newitems
+  }
+}
+
+ge.jodo(5)
+console.log(ge.totalAmount)
+
+// ge.a = [1,2,3,4]
+// console.log(ge.a)
+
+
 class Person {
     constructor(name) {
-        // underscore name is a private property 
+        // underscore name is a private property
         // which can't be accessed from outside
         // only way to access it is to use get name()
         // which will return this private property
@@ -22,16 +168,20 @@ class Person {
         console.log('Rejected!')
         }
     }
+
+    ji(){
+
+    }
 }
 
-// 
+//
 let person = new Person('KNight');
-// _name will be shown 
+// _name will be shown
 console.log(person);
-//  
+//
 console.log(person.name);
 
-// overwrite the name 
+// overwrite the name
 person.name = 'Bablu';
 console.log(person.name)
 // original name
@@ -50,6 +200,9 @@ const data = {
 }
 data.location = 'phill'
 console.log(data.location)
+
+
+
 
 const data1 = {
     // empty array where all the location will be stored
@@ -71,8 +224,8 @@ const data1 = {
 data1.location = ' trip '
 console.log(data1.location)
 console.log(data1)
-// 
+//
 data1.location = ' Hawai'
 console.log(data1.location)
 
-console.log(data1.locations)
+console.log(data1.locations);

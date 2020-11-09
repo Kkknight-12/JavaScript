@@ -59,8 +59,7 @@ class ShoppingCart {
         this.totalOutput = cartEl.querySelector('h2');
         return cartEl;
     }
-
-}
+};
 
 // Item Class
 class ProductItem {
@@ -139,8 +138,6 @@ class ProductList {
         return prodList;
     }
 };
-
-
 
 class  Shop {
     render() {
