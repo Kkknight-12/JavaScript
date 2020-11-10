@@ -41,7 +41,7 @@ function btn1(name) {
 }
 
 //                              addToCart.btn()
-addToCart.addEventListener( 'click', this.btn1.bind(this,'Conan') )
+addToCart.addEventListener( 'click', btn1.bind(this,'Conan') )
 
 // 
 // 

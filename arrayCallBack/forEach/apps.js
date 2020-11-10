@@ -64,3 +64,15 @@ console.log('-----Normal Loop-----')
 for (let i = 0; i< books.length; i++){
     console.log(books[i].title.toUpperCase())
 }
+
+// 
+
+hobbies = ['a', 'b', 'c']
+let bio = `Shyam badia admi hai `
+let result = [ ];
+function ho() { 
+    hobbies.forEach( (hobby) => {
+    result.push(...hobby)
+    }); return bio + result
+}
+console.log(ho())
