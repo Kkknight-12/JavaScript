@@ -24,9 +24,13 @@ class ElementAttribute {
 // component
 class Component {
 
-    constructor(renderHookId){
+    constructor( renderHookId, shouldRender = true  ){
         this.hookId = renderHookId;
+        if(shouldRender){
+            this.render();
+        }
     }
+    render() {}
 
     createRootElement( tag, cssClasses, attributes ) {
         const rootElement = document.createElement(tag);
@@ -39,7 +43,6 @@ class Component {
             }
         }
         document.getElementById(this.hookId).append(rootElement);
-
         return rootElement;
     }
 }
@@ -64,7 +67,8 @@ class ShoppingCart
     }
 
     constructor( renderHookId ) {
-        super( renderHookId );
+        super( renderHookId, false );
+        this.render();
     }
 
     addProduct( product ){
@@ -94,8 +98,9 @@ class ProductItem
     extends Component {
 
     constructor(product, renderHookId) {
-        super(renderHookId);
+        super( renderHookId, false );
         this.product = product;
+        this.render();
     }
 
     addToCart() {
@@ -129,11 +134,14 @@ class ProductItem
 // List of all Products
 class ProductList 
     extends Component {
-    constructor(renderHookId) {
-    super(renderHookId);
+        products = [];
+        constructor(renderHookId) {
+        super(renderHookId);
+        this.fetchProducts();
     }
 
-    products = [ 
+    fetchProducts() {
+        this.products = [ 
         new Product (  
             'A  Pillow',
             'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR4rUSM1IY6-u3CW332UCRP5fZ7hnbzMZyfMZNeyhMhWe3KeP3YR6y4lEkkOORT5oo_utkpX0XzaOZTZ6TW2KmniprQ4DrBuEgb_S5KqAo8d3MzwJjUQcgw&usqp=CAE',
@@ -147,28 +155,29 @@ class ProductList
             89.99,       
         )   
     ];
+    this.renderProducts();
+}
+
+    renderProducts(){
+        for ( const prod of this.products ) {
+            new ProductItem(prod, 'prod-list');
+        }   
+    }
 
     render() {
-
         this.createRootElement('ul', 'product-list', 
         [new ElementAttribute('id', 'prod-list')]);
-
-        for ( const prod of this.products ) {
-
-            const productItem = new ProductItem(prod, 'prod-list');
-            productItem.render();
-        }   
     }
 };
 
 class  Shop {
+    constructor(){
+        this.render();
+    }
+
     render() {
-
         this.cart = new ShoppingCart('app');
-        this.cart.render();
-
-        const productList  = new ProductList('app');
-        productList.render()
+        new ProductList('app');
     }
 }
 
@@ -178,7 +187,6 @@ class App {
 
     static init() {
         const shop = new Shop()
-        shop.render()
         this.cart = shop.cart;
     }
 
@@ -188,4 +196,3 @@ class App {
 }
 
 App.init();
-
