@@ -10,7 +10,6 @@ class Product {
         this.description = desc;
         this.price = price;
     } 
-    
 }
 
 // 
@@ -24,13 +23,13 @@ class ElementAttribute {
 // component
 class Component {
 
-    constructor( renderHookId, shouldRender = true  ){
+    constructor( renderHookId, shouldRender = true ) {
         this.hookId = renderHookId;
         if(shouldRender){
             this.render();
         }
     }
-    render() {}
+    // render() {}
 
     createRootElement( tag, cssClasses, attributes ) {
         const rootElement = document.createElement(tag);
@@ -47,7 +46,6 @@ class Component {
     }
 }
 
-//
 // 
 class ShoppingCart 
     extends Component {
@@ -65,10 +63,10 @@ class ShoppingCart
         }, 0);
         return sum;
     }
-
     constructor( renderHookId ) {
-        super( renderHookId, false );
-        this.render();
+        // super( renderHookId, false );
+        // this.render();
+        super( renderHookId );
     }
 
     addProduct( product ){
@@ -97,7 +95,7 @@ class ShoppingCart
 class ProductItem
     extends Component {
 
-    constructor(product, renderHookId) {
+    constructor( product, renderHookId ) {
         super( renderHookId, false );
         this.product = product;
         this.render();
@@ -167,6 +165,10 @@ class ProductList
     render() {
         this.createRootElement('ul', 'product-list', 
         [new ElementAttribute('id', 'prod-list')]);
+
+        // if (this.products && this.products.length > 0) {
+        // this.renderProducts();
+    // }
     }
 };
 
