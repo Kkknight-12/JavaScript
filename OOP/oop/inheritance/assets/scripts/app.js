@@ -1,3 +1,5 @@
+// refactoring
+
 class Product {
 
     // adding constructor method

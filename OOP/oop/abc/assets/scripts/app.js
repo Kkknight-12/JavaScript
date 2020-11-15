@@ -1,3 +1,5 @@
+// inheritance
+
 class Product {
 
     // adding constructor method

@@ -1,136 +1,94 @@
-
-// class Product{
-//     constructor(title, desc){
-//         this.title = title;
-//         this.description = desc;
-//     }
-// }
-
-// class Component {
-//     constructor(hookId, shouldRender = true){
-//         this.hookId = hookId;
-//         if( shouldRender){
-//             this.render();
-//         }
-//     }
-// }
-
-// class Cart
-//     extends Component {
-//         products = [];
-//         constructor(hookId, shouldRender ){
-//             super(hookId, shouldRender = false);
-//             this.render();
-//         }
-
-//     render() {
-//         console.log( 'cart' )
-//         this.products = [
-//             new Product(
-//                 'A pillow',
-//                 'Lelo yr bhai sab'
-//             ),
-
-//             // new Product (
-//             //     'Ek Tamator',
-//             //     'yee 10 rupya 10 rupiya'
-//             // )
-//         ]
-//         this.renderProducts();
-//     }
-
-//     renderProducts() {
-//         // const Id = document.getElementById('app')
-//         const prodList = document.createElement('ul')
-//         const prodEl = document.createElement('li')
-//         for (const prod of this.products){
-//             // console.log(prod.title)
-//         prodList.innerHtml = 
-//         ` <h2>${prod.title}</h2>
-//           <p>${prod.description}</p>`;
-//           prodList.append(prodEl);
-//         }
-
-//         // prodList.innerHtml = 
-//         // ` <h2>${products.title}</h2>
-//         //   <p>${products.description}</p>`;
-//         //   prodEL.append(prodList);
-        
-//         // return prodEL;
-//     }
-
-//         // const prodEL = document.createElement('li')
-    
-//         // prodEL.innerHtml = 
-//         // ` <h2>${this.products.title}</h2>
-//         //   <p>${this.products.desc}</p>`;
-//         // }
-        
-    
-// }
-
-
-
-
-// // class ProductItem 
-// //     extends Cart{
-// //     constructor(id, products){ // id = app, products = undefined
-// //         super(products)
-// //         this.id = id;
-// //         this.render();
-// //     }
-
-// //     render() {
-// //     const prodEL = document.createElement('ul')
-// //     prodEL.innerHtml = 
-// //    ` <h2>${this.products.title}</h2>
-// //     <p>${this.products.desc}</p>`
-// //     return prodEL
-// //     }
-// // }
-
-// class Shop {
-//     constructor(){
-//         this.render();
-//     }
-
-//     render(){
-//         new Cart('app')
-//         // new ProductItem('app')
-//     }
-// }
-
-// class App {
-
-//      static init(){
-//         const shop = new Shop()
-//     }
-// }
-
-// App.init()
-
-
-class Product {
-    products = [{title:'A pillow',
-                description:'Lelo yr bhai sab'}];
-
-    renderProducts() {
-            const Id = document.getElementById('app')
-            // const prodList = document.createElement('div')
-            const prodEl = document.createElement('li')
-            for (const prod of this.products){
-                // console.log(prod.title)
-            prodEl.innerHtml = 
-            `<div>
-            <h2>asasdasd</h2>
-            <p>${prod.description}</p>
-            </div>`;
-        }
-        // prodList.append(prodEl);
-        Id.append(prodEl)
-        return Id;
+// Connect classes with Constructor, super
+class Product{
+    constructor( title, desc ){
+        this.title = title;
+        this.description = desc;
     }
 }
 
-const p = new Product();
-p.renderProducts()
+class Component {  
+    //               boolean is set to false , pappu = 'Pappu Bhai' from line 26
+    constructor( hookId, shouldRender = true, pappu ) { // hookId = "app" from line 24 
+        this.hookId = hookId; // 'app'
+        if( shouldRender ){  // false
+            this.render();
+        }
+    }
+}
+
+class Cart
+    extends Component {
+        products = [];
+        // value from line 89
+        constructor( hookId, pappu ) { // hookId = "app", pappu = undefined, from line 89
+            // hookId = "app", shouldRender = false 
+            super( hookId, false, pappu = 'Pappu Bhai' ); 
+            this.hookId = hookId;
+            this.pappu = pappu //
+            this.render();
+        }
+
+    render() {
+        console.log( 'cart' )
+        this.products = [
+            new Product(
+                'A pillow',
+                'Lelo yr bhai sab'
+            ),
+            new Product (
+                'Ek Tamator',
+                'yee 10 rupya 10 rupiya'
+            )
+        ]
+        this.renderProducts();
+        console.log( this.pappu ) // pappu = 'Pappu Bhai'
+    }
+
+    renderProducts() {
+        const Id = document.getElementById( this.hookId )
+        const prodList = document.createElement( 'ul' )
+        prodList.className = 'product-class'
+
+        for (const prod of this.products) { 
+            const productItems =  new ProductItem( prod );
+            const prodEl = productItems.render();
+            prodList.append( prodEl );
+        }
+        Id.append(prodList)
+    }
+}
+
+class ProductItem {
+    constructor( product ) { // prod -> products = title, description
+        this.product = product;
+    }
+
+    render() {
+        const prodEl = document.createElement( 'li' )
+        prodEl.className = 'product-item';
+        prodEl.innerHTML = `
+        <div>
+        <h2>${ this.product.title }</h2>
+        <p>${ this.product.description }</p>
+        </div>
+        `;
+        return prodEl;
+    }
+}
+
+class Shop {
+    constructor(){
+        this.render();
+    }
+    render(){
+        new Cart( 'app' )
+    }
+}
+
+class App {
+     static init(){
+        const shop = new Shop()
+    }
+}
+
+App.init();
