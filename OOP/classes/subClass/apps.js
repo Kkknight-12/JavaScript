@@ -1,3 +1,5 @@
+// extend
+
 class Person {
     constructor( firstName, occupation, age, hobbies = [] ) {
         this.firstName = firstName;

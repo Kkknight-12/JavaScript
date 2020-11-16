@@ -7,9 +7,10 @@ class Product{
 }
 
 class Component {  
-    //               boolean is set to false , pappu = 'Pappu Bhai' from line 26
+    //         boolean is overwrite to false, pappu = 'Pappu Bhai' from line 26
     constructor( hookId, shouldRender = true, pappu ) { // hookId = "app" from line 24 
         this.hookId = hookId; // 'app'
+        // this.pappu = pappu
         if( shouldRender ){  // false
             this.render();
         }
@@ -19,12 +20,12 @@ class Component {
 class Cart
     extends Component {
         products = [];
-        // value from line 89
-        constructor( hookId, pappu ) { // hookId = "app", pappu = undefined, from line 89
+        
+        constructor( hookId, pappu ) { // hookId = "app" from line 89 , pappu = undefined
             // hookId = "app", shouldRender = false 
             super( hookId, false, pappu = 'Pappu Bhai' ); 
             this.hookId = hookId;
-            this.pappu = pappu //
+            this.pappu = pappu // can be declared in Component, line 13 
             this.render();
         }
 
@@ -92,3 +93,26 @@ class App {
 }
 
 App.init();
+
+// 
+// 
+
+class Pet { 
+    constructor( name, age ) {
+        this.name = name; // A-4
+        this.age = age; // A-4
+    }
+}
+
+class Cat
+    extends Pet { // tuna , 6, lives = 9 is default
+        constructor( name, age, lives = 9 ) { // A-2 from line 114
+            super( name, age ); // A-3
+            this.lives = lives; // A-5 declaring the parameter
+    }
+}
+
+const tuna = new Cat('tuna', 6) //  A-1
+console.log(tuna)
+console.log(tuna.lives)
+console.log(tuna.lives = tuna.lives + 100 ) // adding 100 to default age

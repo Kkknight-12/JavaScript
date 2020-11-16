@@ -94,3 +94,34 @@ console.log( me.getBio() )
 const me2 =  new Person('Shyam', 'Accountant', 44)
 console.log( me2.getBio() )
 console.log(me2);
+
+
+// 
+// 
+function Insan() {
+    this.age = 29;
+    this.name = 'Knight'
+
+    this.greet = function () {
+        console.log('Hi, I am ' + this.name + ' I am ' + this.age + ' years old.')
+    }
+}
+
+// the above function will return object because of the the new keyword
+const person = new Insan();
+console.log(person.greet())
+
+// behind the sceen, new key word do this
+// function Person () {
+//     // create empty this object
+//     // this = { }
+//     this.age = 29;
+//     this.name = 'Knight'
+
+//     this.greet = function () {
+//         console.log('Hi, I am ' + this.name + ' I am ' + this.age + ' years old.')
+//     }
+//     // return this;
+// }
+
+// 
