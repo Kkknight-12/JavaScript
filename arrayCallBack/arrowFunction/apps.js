@@ -20,7 +20,7 @@ const multiply = (x,y)=>{
 console.log(multiply(2,10))
 
 // 
-const greet =() =>{
+const greet = () =>{
     console.log("HI!")
 }
 console.log(greet());

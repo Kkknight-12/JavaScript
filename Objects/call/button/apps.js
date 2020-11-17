@@ -17,13 +17,14 @@ console.log(cn.bind( cn ));
 
 const btn = document.querySelector('.increment');
 // fail
-// btn.addEventListener( 'click', counter.increment );
+// btn.addEventListener( 'click', countER.increment );
 
-// btn.addEventListener( 'click', counter.increment.bind( counter ) );
+// btn.addEventListener( 'click', countER.increment.bind( countER ) );
 
 const increment = countER.increment.bind( countER );
 btn.addEventListener( 'click', increment );
 // btn.removeEventListener( 'click', increment );
+
 
 
 this.x = 9; // global scope value
@@ -55,25 +56,24 @@ console.log(basex())
 
 
 class Doc {
-    count = 0;
+    // count = 0; // b.count
+    lastName = 'BHAI';
     counter = { 
-      // count : 0,
-      increment(counTer) {
+      count : 0, // b.counter.count
+      increment( counTer ) {
+      // increment : (counTer) =>  {
         console.log(this); // Doc {name, count}
-        // here this refers to
-        // count and increment
-        // we are targeting count and adding 1 with every increment run
-        this.count++
-        console.log( `${this.name}${this.lastName} ${counTer} is -> ${this.count}` );
+        // need to pass the full path to count as this is refered to window here
+        b.counter.count++ // can be changed to b.count 
+        console.log( `${this.firstName} ${this.lastName} ${counTer}  is -> ${b.counter.count}` );
       }
     };
-    
+
     render() {
       const btn = document.querySelector('.incr');
-      btn.addEventListener( 'click', this.counter.increment.bind({ name: 'Ramesss ', lastName: 'Bhai' }, 'counter' ) )
+      btn.addEventListener( 'click', this.counter.increment.bind( {firstName: 'Ramess', lastName: 'BHai' }, 'counter' ) )
     }
 }
-
 
 const b = new Doc();
 b.render();
