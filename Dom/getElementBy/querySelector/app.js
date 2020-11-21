@@ -7,9 +7,6 @@
 const liList = document.querySelector('li');
 console.log(liList);
 
-
-
-
 // 
 // selecting class with dot
 //To find the first element with class of special:
