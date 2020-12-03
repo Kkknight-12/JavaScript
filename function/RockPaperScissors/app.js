@@ -7,10 +7,9 @@ function startGame(){
 
 startGameBtn.addEventListener( 'click', startGame )
 
-const person = {
-    greet: function (){
-        console.log('yoo')
-    }
-}
+// const person = {
+//     greet: function (){
+//         console.log('yoo')
+//     }
+// }
 
-person.greet();
