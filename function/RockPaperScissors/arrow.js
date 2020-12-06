@@ -1,5 +1,23 @@
+// const resetGameBtn = document.getElementById('reset-game-btn');
+// resetGameBtn.addEventListener( 'click', () => {
+//     gameIsRunning = false;
+
+//     console.log('Game is Restarting....');
+//     const playerChoice = getPlayerChoice();
+//     const computerChoice = getComputerChoice();
+//     const winner = getWinner( computerChoice, playerChoice );
+//         if (computerChoice === playerChoice) {
+//             console.log(`Both choose ${playerChoice}`)
+//         } else{
+//             console.log(`player choice was ${playerChoice} while computer choice was ${computerChoice}`)
+//         }
+//     console.log(winner);
+// });
+
+
+// 
+// 
 const startGameBtn = document.getElementById('start-game-btn');
-const resetGameBtn = document.getElementById('reset-game-btn');
 
 const ROCK = 'ROCK',
 PAPER = 'PAPER',
@@ -76,19 +94,3 @@ startGameBtn.addEventListener( 'click', () => {
     console.log(winner);
     };
 });
-
-// resetGameBtn.addEventListener( 'click', () => {
-//     gameIsRunning = false;
-
-//     console.log('Game is Restarting....');
-//     const playerChoice = getPlayerChoice();
-//     const computerChoice = getComputerChoice();
-//     const winner = getWinner( computerChoice, playerChoice );
-//         if (computerChoice === playerChoice) {
-//             console.log(`Both choose ${playerChoice}`)
-//         } else{
-//             console.log(`player choice was ${playerChoice} while computer choice was ${computerChoice}`)
-//         }
-//     console.log(winner);
-// });
-

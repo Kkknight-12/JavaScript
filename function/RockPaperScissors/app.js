@@ -4,84 +4,74 @@
 // })
 // //////////////////////////////////////////////////////////////////
 
-// 
-// 
-// const startGameBtn = document.getElementById('start-game-btn');
-
-// const ROCK = 'ROCK',
-// PAPER = 'PAPER',
-// SCISSORS = 'SCISSORS',
-// DEFAULT_CHOICE = 'ROCK',
-// RESULT_DRAW = 'DRAW',
-// RESULT_PLAYER_WINS = 'PLAYER WINS',
-// RESULT_COMPUTER_WINS = 'COMPUTER WINS' ;
 
 
-// let gameIsRunning = false;
+const startGameBtn = document.getElementById('start-game-btn');
 
-// const getPlayerChoice = function(){
-//     const selection = prompt(`${ROCK}, ${PAPER} or ${SCISSORS}?`, '').toUpperCase();
+const ROCK = 'ROCK',
+PAPER = 'PAPER',
+SCISSORS = 'SCISSORS',
+DEFAULT_CHOICE = 'ROCK',
+RESULT_DRAW = 'DRAW',
+RESULT_PLAYER_WINS = 'PLAYER WINS',
+RESULT_COMPUTER_WINS = 'COMPUTER WINS' ;
 
-//     if(
-//         selection !== ROCK &&
-//         selection !== PAPER &&
-//         selection !== SCISSORS
-//     ) {
-//         alert(`Invalid choice! We chose ${DEFAULT_CHOICE} for you!`);
-//         return DEFAULT_CHOICE;
-//     }
-//     return selection;
-// };
 
-// const getComputerChoice = function() {
-//     const randomValue = Math.random();
-//     if( randomValue < 0.34) {
-//         return ROCK;
-//     } else if( randomValue < 0.67){
-//         return PAPER;
-//     } else {
-//         return SCISSORS;
-//     }
-// };
+let gameIsRunning = false;
 
-// const getWinner = function( cChoice, pChoice ){
-//     if( cChoice === pChoice ){
-//         return RESULT_DRAW;
-//     } else if( 
-//         (cChoice === ROCK && pChoice === PAPER) ||
-//         (cChoice === PAPER && pChoice === SCISSORS)||
-//         (cChoice === SCISSORS && pChoice === ROCK)
-//     ) {
-//         return RESULT_PLAYER_WINS;
-//     } else{
-//         return RESULT_COMPUTER_WINS;
-//     }
-// };
+const getPlayerChoice = function(){
+    const selection = prompt(`${ROCK}, ${PAPER} or ${SCISSORS}?`, '').toUpperCase();
 
-// startGameBtn.addEventListener( 'click', function(){
-//     if(gameIsRunning){
-//         return;
-//     }
-//     gameIsRunning = true;
-//     console.log('Game is starting....');
-//     const playerChoice = getPlayerChoice();
-//     const computerChoice = getComputerChoice();
-//     const winner = getWinner( computerChoice, playerChoice );
-//         if (computerChoice === playerChoice) {
-//             console.log(`Both choose ${playerChoice}`)
-//         } else{
-//             console.log(`player choice was ${playerChoice} while computer choice was ${computerChoice}`)
-//         }
-//     console.log(winner);
-// });
+    if(
+        selection !== ROCK &&
+        selection !== PAPER &&
+        selection !== SCISSORS
+    ) {
+        alert(`Invalid choice! We chose ${DEFAULT_CHOICE} for you!`);
+        return DEFAULT_CHOICE;
+    }
+    return selection;
+};
 
-function greeting( name = 'Knight' ) { // 4  name = 'Knight'
-  console.log( 'Hello ' + name ); // 5 name = 'Knight'
-}
+const getComputerChoice = function() {
+    const randomValue = Math.random();
+    if( randomValue < 0.34) {
+        return ROCK;
+    } else if( randomValue < 0.67){
+        return PAPER;
+    } else {
+        return SCISSORS;
+    }
+};
 
-function processUserInput( callback ) { // 2 greeting(name = 'Knight')
-  var name = prompt( `Enter Your Name` );
-  callback( name ); // 3 callback = greeting(name = 'Knight')
-}
+const getWinner = function( cChoice, pChoice ){
+    if( cChoice === pChoice ){
+        return RESULT_DRAW;
+    } else if( 
+        (cChoice === ROCK && pChoice === PAPER) ||
+        (cChoice === PAPER && pChoice === SCISSORS)||
+        (cChoice === SCISSORS && pChoice === ROCK)
+    ) {
+        return RESULT_PLAYER_WINS;
+    } else{
+        return RESULT_COMPUTER_WINS;
+    }
+};
 
-processUserInput( greeting ); // 1 greeting(name = 'Knight')
+startGameBtn.addEventListener( 'click', function(){
+    if(gameIsRunning){
+        return;
+    }
+    gameIsRunning = true;
+    console.log('Game is starting....');
+    const playerChoice = getPlayerChoice();
+    const computerChoice = getComputerChoice();
+    const winner = getWinner( computerChoice, playerChoice );
+        if (computerChoice === playerChoice) {
+            console.log(`Both choose ${playerChoice}`)
+        } else{
+            console.log(`player choice was ${playerChoice} while computer choice was ${computerChoice}`)
+        }
+    console.log(winner);
+});
+

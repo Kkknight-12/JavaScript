@@ -57,3 +57,17 @@ const sumUp = ( a, b, ...numbers )=>{ // a = 1, b = 1, numbers = ['k', 2]
     return sum
 }
 console.log(sumUp(1,1,'k',2))
+
+// ///////////////////
+// keyword arguments /
+// ///////////////////
+// you can you key word arguments as an argument 
+// which is not defined in function
+const subtractUp = function(){ // function with no argument
+    let subtract = 0;
+    for ( const num of arguments){ // key word is used to  take arguments
+        subtract -= num;
+    }
+    return subtract
+}
+console.log(subtractUp(12,1,2,3)) // parameters passed 
