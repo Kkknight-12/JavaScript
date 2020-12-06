@@ -4,7 +4,7 @@
 // })
 // //////////////////////////////////////////////////////////////////
 
-
+// 
 // 
 // const startGameBtn = document.getElementById('start-game-btn');
 
@@ -74,3 +74,14 @@
 //         }
 //     console.log(winner);
 // });
+
+function greeting( name = 'Knight' ) { // 4  name = 'Knight'
+  console.log( 'Hello ' + name ); // 5 name = 'Knight'
+}
+
+function processUserInput( callback ) { // 2 greeting(name = 'Knight')
+  var name = prompt( `Enter Your Name` );
+  callback( name ); // 3 callback = greeting(name = 'Knight')
+}
+
+processUserInput( greeting ); // 1 greeting(name = 'Knight')

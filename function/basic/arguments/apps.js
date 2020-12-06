@@ -39,3 +39,21 @@ function td(roll){
     }
 }
 td(3)
+
+// 
+// 
+// function inside a function
+const sumUp = ( a, b, ...numbers )=>{ // a = 1, b = 1, numbers = ['k', 2]
+    // function with local scope
+    // will run  only inside sumUp
+    const validateNumber = (number) =>{ // number = "k" , 2
+        return isNaN(number) ? 0: number;
+    }
+
+    let sum = 0;
+    for ( const num of numbers ){ //  ['k', 2]
+        sum += validateNumber(num)
+    }
+    return sum
+}
+console.log(sumUp(1,1,'k',2))
