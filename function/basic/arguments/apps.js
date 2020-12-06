@@ -70,4 +70,4 @@ const subtractUp = function(){ // function with no argument
     }
     return subtract
 }
-console.log(subtractUp(12,1,2,3)) // parameters passed 
+console.log(subtractUp(12,1,2,3)) // parameters passed
