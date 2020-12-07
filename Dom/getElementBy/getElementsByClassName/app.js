@@ -30,6 +30,4 @@ const ul = document.getElementsByTagName('ul')[0];
 const ulSpecial = ul.getElementsByClassName('special')
 console.log(ulSpecial);
 
-// 
-// for loop can be used to itter over the li
 
