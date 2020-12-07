@@ -1,3 +1,8 @@
+// The Element.getElementsByTagName() method returns a 
+// live HTMLCollection of elements with the given 
+// tag name. All descendants of the specified element are 
+// searched, but not the element itself. 
+
 const listItemElements = document.getElementsByTagName('li')
 const lastLi = document.querySelector('li:last-of-type');
 lastLi.textContent = lastLi.textContent + ' adding changes'
