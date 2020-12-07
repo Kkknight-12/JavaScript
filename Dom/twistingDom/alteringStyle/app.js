@@ -19,6 +19,7 @@ console.log(p.style)
 // over write all other property set before
 const  h1 = document.querySelector('h1')
 console.log(h1.style.color)
+h1.style.color = 'red'
 
 // changing style
 // .style.color
@@ -41,10 +42,9 @@ const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 // assigning color to each li
 // it will overwrite the color set before
 
-allLis.forEach((li,i)=>{
+allLis.forEach( (li,i) => {
     const color = colors[i];
-    console.log(li, color)
+    console.log( li, color )
     // changing style
     li.style.color = color;
 });
-

@@ -4,7 +4,15 @@
 
 // 
 // To select the element with id of bear-photo:
-document.getElementById('bear-photo')
-
+const bearPhoto = document.getElementById('bear-photo')
+console.log(bearPhoto)
 //To select the element with id of main:
-document.getElementById('main')
+const para = document.getElementById('main')
+console.log( para)
+
+
+// 
+// console.dir()
+// can also use dir to look at what we are selecting
+console.dir(document.getElementById('main'))
+console.dir(document.getElementById('bear-photo'))
