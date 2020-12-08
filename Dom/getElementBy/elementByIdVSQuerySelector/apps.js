@@ -4,13 +4,14 @@
 // searched, but not the element itself. 
 
 const listItemElements = document.getElementsByTagName('li')
-const lastLi = document.querySelector('li:last-of-type');
+const lastLi = document.querySelector('li:last-of-type'); // last element is 3rd elements
 lastLi.textContent = lastLi.textContent + ' adding changes'
 
-const lasTLi = document.createElement("li");
-lasTLi.textContent = 'Item 4'
+const lasTLi = document.createElement("li"); // creating 4th element
+lasTLi.textContent = 'Item 4' // adding text
 
-const ul = document.querySelector('ul')
+// getElementsByTagName can't be used to select ul
+const ul = document.querySelector('ul') 
 ul.append(lasTLi)
 
 // getElementsByTagName will give live list which will refelcted live changes
@@ -20,3 +21,4 @@ ul.append(lasTLi)
 for( const listItemEl of listItemElements ){
     console.dir(listItemEl.textContent)
 }
+

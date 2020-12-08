@@ -22,8 +22,6 @@ console.log(todo.classList.add('done'))
 console.log(todo.classList.remove('done'));
 
 // toggle
-// it a class is there remove it
+// if a class is there remove it
 // if not add it
 console.log(todo.classList.toggle('done'));
-
-

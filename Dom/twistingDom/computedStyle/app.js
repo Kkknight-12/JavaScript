@@ -2,7 +2,7 @@ const li = document.querySelector('li');
 
 // ///////////////////////////////////
 // getComputedStyle return all the  //
-// return all the properties in css //
+// properties in css                //
 // ///////////////////////////////////
 const styles = getComputedStyle(li)
 console.log(styles)
