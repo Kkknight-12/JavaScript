@@ -1,7 +1,6 @@
-
 // selecting first li with class todo
 const firstLi = document.querySelector('li.todo')
-console.log(firstLi)
+// console.log(firstLi)
 
 // selecting ul element
 const parentUL = document.querySelector('ul');
@@ -24,7 +23,7 @@ parentUL.insertBefore(newLi, firstLi);
 // inserting before last li
 const allLi =  document.querySelectorAll('li.todo')
 const lastLi  = (allLi)[3]
-console.log(lastLi)
+// console.log(lastLi)
 
 // creating element to insert
 const secLastLi = document.createElement('li');
@@ -34,7 +33,21 @@ secLastLi.innerText = 'Second last Li with insertBefore'
 
 parentUL.insertBefore(secLastLi, lastLi);
 
+// before and after
+// before will move the element from old to new place
+const inbf = document.querySelector('#ulTwo')
+const ls = document.createElement('li');
+ls.innerText = 'last thing'
+// append will add the list to the end
+inbf.append(ls)
+const lsth = inbf.querySelectorAll('li')[1]
+// element before which you want to move the element | element you want to move
+lsth.before(ls)
+// after work same
 
+// replaceWith will replace the old element with new one
+const newl = 'new last one'
+ls.replaceWith(newl)
 
 
 // ////////////////////////////////////////
@@ -47,7 +60,6 @@ parentUL.insertBefore(secLastLi, lastLi);
 // ////////////////////////////////////////
 
 // position =>  beforebegin | afterbegin | beforeend | afterend
-
 
 // beforebegin
 // before the targetElement
@@ -93,7 +105,7 @@ firstP.insertAdjacentElement('afterend', i4)
 const newLi2 = document.createElement('li');
 
 // adding text to it
-newLi2.innerText = 'New Li2  append'
+newLi2.innerText = 'New Li2 append'
 
 // selecting paragraph
 const secondP = document.querySelectorAll('p')[1];
@@ -104,6 +116,6 @@ secondP.append(newLi2)
 const newLi3 = document.createElement('li');
 
 // adding text to it
-newLi3.innerText = 'New Li3  append'
+newLi3.innerText = 'New Li3 prepend'
 // console.log(secondP.innerText);
 secondP.prepend(newLi3);

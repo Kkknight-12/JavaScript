@@ -1,23 +1,34 @@
 // .createElement
-const newh2 = document.createElement('h2')
-console.log(newh2)
+// .createElement is always called on document which will create a new element 
+const ul = document.createElement('ul') // only tag name will come inside quote
+// console.log(ul)
 
 // putting some text into
 // with .innerHTML
-newh2.innerHTML = 'I like Animals!'
-console.log(newh2)
+// .innerHTML replace the existing containt with the new one
+ul.innerHTML = 'I like Animals!'
+// console.log(ul)
 
 // adding class special 
 //  with .classList
-newh2.classList.add('special')
-console.log(newh2)
+ul.classList.add('special')
+
+// you can also create Html element with innerHtml
+ul.innerHTML = ul.innerHTML + '<li>Item 2</li>'
+console.log(ul)
+// but innerHtml is not so good when you want to add something to the existing
+// because it re render the html containt so data link input will be lost
+
+
+// better approch is 
+// .insertAdjacentHTML()
 
 // .append
 // appending the created element to webpage
 // appending to section
 
 const sec  =  document.querySelector('section');
-sec.appendChild(newh2);
+sec.appendChild(ul);
 
 
 // creating image tag

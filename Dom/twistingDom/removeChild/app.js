@@ -10,7 +10,6 @@ console.log(removeMe);
 // parentElement.removeChild(child) /
 // //////////////////////////////////
 
-
 // removing the child
 // ul.removeChild(removeMe)
 // it can be saved in variable to check/print the 
@@ -18,7 +17,6 @@ console.log(removeMe);
 const deleted = ul.removeChild(removeMe)
 // checking/print deleted child
 console.log(deleted)
-
 
 // ///////////////////////////////////////////
 // childNode.remove()                        /
