@@ -20,21 +20,23 @@ let person = {
     1.1 : 'yoo',
 
     // dynamically setting the property
-    // value inside square braket are NOT taken as key name
+    // value inside square bracket are NOT taken as key name
     // it will search for variable of that name
     // and take value i.e 'User' stored in that as a key name which is added to object person
     [userFname] : "", // username = 'User'
 
     // dynamic value
     lastName : userLname
-
 };
 
 const keyName = 'first name'
 
-// dynamically accesing the properties
+// dynamically accessing the key that was declared using quote 
 console.log(person[keyName])
+
+// accessing dynamic key 
 person.User = 'Knight'
 console.log(person.User)
 
+// accessing value
 console.log(person)

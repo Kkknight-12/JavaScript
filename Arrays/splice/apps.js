@@ -6,9 +6,9 @@ console.log(animals);
 // ===========================
 // adding
 // ===========================
-// first argument is positon where you want to start edition
-// second is how nay elements you want delete , zero mean nothing to delete
-console.log(animals.splice(1, 0, "secBee"));
+// first argument is position where you want to start editing
+// second is how many elements you wants to delete , zero mean nothing to delete
+animals.splice(1, 0, "secBee");
 console.log(animals);
 
 // ===========================
