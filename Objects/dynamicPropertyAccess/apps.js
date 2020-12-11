@@ -1,5 +1,8 @@
-// dynamic keyname must be declared before they are called on object
-const username = 'User'
+// dynamic keyname must be declared before they are called in object
+const userFname = 'User'
+
+// dynamic value is also declared before they are called in object
+const userLname = 'Strength'
 
 let person = {
     // key with spaces can also be denifed 
@@ -20,7 +23,11 @@ let person = {
     // value inside square braket are NOT taken as key name
     // it will search for variable of that name
     // and take value i.e 'User' stored in that as a key name which is added to object person
-    [username] : "", // username = 'User'
+    [userFname] : "", // username = 'User'
+
+    // dynamic value
+    lastName : userLname
+
 };
 
 const keyName = 'first name'
