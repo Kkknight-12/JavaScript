@@ -20,6 +20,7 @@ console.log(info.filter( ( name, index, titles ) => //index is
 
 let words = ['spray', 'limit', 'exuberant', 'destruction','elite', 'present']
 
+// Modifying each words
 const modifiedWords = words.filter( (word, index, arr) => {
     arr[index+1] +=' extra'; // editing the list will start from 0+1 = index 1 i.e. limit
     // "spray", "limit extra", "exuberant extra", "destruction extra", "elite extra", "present extra"
@@ -28,13 +29,27 @@ const modifiedWords = words.filter( (word, index, arr) => {
 
 console.log(modifiedWords)
 
-// words = ['spray', 'limit', 'exuberant', 'destruction','elite', 'present']
-// const appendedWords = words.filter( (word, index, arr) => {
-//   arr.push('new')
-//   return word.length < 6
-// })
+// Appending new words
+wordsTwo = ['spray', 'limit', 'exuberant', 'destruction','elite', 'present']
+const appendedWords = wordsTwo.filter( (word, index, arr) => {
+    arr.push('new') // 'new' will be the last element in array
+    // and will be added to arr 5 times
+    // console.log(arr)
+    return word.length < 6
+})
 
-// console.log(appendedWords)
+console.log(appendedWords)
+
+// Deleting words
+words = ['spray', 'limit', 'exuberant', 'destruction', 'elite', 'present']
+const deleteWords = words.filter( (word, index, arr) => {
+  arr.pop()
+  return word.length < 6
+})
+
+console.log(deleteWords)
+// Notice 'elite' is not even obtained as its been popped off `words` before filter can even get there
+// ["spray" ,"limit"]
 
 // const fruits = ['apple', 'banana', 'grapes', 'mango', 'orange']
 
