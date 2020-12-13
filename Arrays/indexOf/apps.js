@@ -45,3 +45,8 @@ console.log(indexOfFirst)
 console.log(paragraph.indexOf(searchTerm, (indexOfFirst + 1))
   )
 // output is 52
+
+
+// using -1 with indexOf
+console.log( 'apple'.indexOf('pp'.toLowerCase()) !== -1 )
+// output will be true or false
