@@ -60,9 +60,10 @@ const addMovieHandler = () => {
   console.log(newMovie)
   renderMovies();
 
-  title === "";
-  extraName === "";
-  extraValue === ""
+  // (() =>
+  // title === "",
+  // extraName === "",
+  // extraValue === "")()
 
 };
 
