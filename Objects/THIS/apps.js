@@ -1,26 +1,36 @@
 // 
-// 
+// This inside function
 function sayHi(){
     // 
-    console.log("HI")
+    // console.log("HI")
     // this inside of a function normally refers  to  window
     console.log(this);
 }
-console.log(sayHi());
+sayHi();
 
-// 
-// 
-// 
-const greet = function (){
+// this in an Arrow-Function - Called in the global context
+const sayHello = () => { 
     console.log(this);
 }
-greet();
-// 
+ 
+sayHello();
 
-// 
+// /////////////////////////////////////
+// this in a Method (non-Arrow) object /
+// /////////////////////////////////////
+
+const person = { 
+    name: 'Luffy',
+    greet: function() { // or use method shorthand: greet() { ... }
+        console.log(this.name); // "this" refers to the person object
+    }
+};
+ 
+person.greet();
+
 // fullName() inside person,
 // this will call the properties of object person
-const person = {
+const persoN = {
     first: 'Edogawa',
     last: 'Conan',
     nickName:'Conan kun',
@@ -29,7 +39,7 @@ const person = {
         console.log(this);
     }
 }
-person.fullName()
+persoN.fullName()
 
 // 
 // 
@@ -61,7 +71,7 @@ person2.fullName();
 
 // 
 // 
-// destructuring
+// destructuring with this
 const person3 = {
     first: 'Shinichi',
     last: 'Kudo',
@@ -107,11 +117,37 @@ person4.printBio();
 //  context of the function it is used in.       / 
 // ///////////////////////////////////////////////
 
+// /////////////////////////////////////////////////////////
+// this in a Method (Arrow Function) - Called on an object /
+// /////////////////////////////////////////////////////////
+
+const personA = { 
+    name: 'Max',
+    greet: () => {
+        console.log(this.name);
+    }
+};
+ 
+personA.greet(); // logs nothing (or some global name on window object), "this" refers to global (window) object, even in strict mode
 
 
+// /////////////////////////////////////////////
+// this can refer to unexpected things if    //
+// you call it on some other object, e.g.: ////
+// /////////////////////////////////////////////
 
-
-
+const persON = { 
+    name: 'Max',
+    greet() {
+        console.log(this.name);
+    }
+};
+ 
+const anotherPerson = { name: 'Manuel' }; // does NOT have a built-in greet method!
+ 
+anotherPerson.sayHi = persON.greet; // greet is NOT called here, it's just assigned to a new property/ method on the "anotherPerson" object
+ 
+anotherPerson.sayHi(); // logs 'Manuel' because method is called on "anotherPerson" object => "this" refers to the "thing" which called it
 
 
 
