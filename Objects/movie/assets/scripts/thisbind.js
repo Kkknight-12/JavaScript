@@ -21,19 +21,19 @@ const renderMovies = ( filter = '' ) => {
   movieList.innerHTML = '';
 
   const filteredMovies = !filter ? movies 
-  : movies.filter( movie => movie.info.title.includes(filter.toLowerCase()) )
+  : movies.filter( movie => 
+    movie.info.title.toLowerCase().includes( filter.toLowerCase() )  ) 
 
   filteredMovies.forEach( (movie) => {
     const movieEl = document.createElement('li');
     const { info, ...otherProperties } = movie;
 
-    // let text = info.title;
+    let text = movie.getFormatterTitle();
 
+    // to use bind uncomment below line
     // let { getFormatterTitle } = movie;
-    // // let text = movie.getFormatterTitle();
-
-    getFormatterTitle = getFormatterTitle.bind(movie)
-    let text = getFormatterTitle();
+    // getFormatterTitle = getFormatterTitle.bind(movie)
+    // let text = getFormatterTitle();
 
     for ( const key in info ){
       if( key !== 'title'){

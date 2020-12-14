@@ -32,7 +32,7 @@ secondGreet()
 
 // call - runs instantly, arguments - list of items
 // take two argument
-// first argument thisArg- is object to be used as the current object
+// first argument thisArg- is object to be used as this
 // second argument argArray - A list of argument to be passed to the method
 greet.call(jaya, 'Pune', 'India')
 greet.call(sushma, 'Patna', 'India')

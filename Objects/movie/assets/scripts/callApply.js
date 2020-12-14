@@ -22,15 +22,19 @@ const renderMovies = ( filter = '' ) => {
 
   const filteredMovies = !filter ? movies 
   : movies.filter( movie => 
-    movie.info.title.toLowerCase().includes( filter.toLowerCase() ) )
+    movie.info.title.toLowerCase().includes( filter.toLowerCase() )  ) 
 
   filteredMovies.forEach( (movie) => {
     const movieEl = document.createElement('li');
-    // destructuring and spreading
-    const { info, ...otherProperties } = movie; // puliing out info and id
-    let text = info.title; // title need to be accssed through info
+    const { info, ...otherProperties } = movie;
 
-    for ( const key in info ){ // info direclty can be called now
+    // to use bind uncomment below line
+    let { getFormatterTitle } = movie;
+    // let text = getFormatterTitle.call(movie);
+    let text = getFormatterTitle.apply(movie);
+
+
+    for ( const key in info ){
       if( key !== 'title'){
         text = text + ` ${key}: ${info[key]}`;
       }
@@ -61,10 +65,10 @@ const addMovieHandler = () => {
     },
     id: Math.random().toString(),
 
-    getFormatterTitle: function (){
+    getFormatterTitle() {
       return this.info.title.toUpperCase()
     }
-  };
+  }; 
   movies.push(newMovie);
   console.log(newMovie)
 

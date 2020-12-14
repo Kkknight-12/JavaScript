@@ -21,12 +21,13 @@ const renderMovies = ( filter = '' ) => {
   movieList.innerHTML = '';
 
   const filteredMovies = !filter ? movies 
-  : movies.filter( movie => movie.info.title.includes(filter.toLowerCase()) )
+  : movies.filter( movie => 
+    movie.info.title.toLowerCase().includes( filter.toLowerCase() ) )
 
   filteredMovies.forEach( (movie) => {
     const movieEl = document.createElement('li');
     
-    let text = movie.info.title
+    let text = movie.info.title // accessing the title in movie object
 
     for ( const key in movie.info ){
       if( key !== 'title'){
