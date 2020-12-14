@@ -18,8 +18,8 @@ greet();
 // 
 
 // 
-// function  inside the object
-// this will call the properties of object
+// fullName() inside person,
+// this will call the properties of object person
 const person = {
     first: 'Edogawa',
     last: 'Conan',
@@ -33,17 +33,16 @@ person.fullName()
 
 // 
 // 
-// targeting specific property with dot
 const person1 = {
     first: 'Edogawa',
     last: 'Conan',
     nickName:'Conan kun',
-
+    
     fullName(){
         console.log(this.first);
     }
 }
-
+// targeting specific property with dot
 person1.fullName()
 
 // 
@@ -72,7 +71,7 @@ const person3 = {
         first,
         last,
         nickName
-    } = this;
+    } = this; //this refers to properties of person3
         console.log(`${first} ${last} AKA ${nickName}`);
     }
 }
