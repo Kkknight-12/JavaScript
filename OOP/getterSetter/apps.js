@@ -1,4 +1,4 @@
-// // get set allow us to write custom
+// // get set allow us to write custom -> read property
 // // logic
 
 // The get syntax binds an object property to a
@@ -16,6 +16,7 @@ const obj = {
 };
 console.log(obj.latest);
 // function get() will return the last element
+
 // creating new arry of log
 obj.log = ['c', 'd', 'e']
 console.log(obj.latest);
@@ -24,14 +25,14 @@ console.log(obj.latest);
 // obj.log.length - 1 -> 2
 console.log(obj.log[obj.log.length -1])
 
-// set
+// set -> write property
 // The set syntax binds an object property to a
 // function to be called WHEN THERE IS AN
 // AN ATTMEPT TO SET THAT PROPERTY
 // parameter can be defined in set
 // but only one parameter can be set
 const language = {
-  set current(name) {
+  set current(name) { 
       // setting the log property
     this.log.push(name);
   },
@@ -87,15 +88,9 @@ console.log(newShop.totalAmount)
 // add item in list
 newShop.addProduct(5)
 // again check what is the amount now
-console.log(newShop.totalAmount)
+newShop.totalAmount
 
-// accessing the set
-console.log(newShop.cartItems)
-
-// newShop.cartItems = [12,23]
-newShop.cartItems
-
-
+// 
 const la = {
     li : ['a', 'b'],
 
@@ -117,8 +112,7 @@ const la = {
 };
 
 la.jodo('bachan')
-console.log(la.newli);
-
+la.newli
 
 const ge = {
   items : [10,10],
@@ -150,7 +144,7 @@ class Person {
     constructor(name) {
         // underscore name is a private property
         // which can't be accessed from outside
-        // only way to access it is to use get name()
+        // ONLY WAY TO ACCESS _name IS TO USE get name()
         // which will return this private property
         this._name = name;
     }
@@ -175,7 +169,7 @@ class Person {
 }
 
 //
-let person = new Person('KNight');
+let person = new Person('KNight'); // _name is KNight
 // _name will be shown
 console.log(person);
 //
@@ -183,9 +177,9 @@ console.log(person.name);
 
 // overwrite the name
 person.name = 'Bablu';
-console.log(person.name)
+console.log(person.name) // get name()
 // original name
-console.log(person._name)
+console.log(person._name) //
 
 
 // reject if value is less then 2
@@ -201,18 +195,17 @@ const data = {
 data.location = 'phill'
 console.log(data.location)
 
-
-
-
+// 
 const data1 = {
     // empty array where all the location will be stored
     locations: [],
 
-    // overwrite what happens when someone tries to fetch the value
+    // getter will run setter to get the value of _location
     get location() {
         return this._location;
     },
-    // value passed in location will be sent here
+
+    // value passed in location ( trip, Hawai ) will be sent here
     // trip will be passed here
     set location(value) {
         // remove spaces in trip with trim function
@@ -221,11 +214,12 @@ const data1 = {
         this.locations.push(this._location.toUpperCase())
     }
 }
-data1.location = ' trip '
-console.log(data1.location)
-console.log(data1)
+// setter/setter are used like any another property
+data1.location = ' trip ' // setter -> assigning value
+console.log(data1.location) // accessing getter - > reads it
 //
 data1.location = ' Hawai'
-console.log(data1.location)
+console.log(data1)
 
 console.log(data1.locations);
+// data1.location('data')
