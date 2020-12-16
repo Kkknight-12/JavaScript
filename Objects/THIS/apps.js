@@ -148,7 +148,3 @@ const anotherPerson = { name: 'Manuel' }; // does NOT have a built-in greet meth
 anotherPerson.sayHi = persON.greet; // greet is NOT called here, it's just assigned to a new property/ method on the "anotherPerson" object
  
 anotherPerson.sayHi(); // logs 'Manuel' because method is called on "anotherPerson" object => "this" refers to the "thing" which called it
-
-
-
-
