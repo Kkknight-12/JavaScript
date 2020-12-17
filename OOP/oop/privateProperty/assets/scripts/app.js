@@ -41,6 +41,7 @@ class Component {
     }
 }
 
+// 
 class ShoppingCart 
     extends Component {
     items = [];
@@ -138,7 +139,7 @@ class ProductList
         this.fetchProducts();
     }
 
-    fetchProduct() {
+    fetchProducts() {
         this.#products = [
             new Product (  
             'A  Pillow',
@@ -149,7 +150,7 @@ class ProductList
        new Product (
             'A Carpet',
             'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQGOGVv80DZW3qNCUnzp4krvrtUz1fwA_t_qvCjDO4LML30v4N0cCauKnsfASoRyL1RTxN2OeZd8_ahxnw_rMkEVjVltNAel_hzWnavGfk&usqp=CAE',
-            "A carpet which you might like - or not.",
+            'A carpet which you might like - or not.',
             89.99,       
         )   
     ];
@@ -172,30 +173,28 @@ class ProductList
     }
 };
 
-class  Shop {
-    constructor(){
-        this.render() 
-    }
+class Shop {
+  constructor() {
+    this.render();
+  }
 
-    render(){
-        this.cart = new ShoppingCart('app');
-        new ProductItem('app');
-    }
+  render() {
+    this.cart = new ShoppingCart('app');
+    new ProductList('app');
+  }
 }
 
-
-// creating a static class
 class App {
-    static cart;
+  static cart;
 
-    static init() {
-        const shop = new Shop()
-        this.cart = shop.cart;
-    }
+  static init() {
+    const shop = new Shop();
+    this.cart = shop.cart;
+  }
 
-    static addProductToCart(product) {
-        this.cart.addProduct(product)
-    }
+  static addProductToCart(product) {
+    this.cart.addProduct(product);
+  }
 }
 
 App.init();
