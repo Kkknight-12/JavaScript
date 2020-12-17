@@ -96,7 +96,6 @@ App.init();
 
 // 
 // 
-
 class Pet { 
     constructor( name, age ) {
         this.name = name; // A-4
@@ -108,11 +107,11 @@ class Cat
     extends Pet { // tuna , 6, lives = 9 is default
         constructor( name, age, lives = 9 ) { // A-2 from line 114
             super( name, age ); // A-3
-            this.lives = lives; // A-5 declaring the parameter
+            this.liveS = lives; // A-5 declaring the parameter
     }
 }
 
 const tuna = new Cat('tuna', 6) //  A-1
 console.log(tuna)
-console.log(tuna.lives)
-console.log(tuna.lives = tuna.lives + 100 ) // adding 100 to default age
+console.log(tuna.liveS)
+console.log(tuna.liveS = tuna.liveS + 100 ) // adding 100 to default age
