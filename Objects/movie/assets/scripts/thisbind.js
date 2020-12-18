@@ -1,12 +1,16 @@
 const addMovieBtn = document.getElementById('add-movie-btn')
 const searchBtn = document.getElementById('search-btn')
+
+const userInputs = document.querySelectorAll('input')
+
 const movies = [];
 
-// const clearInput = () => {
-//     title = '';
-//     extraName = '';
-//     extraValue = ''
-// }
+const clearInput = ()=> {
+
+    for( const userInput of userInputs ) {
+        userInput.value = '';
+    }
+}
 
 const renderMovies = ( filter = '' ) => {
   const movieList = document.getElementById('movie-list');
@@ -43,7 +47,6 @@ const renderMovies = ( filter = '' ) => {
     movieEl.textContent = text;
     movieList.append(movieEl)
   });
-// clearInput();
 }
 
 const addMovieHandler = () => {
@@ -72,20 +75,15 @@ const addMovieHandler = () => {
   };
   movies.push(newMovie);
   console.log(newMovie)
-
   renderMovies();
-
-  // (() =>
-  // title === "",
-  // extraName === "",
-  // extraValue === "")()
+  clearInput();
 };
 
 const searchMovieHandler = ()=> {
   const filterTerm = document.getElementById('filter-title').value;
   renderMovies( filterTerm );
+  clearInput();
 }
 
 addMovieBtn.addEventListener( 'click', addMovieHandler );
-searchBtn.addEventListener( 'click', searchMovieHandler )
-
+searchBtn.addEventListener( 'click', searchMovieHandler );
