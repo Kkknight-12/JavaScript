@@ -125,10 +125,14 @@ const personA = {
     name: 'Max',
     greet: () => {
         console.log(this.name);
+    },
+    sayHi(){
+        console.log(`hi ${this.name}`)
     }
 };
  
 personA.greet(); // logs nothing (or some global name on window object), "this" refers to global (window) object, even in strict mode
+personA.sayHi()
 
 
 // /////////////////////////////////////////////
@@ -146,5 +150,7 @@ const persON = {
 const anotherPerson = { name: 'Manuel' }; // does NOT have a built-in greet method!
  
 anotherPerson.sayHi = persON.greet; // greet is NOT called here, it's just assigned to a new property/ method on the "anotherPerson" object
- 
+
+console.log(anotherPerson)
+// {name: "Manuel", sayHi: ƒ}
 anotherPerson.sayHi(); // logs 'Manuel' because method is called on "anotherPerson" object => "this" refers to the "thing" which called it
