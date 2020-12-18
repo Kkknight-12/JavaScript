@@ -36,10 +36,13 @@ class Employee extends Person {
         super( firstName, occupation, age, hobbies )
         this.position = position
     }
-    // overwriting the method
-    getBio(){
-        return `${this.firstName} is a ${this.position}`
-    }
+
+    // by defining the method with same name you overwriting the parent method
+    // uncomment to see changes
+    // getBio(){
+    //     return `${this.firstName} is a ${this.position}`
+    // }
+
     fullName(fullName){
         const name = fullName.split(" ")
         this.firstName = name[0]
@@ -149,6 +152,8 @@ class User {
 const userOne = new User('abban', 'abban.email.com')
 console.log(userOne.login())
 console.log(userOne.incScore())
+console.log(userOne.logout())
+console.log(userOne.login())
 console.log(userOne.incScore())
 
 const userTwo = new User('babban', 'babban.email.com')

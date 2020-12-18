@@ -57,4 +57,38 @@ console.log(userFour);
 console.log(Admin.prototype)
 userFour.logout();
 
+console.log('------------------');
 
+
+class Person {
+    name = 'Max';
+
+    constructor(){
+       
+        this.age = 30;
+    }
+
+    login(){
+        console.log(
+            `${this.name} ${this.age}`
+        )
+    }
+
+    logout = function (){
+        console.log(
+            `${this.name} ${this.age}`
+        )
+    }
+}
+p = new Person();
+console.log(p)
+/* 
+Person {name: "Max", age: 30, logout: ƒ}
+    age: 30
+    logout: ƒ ()
+    name: "Max"
+    __proto__:
+    constructor: class Person
+    login: ƒ login()
+    __proto__: Object
+*/

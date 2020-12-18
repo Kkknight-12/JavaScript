@@ -10,7 +10,7 @@
 // 
 
 function Person () {
-    this.age = 29;
+    this.age = 29; // not same as this in object, but for now using to set values
     this.name = 'Knight'
 
     this.greet = function () {
