@@ -105,7 +105,7 @@ class Qualification extends Person {
     constructor( firstName, occupation, age, grade, hobbies ) {
         super( firstName, occupation, age, hobbies )
         this.grade = grade;
-        }
+    }
 
     updateGrade(change){
         this.grade += change

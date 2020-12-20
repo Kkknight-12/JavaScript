@@ -1,4 +1,4 @@
-const sumUp = ( resultHandler, ...numbers )=>{ //  numbers = [6, 2]
+const sumUp = ( resultHandler, ...numbers ) => { //  numbers = [6, 2]
     // function with local scope
     // will run  only inside sumUp
     const validateNumber = (number) =>{ // number = 6, 2
@@ -67,7 +67,7 @@ substractUp(showResult,6,2);
 // using bind
 // combining
 //        resultHandler() | operation | number = 1,2,3,4,5,6
-combine = ( resultHandler, operation, ...numbers)=>{  
+combine = ( resultHandler, operation, ...numbers ) => {  
     const validateNumber = number => {
         return isNaN(number) ? 0:number;
     }

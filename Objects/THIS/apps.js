@@ -154,3 +154,35 @@ anotherPerson.sayHi = persON.greet; // greet is NOT called here, it's just assig
 console.log(anotherPerson)
 // {name: "Manuel", sayHi: ƒ}
 anotherPerson.sayHi(); // logs 'Manuel' because method is called on "anotherPerson" object => "this" refers to the "thing" which called it
+
+// 
+class User {
+    constructor(  ) {
+        // this.username = username;
+    }
+    c(){
+        console.log(this.ID)
+    }
+}
+
+class Person
+        extends User {
+    constructor( name ){
+        super()
+        this.name = name;
+        this.a();
+    }
+
+    b =()=> {
+        this.c();
+    }
+
+    a(){
+        const id = 'abc123'
+        this.ID = id;
+    }
+}
+
+const up = new Person('abc');
+console.log(up)
+up.b()

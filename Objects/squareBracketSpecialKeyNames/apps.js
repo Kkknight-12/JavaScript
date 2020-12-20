@@ -1,6 +1,6 @@
 // key with spaces can also be denifed with quotes 
 let person = {
-    'first name': 'Max',
+    'first name': 'Knight',
     age: 30,
     hobbies: ['Sports', 'Cooking'],
 
@@ -13,12 +13,18 @@ let person = {
     1.1 : 'yoo',
 };
 
-// to console.log value square Bracket is used in which you define 
+// to console.log value of key with spaces
+// square Bracket is used in which you define 
 // key in quotes 
 console.log(person['first name'])
 
 // number key can also be accessed with bracket
 console.log(person[1.1]) // ['1.1'] quotes can also be used but not needed as Js do that for us.
+
+// when a const that have value is passed in square
+// the value inside that const is used as key
+let propertyHobbies = 'hobbies';
+console.log(person[propertyHobbies] ) // -> person.hobbies
 
 console.log(person)
 // expanding the output will give us the sorted object
