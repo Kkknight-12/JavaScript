@@ -1,6 +1,9 @@
+// //////////
+// Addition /
+// //////////
 const sumUp = ( resultHandler, ...numbers ) => { //  numbers = [6, 2]
     // function with local scope
-    // will run  only inside sumUp
+    // will run only inside sumUp
     const validateNumber = (number) =>{ // number = 6, 2
         return isNaN(number) ? 0: number;
     }
@@ -13,12 +16,13 @@ const sumUp = ( resultHandler, ...numbers ) => { //  numbers = [6, 2]
 }
 
 const showResult = (result)=>{
-    console.log(`result is: ${result}`)
+    console.log(`Result is: ${result}`)
 }
 sumUp(showResult,6,2)
 
-// 
-// 
+// //////////////
+// Substracting /
+// //////////////
 const substractUp = ( resultHandler, ...numbers )=>{ //  numbers = [6, 2]
     // function with local scope
     // will run  only inside sumUp
@@ -35,7 +39,6 @@ const substractUp = ( resultHandler, ...numbers )=>{ //  numbers = [6, 2]
 
 substractUp(showResult,6,2);
 
-// 
 // 
 // 
 // combine = ( resultHandler, operation, ...numbers)=>{
@@ -67,7 +70,9 @@ substractUp(showResult,6,2);
 // using bind
 // combining
 //        resultHandler() | operation | number = 1,2,3,4,5,6
-combine = ( resultHandler, operation, ...numbers ) => {  
+combine = ( resultHandler, operation, ...numbers ) =>  {  
+// combine =function ( resultHandler, operation, ...numbers ) {  
+
     const validateNumber = number => {
         return isNaN(number) ? 0:number;
     }
@@ -86,24 +91,20 @@ combine = ( resultHandler, operation, ...numbers ) => {
             oper -= validateNumber(num);
         }
     }
-
     // return oper;
-    
     if( operation === "MULTIPLY" ){
-        return resultHandler( operM )
+        return resultHandler( operM ) // second argument result of showResult
     }
-
     else{
         return resultHandler( oper )
     }
-
 }
-
 const shoWResult = ( messageText, result ) => {  // messageText = line 91 | result = oper line 83
     console.log(`Result after ${messageText} all Numbers = ${result}`)
 }
 
-//  binding the string value to function showResult()
+// binding the string value to function showResult()
+// which is also the first argument
 combine( shoWResult.bind(this, 'Adding'), 'ADD', 1,2,3,4,5,6 )
 combine( shoWResult.bind(this, 'Multiplying'), 'MULTIPLY', 1,2,4,5,6 ) 
 combine( shoWResult.bind(this, 'Substracting'), 'SUBSTRACT', 1,2,3,4,5,6 )
