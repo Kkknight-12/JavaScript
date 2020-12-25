@@ -84,6 +84,7 @@ class ProjectItem {
     this.updateProjectListsHandler = updateProjectListsFunction;
     this.connectMoreInfoButton();
     this.connectSwitchButton(type);
+    // initiating drag
     this.connectDrag();
   }
 
@@ -104,9 +105,21 @@ class ProjectItem {
     this.hasActiveTooltip = true;
   }
 
+  // adding drag event listner function on the item you want to drag
   connectDrag() {
+    // seleting the element by this.id and adding event listner dragstart
     document.getElementById(this.id).addEventListener('dragstart', event => {
+
+      // configuring the drag event
+
+      // For dragging text, use the text/plain type. 
+      // The second data parameter should be the dragged string
       event.dataTransfer.setData('text/plain', this.id);
+
+      // The DataTransfer object is used to hold the data 
+      // that is being dragged during a drag and drop operation.
+      // In effect we describe which type of drag and drop opertion 
+      // are getting performed
       event.dataTransfer.effectAllowed = 'move';
     });
   }
@@ -148,18 +161,24 @@ class ProjectList {
       );
     }
     console.log(this.projects);
+
+    // making list dropable, doing this here so that when we drag an element here,
+    // we want to be able to drop it here into the list.
     this.connectDroppable();
   }
 
+  // adding connect dropable method which will be trigged from inside constructor
+  // so that when we create a new project list we in the end setup this dropable event listner here
   connectDroppable(){
     const list = document.querySelector(`#${this.type}-projects ul`)
+
     // This event is fired when a dragged element or text selection 
     // enters a valid drop target.
     list.addEventListener('dragenter', event =>{
       if(event.dataTransfer.types[0] === 'text/plain'){
         event.preventDefault();
       }
-      list.parentElement.classList.add('droppable');
+      list.parentElement.classList.add('droppable'); //will change background color
     })
 
     // This event is fired continuously when an element 
@@ -171,12 +190,21 @@ class ProjectList {
       }
     })
 
+    // will trigger when you leave the list with our element
     list.addEventListener('dragleave', event => {
+      // only remove class if the leave event trigger 
+      // because we left into non child item
+
+      // closest() method travel across the Element and its parents 
+      // (heading toward the document root) until it finds a node 
+      // that matches the provided selector string.
        if(event.relatedTarget.closest(`#${this.type}-projects ul`) !==list ){
-        list.parentElement.classList.remove('droppable')
+        list.parentElement.classList.remove('droppable') // remove color when you leave the list
       }
     })
+    // in events above you can't read the data (id here) you can only access type
 
+    // in drop event you can access data
     list.addEventListener('drop', event => {
       const prjId = event.dataTransfer.getData('text/plain');
       // if list item is picked and droped in the same list(active/finished)
