@@ -198,6 +198,9 @@ class ProjectList {
       // closest() method travel across the Element and its parents 
       // (heading toward the document root) until it finds a node 
       // that matches the provided selector string.
+
+      // remove the droppable class when you successfully drag and drop 
+      // the Active into Finished or visa versa
        if(event.relatedTarget.closest(`#${this.type}-projects ul`) !==list ){
         list.parentElement.classList.remove('droppable') // remove color when you leave the list
       }
@@ -212,7 +215,10 @@ class ProjectList {
       if(this.projects.find( p => p.id === prjId )){
         return;
       }
+
+      // otherwise click the button Finish | Active
       document.getElementById(prjId).querySelector('button:last-of-type').click();
+      // remove the class droppable
       list.parentElement.classList.remove('droppable');
       // 
     });
