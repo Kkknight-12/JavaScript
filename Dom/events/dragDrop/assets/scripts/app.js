@@ -174,6 +174,9 @@ class ProjectList {
 
     // This event is fired when a dragged element or text selection 
     // enters a valid drop target.
+    
+    // when you select the li( can be Active or Finished )
+    // , add class droppable where ever you take the selected list
     list.addEventListener('dragenter', event =>{
       if(event.dataTransfer.types[0] === 'text/plain'){
         event.preventDefault();
@@ -202,7 +205,9 @@ class ProjectList {
       // remove the droppable class when you successfully drag and drop 
       // the Active into Finished or visa versa
        if(event.relatedTarget.closest(`#${this.type}-projects ul`) !==list ){
-        list.parentElement.classList.remove('droppable') // remove color when you leave the list
+         // remove color from where you are picking list
+        //  when you leave the list is droped to another list
+        list.parentElement.classList.remove('droppable') 
       }
     })
     // in events above you can't read the data (id here) you can only access type
@@ -218,7 +223,7 @@ class ProjectList {
 
       // otherwise click the button Finish | Active
       document.getElementById(prjId).querySelector('button:last-of-type').click();
-      // remove the class droppable
+      // remove the color where you are droping the list
       list.parentElement.classList.remove('droppable');
       // 
     });
