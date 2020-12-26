@@ -73,6 +73,12 @@ though the mult value 2.1 which is latest was used
 but while calling calVatAmt two times with two different argument 100 and 200, only 0.19 was passed in as argument and was used as well.
 */
 
+// let userName = 'Knight';
+// function greetUser(){
+//     console.log('hi ' + userName)
+// }
+// greetUser()
+
 let userName = 'Knight';
 function greetUser(){
     console.log('hi ' + userName)
