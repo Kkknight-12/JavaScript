@@ -28,26 +28,53 @@ outerf();
 
 
 
-// when yoou have nested function, variable inside the immediate parent is used
+// when you have nested function, variable inside the immediate parent is used
 
 function outter(){
     let hero = 'Wolverine';
 
     function innerr() {
-        let hero = 'Batman'; //change name of hero
+        // overwritten hero
+        let hero = 'Batman'; 
 
         function innermost(){
             console.log(hero.toUpperCase()) //call for the variable hero
         }
-        innermost(); //need to run this function to work
+        // inner will run innermost function 
+        innermost(); 
     }
-    innerr();
+    innerr(); // calling inner function to run
 }
 outter();
 
 // 
+let mult = 1.1;
 
+function createTaxCal(tax){
+    function calTax(amount){
+        console.log( mult, tax );
+        return amount * tax;
+    }
+    return calTax;
+}
 
+mult = 2.1; // mult value updated
 
+// adding different value for the tax argument
+const calVatAmt = createTaxCal(0.19); 
 
+const calIncTaxAmt = createTaxCal(0.25) // only be used when calIncTaxAmt used
 
+console.log(calVatAmt(100)); // tax = 0.19, amount = 100
+console.log(calVatAmt(200));
+
+/* 
+though the mult value 2.1 which is latest was used
+but while calling calVatAmt two times with two different argument 100 and 200, only 0.19 was passed in as argument and was used as well.
+*/
+
+let userName = 'Knight';
+function greetUser(){
+    console.log('hi ' + userName)
+}
+greetUser()
