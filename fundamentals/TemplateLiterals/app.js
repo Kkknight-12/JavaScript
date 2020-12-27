@@ -47,3 +47,38 @@ html1 = `
 `;
 
 document.body.innerHTML = html1;
+
+/* 
+-- creating tag templates --
+A tag template is in the end a function that works 
+together with a template literal. It all starts by 
+creating a function
+ */
+
+function productDescription( strings, productName, productPrice ){
+  console.log(strings); // first argument is non dynamic part of temlate string
+  console.log(productName);
+  console.log(productPrice);
+  let priceCategory = 'cheap';
+  if(productPrice > 20){
+    priceCategory = 'fairly priced'
+  }
+  return `${strings[0]}${productName}${strings[1]}${priceCategory}${strings[2]}`
+}
+
+const prodName = 'JavaScript Course';
+const prodPrice = 21.00;
+
+// after function name paranthesis are not used
+// template literals are used
+// Behind the scenes, Javascript will call this 
+// function and pass in this template literal 
+// but not just like this as a single string but it 
+// will actually split it up into
+const productOutput = productDescription`This product (${prodName}) is ${prodPrice}.`
+/* 
+Now I said that Javascript would call this function and 
+pass this in but not as a single argument but actually
+as three argument
+*/
+console.log(productOutput);

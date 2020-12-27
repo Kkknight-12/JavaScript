@@ -1,7 +1,7 @@
 const num1 = 100;
 const num2 = 50;
 
-//  defining a emty variable
+//  declaring an empty variable
 let val;
 
 // giving maths value to empty function
@@ -62,3 +62,11 @@ console.log(val);
 
 val = Math.floor(Math.random() * 100 + 1); // it will give whole number between 1- 100
 console.log(val);
+
+
+// the above method fail when you try to change
+// min num other than 1
+function randomIntBetween( min, max ){
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+console.log(randomIntBetween( 5, 10))
