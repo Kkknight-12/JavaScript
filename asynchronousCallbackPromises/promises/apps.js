@@ -29,7 +29,8 @@ const getPosition = ( opts ) => {
     const promise = new Promise( ( resolve, reject ) => {
         navigator.geolocation.getCurrentPosition(
             success => {
-                resolve( success ); // passing the data to resolve object
+                // passing the data(success: GeolocationPosition) to resolve object
+                resolve( success ); 
             },
             error => {},
             // opts
@@ -38,27 +39,29 @@ const getPosition = ( opts ) => {
     return promise;
 }
 
-const setTimer = ( duration ) => { // wait for 2 sec from line 56
+const setTimer = ( duration ) => { // wait for 2sec from line 59
     const promise = new Promise( ( resolve, reject ) => {
         setTimeout( () => {
-            resolve( 'Done!');
-        }, duration);
+            resolve( 'Done!' );
+        }, duration );
     });
     return promise;
 }
 
-// chainning .then()
-function trackUserHandler(){
+// chaining .then()
+function trackUserHandler() {
     let positionData;
     getPosition()
-        .then( posData => { // passed success(position data)
+    // only resolve when you are able to get position
+        .then( posData => { // passed success(position data), line 33
             positionData = posData; // storing the data in poisitonData Variable
+            console.log('Setting timer')
             return setTimer(2000); // wait for 2sec
-    }) 
-    .then( data => {
-        console.log( data, positionData ); // finally resolving the promise
-    });
-    setTimer(1000).then( ()=> {
+        }) // we are return setTimer so .then() will now be attached to setTimer
+        .then( data => { // data inside the resolve which is Done!
+            console.log( data, positionData ); // finally resolving the promise
+        });
+    setTimer(1000).then( () => { // wait for 1sec
         console.log( 'Timer done!' )
     });
     console.log( 'Getting position...' )
