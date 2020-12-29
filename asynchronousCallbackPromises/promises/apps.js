@@ -32,7 +32,9 @@ const getPosition = ( opts ) => {
                 // passing the data(success: GeolocationPosition) to resolve object
                 resolve( success ); 
             },
-            error => {},
+            error => {
+                reject( error ) // passing error object
+            },
             // opts
         );
     });
@@ -60,7 +62,10 @@ function trackUserHandler() {
         }) // we are return setTimer so .then() will now be attached to setTimer
         .then( data => { // data inside the resolve which is Done!
             console.log( data, positionData ); // finally resolving the promise
-        });
+        })
+        .catch( err => {
+            console.log( err )
+        })
     setTimer(1000).then( () => { // wait for 1sec
         console.log( 'Timer done!' )
     });
