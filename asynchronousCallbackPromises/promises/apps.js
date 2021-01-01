@@ -63,9 +63,18 @@ function trackUserHandler() {
         .then( data => { // data inside the resolve which is Done!
             console.log( data, positionData ); // finally resolving the promise
         })
+        // if any of the above promsie fail catch will run
         .catch( err => {
             console.log( err )
         })
+        /* 
+        NOTE: 
+        if any of the .then() is rejected, all .then() after
+        rejected .then() will be skipped till we reach .catch()
+
+        while positining .then(), if you position .then() after catch 
+        it will run after catching the error.  
+        */
     setTimer(1000).then( () => { // wait for 1sec
         console.log( 'Timer done!' )
     });
