@@ -45,8 +45,8 @@ xhr.onload = function() {
 // .send() is used to send the request
 xhr.send(); 
 
-game = 5200
-cloths = 6000;
-dumbell = 8000;
-udemy = 8640
-6480;
+// game = 5200
+// cloths = 6000;
+// dumbell = 8000;
+// udemy = 8640
+// 6480;
