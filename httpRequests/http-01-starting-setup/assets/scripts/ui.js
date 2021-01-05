@@ -53,7 +53,6 @@ form.addEventListener( 'submit', event => {
 
 postList.addEventListener( 'click', event => {
     if ( event.target.tagName = 'BUTTON' ) {
-        console.log('clicked on button')
         // getting the closed list id
         const postId = event.target.closest('li').id;
         console.log(postId)
