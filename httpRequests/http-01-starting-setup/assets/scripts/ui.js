@@ -10,15 +10,25 @@ function sendHttpRequest(method, url, data){ // receving post data from line 51
         const xhr = new XMLHttpRequest();
         xhr.open(method, url);
         xhr.onload = function() {
-            resolve(xhr.response);
+            if( xhr.status >= 200 && xhr.status < 300 ){
+                resolve(xhr.response);
+            } else{
+                reject(new Error('Something Went Wrong'));
+            }
         };
+
+        xhr.onerror = function (){
+            // will trigger only when e fail to send request
+            reject( new Error(' Failed to send Request'))
+        };
+
         xhr.send(JSON.stringify(data)); // sending post data
     });
     return promise;
 }
 
 function fetchPosts(){
-    sendHttpRequest( 'GET', 'https://jsonplaceholder.typicode.com/posts').then(
+    sendHttpRequest( 'GET', 'https://jsonplaceholder.typicode.com/pos').then(
         responseData => {
             const listOfPosts = JSON.parse(responseData); // response data
             for( const post of listOfPosts ){
@@ -44,18 +54,31 @@ function createPost( title, content ) {
 }
 
 fetchButton.addEventListener( 'click', fetchPosts );
+
+// on form when you click add you trigger a post request 
+// which will have data from FORM
 form.addEventListener( 'submit', event => { 
     event.preventDefault();
-    const enteredTitle = currentTarget.querySelector('#title').value;
-    const enteredcontent = currentTarget.querySelector('#content').value;
+    const enteredTitle = event.currentTarget.querySelector('#title').value;
+    const enteredcontent = event.currentTarget.querySelector('#content').value;
     createPost( enteredTitle, enteredcontent );
 });
 
 postList.addEventListener( 'click', event => {
-    if ( event.target.tagName = 'BUTTON' ) {
+    if ( event.target.tagName === 'BUTTON' ) {
         // getting the closed list id
         const postId = event.target.closest('li').id;
-        console.log(postId)
+        // sending Delete Reqeust
+        sendHttpRequest( 
+            'DELETE', `https://jsonplaceholder.typicode.com/posts/${postId}`);
     }
-
 });
+
+function reqListener () {
+  console.log(this.responseText);
+}
+
+var oReq = new XMLHttpRequest();
+oReq.addEventListener("load", reqListener);
+oReq.open("GET", "http://www.example.org/example.txt");
+oReq.send();
