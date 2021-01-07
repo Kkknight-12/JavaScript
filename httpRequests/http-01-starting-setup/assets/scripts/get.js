@@ -4,6 +4,11 @@ const postTemplate = document.getElementById('single-post')
 function sendHttpRequest(method, url){
     const promise = new Promise( ( resolve, reject ) => {
         const xhr = new XMLHttpRequest();
+
+        // u can add header with .setRequestHeader()
+        xhr.setRequestHeader('Content-Type' , 'application/json');
+        // for adding multiple header you can repeat above .setRequestHeader() again
+        
         xhr.open(method, url);
         // xhr.responseType = 'json';
         xhr.onload = function() {
