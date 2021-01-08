@@ -25,14 +25,25 @@ function sendHttpRequest( method, url, data ){ // receving post data from line 6
     fetch gives us a streamed response
     json() method of the Body mixin takes a Response stream and reads it to completion. It returns a promise that resolves with the result of parsing the body text as JSON.
     */
+        if( response.status >= 200 && response.status < 300 ){
         return response.json();
+    } else { // will trigger there is error 404 / 500
+        return response.json().then( errData => { 
+            console.log(errData);
+            throw new Error( 'Something went wrong - server-side.');
+        });
+    }
+    }).catch( error => { // will trigger when there is technical issue -> network connectivity issue 
+        console.log( error );
+        throw new Error( 'Something went wrong' );
+
     });
 }
 
 function fetchPosts(){
 
         sendHttpRequest( 
-            'GET', 'https://jsonplaceholder.typicode.com/posts').then(
+            'GET', 'https://jsonplaceholder.typicode.com/pos').then(
         responseData => {
             const listOfPosts = responseData; // response data
             for( const post of listOfPosts ){

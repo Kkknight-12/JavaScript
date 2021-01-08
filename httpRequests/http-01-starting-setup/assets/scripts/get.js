@@ -8,7 +8,8 @@ function sendHttpRequest(method, url){
         // u can add header with .setRequestHeader()
         xhr.setRequestHeader('Content-Type' , 'application/json');
         // for adding multiple header you can repeat above .setRequestHeader() again
-        
+        // when you set the header with this method you can't delete it
+
         xhr.open(method, url);
         // xhr.responseType = 'json';
         xhr.onload = function() {
