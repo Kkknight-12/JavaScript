@@ -1,4 +1,11 @@
-// 
+// callback and foreach 
+const myFunc = (callbackFunc) => {
+    let value = 50;
+    callbackFunc(value);
+}
+myFunc( function(value) {
+    console.log(value)
+});
 // 
 function greeting( name = 'Knight' ) { // 5  name = 'Knight'
   console.log( 'Hello ' + name ); // 6 name = 'Knight'
