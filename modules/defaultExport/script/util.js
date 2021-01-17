@@ -5,3 +5,8 @@ export const people = [
     {name: 'luffy', job: 'designer'},
     {name: 'Babu bhaia', job: 'business man'}
 ]
+export const hobbies = [
+    {name: 'knight', hobby: 'coding'},
+    {name: 'luffy', hobby: 'catch'},
+    {name: 'Babu bhaia', hobby: 'lounge around'}
+]
