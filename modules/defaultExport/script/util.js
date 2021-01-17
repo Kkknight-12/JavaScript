@@ -9,4 +9,4 @@ export const hobbies = [
     {name: 'knight', hobby: 'coding'},
     {name: 'luffy', hobby: 'catch'},
     {name: 'Babu bhaia', hobby: 'lounge around'}
-]
+] 
