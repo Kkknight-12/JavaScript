@@ -86,10 +86,19 @@ const thisObj = {
 
     getNameValue: getName,
     
-    name : 'knight'
+    name : 'knight',
+
 }
 // return this which is whole object so we are getting whole object as return value
 console.log(thisObj.checkingThis())
 // this refer to object
 console.log(thisObj.checkingThis() ===  thisObj )
 console.log(thisObj.getNameValue())
+
+/* 
+Look closely the getMyThis and getName are normal function.
+And this in normal function refer to windows.
+But We are invoking these function with the help of object thisObj
+so left side of dot is thisObj which means this will refer to 
+thisObj which is invoking it.
+*/
