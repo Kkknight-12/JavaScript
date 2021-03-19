@@ -1,16 +1,25 @@
+// //////////////////////////////
+// implicit function parameters /
+// //////////////////////////////
 /* 
-Arguments parameter is collection of all arguments passed to function.
+function invocations are usually passed two implicit
+parametes: arguments and this 
+implite means that these parameters aren't explicitly
+listed in the function signature, but are silenty passed to the function
+and accessible within the function
 
-arguments object have property name length idicates the excat number of argument. value can be obtained by using array indexing notation.
+arguments is collection of all parameters passed to a function, usefull as it allow us to access all funciton parameter.
+
+'arguments' object have property name 'length' idicates the excat number of argument. value can be obtained by using array indexing notation.
  */
 
-function whatever(a,b,b){
+function abc(a,b,b){
     console.log(`argument 1 is ${arguments[0]}`)
     console.log( `argument 2 is ${arguments[1]}`)
     console.log(`argument 3 is ${arguments[2]}`)
             
 }
-whatever('a','b','c');
+abc('a','b','c');
 
 function agrLength( a, b, c, d){
     console.log(arguments.length)
@@ -18,10 +27,8 @@ function agrLength( a, b, c, d){
 agrLength('a','b','c','d')
 
 /*
-argument have length parameter
-it can be fetched using array notation
-but aguments are not javascript array.
-you can think of them as an array like construct. 
+arguments parameter is not and array, array method won't
+work on it
 */
 
 function sum(){
@@ -32,7 +39,13 @@ function sum(){
     return sum;
 }
 
-console.log(sum( 1, 2, 3, 4, 5));
+console.log(sum(1,2,34)); // 37
+console.log(sum(1,2)); // 3
+console.log(sum(1,2,3,4)); // 10
+/*
+in sum function we are not explicity listing parameters. Still
+we are accessing all the function arguments throught arguments object
+*/
 
 /* 
 we can use Rest parameter instead of arguments parameter
@@ -59,25 +72,27 @@ function infiltrate(person){
     // accessing value 'Mali Bhaia' through parameter person
     // and also through arguments object.
     if( person === 'Mali Bhaia' ){
-        console.log(person)
+        console.log(person) // Mali Bhaia
     }
     if( arguments[0] === 'Mali Bhaia' ){
-        console.log('Bingo')
+        console.log('Bingo') // Bingo
     }
 
     /*
-    argument is alias for function parameter so if we change the argumemts object the change is also reflected in matching function parameter.
+    arguments parameter aliases function parameter. So if
+    we set arguments[0] to some value, first paramter will be
+    changed.
 
     changing parameter 
     */
     arguments[0] = 'ninja boy rantaro'
-    console.log(person)
+    console.log(person) // ninja boy rantaro
 
     /*  
     same is true if we change parameter, the changes can be observed in paramter and arguments
      */
     person = 'Kirimaru'
-    console.log(arguments[0])
+    console.log(arguments[0]) // Kirimaru
 
 }
 

@@ -53,3 +53,43 @@ console.log(samurai()) // return undefined
 // Invoking a function as method //
 // ////////////////////////////////
 
+// function is assigned to a property of an object
+let ninjaObj = {}
+ninjaObj.skill = function(){ console.log('you got me')}
+
+// invocation occurs by referencing the function using that property
+ninjaObj.skill();
+
+/* 
+special thing about it is object to which a method belongs
+is available within body of the method as 'this'.
+which means you can refer to object with 'this' inside method
+
+When we invoke a function as a method of an object, that
+object becomes function context as is available within
+function via 'this' parameter.
+*/
+
+function getMyThis(){
+    return this
+}
+function getName(){
+    return this.name
+}
+
+const thisObj = {
+    // not invoking getMyThis
+    // checkingThis will recieve reference to getMyThis function
+    // doing so we created a method named checkingThis on object thisObj
+    // getMyThis didn't become a method of object thisObj
+    checkingThis : getMyThis,
+
+    getNameValue: getName,
+    
+    name : 'knight'
+}
+// return this which is whole object so we are getting whole object as return value
+console.log(thisObj.checkingThis())
+// this refer to object
+console.log(thisObj.checkingThis() ===  thisObj )
+console.log(thisObj.getNameValue())
