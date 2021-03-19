@@ -1,12 +1,12 @@
 /* 
-this is an implicite parameter passed to function when a function is invoked. It refers to an object that's associated with the function
+'this' is an implicite parameter passed to function when a function is invoked. It refers to an object that's associated with the function
 invocation. Often termed as function context. 
 
 what this parameter points to isn't defined only by how and where the function is defined, but it also heavily influnced by how function is invoked.
 */
 
 /* 
-the manner in which a function is invoked has a huge impact on how the code within it operates, primarily in how the this parameter, the function context, is established
+the manner in which a function is invoked has a huge impact on how the code within it operates, primarily in how the 'this' parameter, the function context, is established
 */
 
 // /////////////////////////////////
@@ -52,3 +52,4 @@ console.log(samurai()) // return undefined
 // ////////////////////////////////
 // Invoking a function as method //
 // ////////////////////////////////
+
