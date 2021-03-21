@@ -136,9 +136,11 @@ function whatMyContext(){
     return this;
 }
 // invoking
-console.log(whatMyContext())
+console.log( whatMyContext() )
 const a = new whatMyContext();
-console.log(a)
+console.log(a) // whatMyContext {}
+
+console.log( typeof a) // object
 
 /* 
 re-calling Function() constructors from chapter.
@@ -155,7 +157,6 @@ function Knight(){
     this.skill = function(){
         return this;
     }
-    return 1;
 }
 
 let knight1 = new Knight();
@@ -174,6 +175,39 @@ as many new copy as we want and each time the property of new Knight
 will be borrowed by new function.
 */
 
-let samurai1 = new Knight();
-console.log(typeof samurai1 === 'object')
-console.log(typeof samurai1.skill === 'function')
+// adding a return value ot the function
+function Knight1(){
+    this.skill = function(){
+        return this;
+    }
+    return 1;
+}
+console.log(Knight1())
+let samurai1 = new Knight1();
+console.log(samurai1) // Knight1 {skill: ƒ}
+console.log( typeof samurai1  ) // object
+console.log( typeof samurai1.skill === 'function' ) // function
+
+/* 
+if we call Knight1 function it returns 1 and if we call it as a constructor
+with new key word a new knight1 object is constructed and returned */
+
+let puppy = {
+    labrador: false,
+}
+
+function Dog(){
+    this.labrador = true;
+    return puppy;
+}
+
+let dog = new Dog()
+
+console.log(  dog === puppy  ) // true
+console.log(  dog.labrador === puppy ) // false
+
+/* 
+when we try to access the value of labrador constructor dog run
+when says labrador is true then function return puppy.
+puppy change the value of labrador from true to false
+ */
