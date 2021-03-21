@@ -102,3 +102,78 @@ But We are invoking these function with the help of object thisObj
 so left side of dot is thisObj which means this will refer to 
 thisObj which is invoking it.
 */
+
+const thisObjTwo = {
+    checkingThisAgain : getMyThis,
+}
+ console.log(thisObjTwo.checkingThisAgain() === thisObjTwo)
+
+/* 
+here we go again using the same getMyThis function and this time it is returning
+this equal to thisObjTwo.
+
+So, we can confirm that context returned by 'this' changes depending on how
+getMyThis is invoked.
+
+We dont need make different copy of getMyThis to perform exact same processing on
+different object.
+*/
+
+// ///////////////////////////////////////
+// invoking a function as a constructor //
+// ///////////////////////////////////////
+
+/* 
+'Constructor function' can be declared just like any other function.
+They can use 'declaration' and 'expression' for constructing 'new object'.
+
+'Constructor function' are function that we use to create and initialise
+object insatances.
+*/
+
+// we use keyword 'new' to invoke constructor function
+function whatMyContext(){
+    return this;
+}
+// invoking
+console.log(whatMyContext())
+const a = new whatMyContext();
+console.log(a)
+
+/* 
+re-calling Function() constructors from chapter.
+they enable us to new function from string. 3*/
+const sum = new Function( 'a', 'b','return a + b');
+console.log(sum(1,2));
+/* 
+DONT MIX FUNCTION() CONSTRUCTOR WITH CONSTRUCTOR FUNCTIONS.
+Here we are studing constructor function that carea and initialise
+object instance
+*/
+
+function Knight(){
+    this.skill = function(){
+        return this;
+    }
+    return 1;
+}
+
+let knight1 = new Knight();
+let knight2 = new Knight();
+
+console.log(knight1.skill() === knight1)
+console.log(knight2.skill() === knight2)
+/* 
+new keyword trigger a new empty object, object is passed
+to the constructor as this parameter thus becomes constructor's
+function context. Newly constructed object is returned as new opertor's value.
+if we compare it to the previous function we create to check this.
+We excaped the hassle to write the same code again as
+we are using new Knight() to refer to the function. We can create
+as many new copy as we want and each time the property of new Knight
+will be borrowed by new function.
+*/
+
+let samurai1 = new Knight();
+console.log(typeof samurai1 === 'object')
+console.log(typeof samurai1.skill === 'function')
