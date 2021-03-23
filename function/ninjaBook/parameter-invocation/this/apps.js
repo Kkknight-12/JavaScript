@@ -208,6 +208,25 @@ console.log(  dog.labrador === puppy ) // false
 
 /* 
 when we try to access the value of labrador constructor dog run
-when says labrador is true then function return puppy.
+which says labrador is true then function return puppy.
 puppy change the value of labrador from true to false
- */
+*/
+
+// apply and call method
+
+function Button(){
+    this.clicked = false;
+    this.click = function(){
+        this.clicked = true;
+        console.log(this) // <button id="test">Click me!</button>
+        console.log( this.clicked === button ) // true
+    }
+}
+let button = new Button()
+console.log(button.click() === button)
+let ele = document.getElementById('test');
+// ele.addEventListener('click', button.click)
+// with bind you can bind the object button and send it with the event listner
+// so when ever click invoke the function, the function will
+// refer to object button
+ele.addEventListener( 'click', button.click.bind(button) )
