@@ -162,8 +162,8 @@ function Knight(){
 let knight1 = new Knight();
 let knight2 = new Knight();
 
-console.log(knight1.skill() === knight1)
-console.log(knight2.skill() === knight2)
+console.log(knight1.skill() === knight1) // this will be knight1
+console.log(knight2.skill() === knight2) // this will be knight2
 /* 
 new keyword trigger a new empty object, object is passed
 to the constructor as this parameter thus becomes constructor's
@@ -175,7 +175,7 @@ as many new copy as we want and each time the property of new Knight
 will be borrowed by new function.
 */
 
-// adding a return value ot the function
+// adding a return value of the function
 function Knight1(){
     this.skill = function(){
         return this;
@@ -320,29 +320,28 @@ elem2.addEventListener('click', button2.click ) // Button2 {clicked: true, clic
 
 console.log(button2) // Button2 {clicked: false, click: ƒ}
 
+
+
+// ////////////////////////////
+//  strange behavior of this //
+// ////////////////////////////
+let bt = {
+    clicked: false,
+    click: () => {
+        this.clicked = true;
+        console.log(this)
+    }
+}
+let elem3 = document.getElementById('test3');
+elem3.addEventListener('click', bt.click )
+/* 
+Arrow functions pick up the value of the this parameter at the moment of their creation. Because the click arrow function is created as a property value on an object literal, and the object literal is created in global code, the this value of the arrow function will be the this value of the global code.
+*/
+
 // b is created in global context
 let b = {
-    click: ()=>{
+    click: () => {
         return this
     }
 }
-console.log(b.click()) // when we call arrow function it will refer to 
-
-function checkArrow(){
-    this.sample = ()=> {
-        return this;
-    }
-}
-
-let checkA = new checkArrow();
-console.log(checkA.sample())
-
-let fnProp= function(){
- namE = 'knight';
- return this
-}
-fnProp.skill = 'Class A'
-console.log(fnProp.namE) // undefined
-console.log(fnProp.skill) // Class A
-
-console.log(fnProp()) // window
+console.log(b.click()) // when we call arrow function it will refer to window
