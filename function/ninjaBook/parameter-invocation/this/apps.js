@@ -345,3 +345,26 @@ let b = {
     }
 }
 console.log(b.click()) // when we call arrow function it will refer to window
+
+
+// ///////////////
+// Bind method  //
+// ///////////////
+/* 
+bind method is available to all functions, and is designed to create and return a new function that’s bound to the passed-in object (in this case, the button object). The value of the this parameter is always set to that object, regardless of the way the bound function was invoked
+*/
+
+let bindbt = {
+    clicked: false,
+    click: function(){
+        this.clicked = true, // this will refer to nearest scope -> bindbt
+        console.log(this) // bindbt{clicked: true, click: ƒ}
+        console.log( bindbt.clicked ) // true
+    }
+}
+
+let elem4 = document.getElementById('test4');
+elem4.addEventListener('click', bindbt.click.bind(bindbt) ) // Button2 {clicked: true, click: ƒ}
+/* Whenever the button is clicked, that bound function will be invoked with the button object as its context,
+*/
+console.log(bindbt.click()) // Button2 {clicked: false, click: ƒ}
