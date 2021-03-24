@@ -268,13 +268,6 @@ console.log( ninja2 ) // {name: "ninja2", rank: 2, result: 30}
 // forcing context in call back //
 // ///////////////////////////////
 
-function foreach( list, callback ){
-    for( let n = 0; n < list.length; n++ ){
-        callback.call( list[n], n ); // { type: "kusarigama" }, 
-        list[n].result = n;
-    } 
-}
-
 let weapons = [
     { type: 'kusarigama'},
     { type: 'katana'},
@@ -283,6 +276,44 @@ let weapons = [
 console.log(weapons[0]) // { type: "kusarigama" } // typeof -> object
 console.log(typeof weapons) // typeof -> object
 
-foreach( weapons, function( index ){
-    console.log(this)
-})
+function foreach( list, callback ){
+    for( let n = 0; n < list.length; n++ ){
+        callback.call( list[n], n ); // { type: "kusarigama" }, passing in 'n'
+    } 
+}
+
+//                callback
+foreach( weapons, function( index ){ // index will be our 'n'
+    // this.result = index;
+    console.log(this) // current entry will become current context
+    console.log(this === weapons[index])
+});
+
+/* 
+when to use call and when to use apply...?
+Both do same thing. 
+We use 'call' when we have bunch of unrelated values, call let us use them directly 
+in its argument list.
+We use 'apply' when we have values in array or when its convenient to collect them. 
+*/
+
+// ///////////////////////////////
+// Back to fixing our click me  //
+// //////////////////////////////
+
+/* 
+we can use call and apply to get result. But we will using 'bind' and
+'arrow function' which is 'more elegent' way to achieve same result
+*/
+
+function Button2(){
+    this.clicked = false,
+    this.click=()=>{
+        this.clicked = true,
+        console.log(this) // <button id="test">Click me!</button>
+        console.log( this.clicked === button ) // true
+    }
+}
+let button2 = new Button2();
+let elem2 = document.getElementById('test2');
+elem2.addEventListener('click', button2.click )
