@@ -212,7 +212,9 @@ which says labrador is true then function return puppy.
 puppy change the value of labrador from true to false
 */
 
-// apply and call method
+// /////////////////////////
+// apply and call method  //
+// ////////////////////////
 
 function Button(){
     this.clicked = false;
@@ -230,3 +232,33 @@ let ele = document.getElementById('test');
 // so when ever click invoke the function, the function will
 // refer to object button
 ele.addEventListener( 'click', button.click.bind(button) )
+
+
+function juggle(){
+    let result = 0;
+    for( let n = 0; n < arguments.length; n++ ){
+        result += arguments[n]
+    }
+    this.result = result;
+    // return result;
+}
+// console.log(juggle(1,2,3))
+let ninja1= {}
+let ninja2 = {
+    name:'ninja2', // you can also use an object the already have property
+    rank: 2
+}
+
+/* 
+'apply' have two parementer
+first is the object ot be used as th function context
+second is an array of values to be used as the invocation argument
+
+'call' method is similar to apply expect the second argument 
+is passed directly in the argument list rather than as an array
+*/
+juggle.apply( ninja1, [1,2,3,4,5] ) 
+juggle.call( ninja2, 6,7,8,9 ) 
+
+console.log( ninja1 ) // {result: 15}
+console.log( ninja2 ) // {name: "ninja2", rank: 2, result: 30}
