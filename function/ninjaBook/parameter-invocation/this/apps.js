@@ -196,7 +196,7 @@ let puppy = {
     labrador: false,
 }
 
-function Dog(){
+function Dog(){ 
     this.labrador = true;
     return puppy;
 }
