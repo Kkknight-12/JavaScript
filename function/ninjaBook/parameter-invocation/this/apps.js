@@ -250,7 +250,7 @@ let ninja2 = {
 }
 
 /* 
-'apply' have two parementer
+'apply' have two paramenter
 first is the object ot be used as th function context
 second is an array of values to be used as the invocation argument
 
@@ -262,3 +262,27 @@ juggle.call( ninja2, 6,7,8,9 )
 
 console.log( ninja1 ) // {result: 15}
 console.log( ninja2 ) // {name: "ninja2", rank: 2, result: 30}
+
+
+// ///////////////////////////////
+// forcing context in call back //
+// ///////////////////////////////
+
+function foreach( list, callback ){
+    for( let n = 0; n < list.length; n++ ){
+        callback.call( list[n], n ); // { type: "kusarigama" }, 
+        list[n].result = n;
+    } 
+}
+
+let weapons = [
+    { type: 'kusarigama'},
+    { type: 'katana'},
+    { type: 'odachi'}
+]
+console.log(weapons[0]) // { type: "kusarigama" } // typeof -> object
+console.log(typeof weapons) // typeof -> object
+
+foreach( weapons, function( index ){
+    console.log(this)
+})
