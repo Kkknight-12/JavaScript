@@ -219,19 +219,18 @@ puppy change the value of labrador from true to false
 function Button(){
     this.clicked = false;
     this.click = function(){
-        this.clicked = true;
-        console.log(this) // <button id="test">Click me!</button>
-        console.log( this.clicked === button ) // true
+        this.clicked = true; // this refer to window object when invoked with click
+        console.log(this) 
+        console.log( button.clicked ) // false
     }
 }
-let button = new Button()
-console.log(button.click() === button)
+let button = new Button();
 let ele = document.getElementById('test');
-// ele.addEventListener('click', button.click)
+ele.addEventListener('click', button.click) // <button id="test">Click me!</button>
 // with bind you can bind the object button and send it with the event listner
 // so when ever click invoke the function, the function will
 // refer to object button
-ele.addEventListener( 'click', button.click.bind(button) )
+// ele.addEventListener( 'click', button.click.bind(button) )
 
 
 function juggle(){
@@ -309,11 +308,13 @@ we can use call and apply to get result. But we will using 'bind' and
 function Button2(){
     this.clicked = false,
     this.click=()=>{
-        this.clicked = true,
-        console.log(this) // <button id="test">Click me!</button>
-        console.log( this.clicked === button ) // true
+        this.clicked = true, // this will refer to nearest scope
+        console.log(this) 
+        console.log( button2.clicked ) // true
     }
 }
 let button2 = new Button2();
 let elem2 = document.getElementById('test2');
-elem2.addEventListener('click', button2.click )
+console.log(button2.click === Button2.click )
+elem2.addEventListener('click', button2.click ) // Button2 {clicked: true, click: ƒ}
+
