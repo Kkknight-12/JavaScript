@@ -81,6 +81,9 @@ console.log(returnSamuraiFun());
 
 // function can posses property that can be dynamically
 // created and assigned;
+// NOTE: properties must be assigned after you have
+// created empty function, else they will be return undefined 
+// when you call them
 var ninjafunction = function() {};
 ninjafunction.ninja = "shadow clone jutsu";
 console.log(ninjafunction.ninja); // shadow clone jutsu
@@ -119,6 +122,19 @@ console.log(values) // [9, 7, 6, 3, 3, 2, 1, 0]
 var weildSword = function(){};
 weildSword.swordType = "katana";
 console.log(weildSword.swordType) // katana
+
+// properties must be added after you have created function
+// so you should pass empty function as properties defined
+// while creating function will we refered as undefined when
+// when you call them
+let fnProp = function(){
+ namE = 'knight';
+ return this // this will refer to window even if you use arrow function
+}
+fnProp.skill = 'Class A'
+console.log(fnProp.namE) // undefined
+console.log(fnProp.skill) // Class A
+console.log(fnProp()) // window
 
 // storing function in collection
 var store = {

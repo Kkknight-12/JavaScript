@@ -309,7 +309,7 @@ function Button2(){
     this.clicked = false,
     this.click=()=>{
         this.clicked = true, // this will refer to nearest scope
-        console.log(this) 
+        console.log(this) // Button2 {clicked: true, click: ƒ}
         console.log( button2.clicked ) // true
     }
 }
@@ -318,3 +318,31 @@ let elem2 = document.getElementById('test2');
 console.log(button2.click === Button2.click )
 elem2.addEventListener('click', button2.click ) // Button2 {clicked: true, click: ƒ}
 
+console.log(button2) // Button2 {clicked: false, click: ƒ}
+
+// b is created in global context
+let b = {
+    click: ()=>{
+        return this
+    }
+}
+console.log(b.click()) // when we call arrow function it will refer to 
+
+function checkArrow(){
+    this.sample = ()=> {
+        return this;
+    }
+}
+
+let checkA = new checkArrow();
+console.log(checkA.sample())
+
+let fnProp= function(){
+ namE = 'knight';
+ return this
+}
+fnProp.skill = 'Class A'
+console.log(fnProp.namE) // undefined
+console.log(fnProp.skill) // Class A
+
+console.log(fnProp()) // window
