@@ -45,3 +45,39 @@ function remember(number) {
 const returnedFunction = remember(5);
 
 console.log( returnedFunction() );
+
+/* 
+When the Javascript engine enters remember(), it creates a new execution scope that points back to the prior execution scope. This new scope includes a reference to the number parameter (an immutable Number with the value 5). When the engine reaches the inner function (a function expression), it attaches a link to the current execution scope.
+
+This 'process of a function retaining access to its "scope" is called a "closure" '. In this example, the inner function "closes over" number. A closure can capture any number of parameters and variables that it needs. 
+*/
+
+const myName = 'Knight';
+
+function introduceMyself() {
+
+    const you = 'Learner';
+    
+    function inner(){
+
+        const str = 'nothing';    
+        
+        function introduce() {
+            /* Closure 1 (inner)
+            variable - str: 'nothing'
+
+            Closure 2 (introduceMyself)
+            variable - you: 'student'
+             */
+            console.log(`Hello, ${you}, I'm ${myName}!`);
+            console.log(str)
+        }
+
+        return introduce()
+    }
+
+  return inner();
+}
+
+introduceMyself();
+// 'Hello, student, I'm Andrew!'
