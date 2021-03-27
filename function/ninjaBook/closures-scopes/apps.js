@@ -55,29 +55,52 @@ This 'process of a function retaining access to its "scope" is called a "closure
 const myName = 'Knight';
 
 function introduceMyself() {
+	const you = 'Learner';
+	
+	function inner(){
+	/* 
+	local - introduce(), str
+	Closure - you
+	*/
+	const str = 'nothing'; 
+	
+	function introduce() {
+		/* Closure 1 (inner)
+		variable - str: 'nothing'
+		Closure 2 (introduceMyself)
+		variable - you: 'student'
+		*/
+		console.log(`Hello, ${you}, I'm ${myName}!`);
+		console.log(str)
+	}
+return introduce()
+}
+return inner();
+}
+introduceMyself();
+// Hello, Learner, I'm Knight!
 
-    const you = 'Learner';
-    
-    function inner(){
+/* 
+myName is a variable defined outside a function, hence it's a global variable in the global scope. In other words, myName is available for all functions to use.
+But let's look closely at the other variable: you and str. you and str is referenced by introduce(), even though it wasn't declared within introduce()! This is possible because a nested function's scope includes variables declared in the scope where the function is nested (i.e., variables from its parent function's scope, where the function is defined).
+As it turns out, the introduce() function and its lexical environment form a closure. This way, introduce() has access to not only the global variable myName, but also the variable you and str, which was declared in the scope of its parent function, introduceMyself() and inner().
+ */
 
-        const str = 'nothing';    
-        
-        function introduce() {
-            /* Closure 1 (inner)
-            variable - str: 'nothing'
+function outerFunction2() {
+  let num1 = 5;
 
-            Closure 2 (introduceMyself)
-            variable - you: 'student'
-             */
-            console.log(`Hello, ${you}, I'm ${myName}!`);
-            console.log(str)
-        }
-
-        return introduce()
-    }
-
-  return inner();
+  return function(num2) {
+    console.log(num1 + num2);
+  };
 }
 
-introduceMyself();
-// 'Hello, student, I'm Andrew!'
+let result = outerFunction2();
+
+result(10);
+
+/* After outerFunction2() is returned, it may seem that all of its local variables would be allocated back to available memory. As it turns out, however, the nested innerFunction() still has access to the num1 variable!
+
+Let's take a closer look: outerFunction2() returns a reference to the inner, nested function. The return value of this invocation is saved in result. When this function is called, it maintains access to its scope; that is, all the variables it was able to access back when it was originally defined. This includes the num1 variable in its parent scope. The nested function closes over these variables, and those variables persist as long as the reference to the function itself exists.
+
+When result(10); is executed, then, the function is still able to access num1's value of 5. As a result, 15 is logged to the console.
+*/
