@@ -33,8 +33,15 @@ When innerFunction executes, scope inside outerfunction is long gone. But becaus
 
 When we declare innerFunction inside the outer function, not only is the function
 declaration defined, but the closure is created that encompasses the function
-definition as we as ll variables in scope at the point of function definition
+definition as we as all variables in scope at the point of function definition.
+*/
 
- */
+function remember(number) {
+    return function() {
+        return number;
+    }
+}
 
+const returnedFunction = remember(5);
 
+console.log( returnedFunction() );
