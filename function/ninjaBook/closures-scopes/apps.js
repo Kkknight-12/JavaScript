@@ -37,24 +37,4 @@ definition as we as ll variables in scope at the point of function definition
 
  */
 
-function one() {
-  two();
-  function two() {
-    three();
-    function three() {
-      // function three's code here
-    }
-  }
-}
 
-one();
-
-const symbol = '¥';
-
-function displayPrice(price) {
-  const symbol = '$';
-  console.log(symbol + price);
-}
-
-displayPrice('80');
-// '$80'
