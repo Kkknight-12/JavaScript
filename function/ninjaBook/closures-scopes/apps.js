@@ -58,23 +58,24 @@ function introduceMyself() {
 	const you = 'Learner';
 	
 	function inner(){
-	/* 
-	local - introduce(), str
-	Closure - you
-	*/
-	const str = 'nothing'; 
-	
-	function introduce() {
-		/* Closure 1 (inner)
-		variable - str: 'nothing'
-		Closure 2 (introduceMyself)
-		variable - you: 'student'
-		*/
-		console.log(`Hello, ${you}, I'm ${myName}!`);
-		console.log(str)
-	}
-return introduce()
-}
+    /* 
+    local - introduce(), str
+    Closure - you
+    */
+    const str = 'nothing'; 
+    
+    function introduce() {
+      /* Closure 1 (inner)
+      variable - str: 'nothing'
+      Closure 2 (introduceMyself)
+      variable - you: 'student'
+      */
+      console.log(`Hello, ${you}, I'm ${myName}!`);
+      console.log(str)
+    }
+  
+    return introduce()
+  }
 return inner();
 }
 introduceMyself();
@@ -105,12 +106,19 @@ Let's take a closer look: outerFunction2() returns a reference to the inner, nes
 When result(10); is executed, then, the function is still able to access num1's value of 5. As a result, 15 is logged to the console.
 */
 
-// anonymous
-const myFunction = function () {
-  return 'Hello!';
-};
+// button.js
+const button = document.getElementById('button');
 
-// named
-const myFunction = function returnHello() {
-  return 'Hello!';
-};
+// button.js
+button.addEventListener('click', (function() {
+  let count = 0;
+
+  return function() {
+    count += 1;
+
+    if (count === 2) {
+      console.log('This alert appears every other press!');
+      count = 0;
+    }
+  };
+})());
