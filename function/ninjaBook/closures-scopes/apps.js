@@ -118,10 +118,14 @@ const dog = {
    this.age += 1;
  }
 };
-invokeTwice(dog.growOneYear)
+// invokeTwice(dog.growOneYear)
 
-console.log(dog.age)
+// console.log(dog.age)
 
-dog.growOneYear()
+// dog.growOneYear()
 
+// console.log(dog.age)
+invokeTwice( () => { 
+  dog.growOneYear(); 
+});
 console.log(dog.age)
