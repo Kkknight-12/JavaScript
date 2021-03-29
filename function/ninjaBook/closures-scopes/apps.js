@@ -118,7 +118,7 @@ const dog = {
    this.age += 1;
  }
 };
-// invokeTwice(dog.growOneYear)
+invokeTwice(dog.growOneYear)
 
 // console.log(dog.age)
 
@@ -145,7 +145,11 @@ const driver = {
 const car = {
   name: 'Fusion'
 };
-// const carName = driver.displayName.bind(car)
-// carName()
-car.bind(driver.displayName)
-// driver.displayName()
+const carName = driver.displayName.bind(car)
+carName()
+
+
+
+// 'Pride and Prejudice is a classic novel'
+
+ 
