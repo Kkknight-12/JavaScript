@@ -125,7 +125,27 @@ const dog = {
 // dog.growOneYear()
 
 // console.log(dog.age)
-invokeTwice( () => { 
-  dog.growOneYear(); 
-});
-console.log(dog.age)
+// invokeTwice( function () { 
+//   dog.growOneYear(); 
+// });
+// console.log(dog.age)
+// invokeTwice(dog.growOneYear.bind(dog));
+// console.log(dog.age)
+const myGrow = dog.growOneYear.bind(dog);
+invokeTwice(myGrow);
+console.log(dog.age);
+
+const driver = {
+  name: 'Danica',
+  displayName: function () {
+    console.log(`Name: ${this.name}`);
+  }
+};
+
+const car = {
+  name: 'Fusion'
+};
+// const carName = driver.displayName.bind(car)
+// carName()
+car.bind(driver.displayName)
+// driver.displayName()
