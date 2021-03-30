@@ -107,13 +107,39 @@ Let's take a closer look: outerFunction2() returns a reference to the inner, nes
 When result(10); is executed, then, the function is still able to access num1's value of 5. As a result, 15 is logged to the console.
 */
 
-function Longboard() {
-  this.material = 'bamboo';
+const bear = {
+  claws: true,
+  diet: 'carnivore'
+};
+function PolarBear() { 
+  // ...
 }
 
-const board = new Longboard();
-console.log(board.constructor);
+PolarBear.prototype = bear;
+console.dir(PolarBear.prototype)
+/* 
+Object
+  claws: true
+  diet: "carnivore"
+  __proto__: Object
+*/
 
-// function Longboard() {
-//   this.material = 'bamboo';
-// }
+const snowball = new PolarBear();
+console.log(Object.getPrototypeOf(snowball)) 
+// checking the inherited property
+// {claws: true, diet: "carnivore"}
+
+// Setting up own properties
+snowball.color = 'white';
+snowball.favoriteDrink = 'cola';
+console.log(snowball.__proto__);
+console.log(snowball)
+/* 
+PolarBear {color: "white", favoriteDrink: "cola"}
+color: "white"
+favoriteDrink: "cola"
+__proto__:
+claws: true
+diet: "carnivore"
+__proto__: Object
+*/
