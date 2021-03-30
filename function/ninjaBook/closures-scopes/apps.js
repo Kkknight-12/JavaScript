@@ -125,6 +125,7 @@ Object
 */
 
 const snowball = new PolarBear();
+const s = new PolarBear();
 console.log(Object.getPrototypeOf(snowball)) 
 // checking the inherited property
 // {claws: true, diet: "carnivore"}
@@ -132,7 +133,15 @@ console.log(Object.getPrototypeOf(snowball))
 // Setting up own properties
 snowball.color = 'white';
 snowball.favoriteDrink = 'cola';
+console.log(snowball.claws);
+// true
+
+console.log(snowball.diet);
+// 'carnivore'
+
 console.log(snowball.__proto__);
+// {claws: true, diet: "carnivore"}
+
 console.log(snowball)
 /* 
 PolarBear {color: "white", favoriteDrink: "cola"}
@@ -143,3 +152,26 @@ claws: true
 diet: "carnivore"
 __proto__: Object
 */
+console.log(snowball.__proto__ === bear);
+
+// true
+
+function GuineaPig (name) {
+  this.name = name;
+  this.isCute = true;
+}
+
+const waffle = new GuineaPig('Waffle');
+console.dir(waffle.__proto__)
+/* 
+Object
+constructor: ƒ GuineaPig(name)
+__proto__: Object
+*/
+console.log(GuineaPig.prototype)
+/* 
+{constructor: ƒ}
+constructor: ƒ GuineaPig(name)
+__proto__: Object 
+*/
+console.log(waffle.__proto__ === GuineaPig.prototype)
