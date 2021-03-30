@@ -120,20 +120,25 @@ const dog = {
 };
 invokeTwice(dog.growOneYear)
 
-// console.log(dog.age)
+// console.log(dog.age) // 5
 
 // dog.growOneYear()
 
-// console.log(dog.age)
-// invokeTwice( function () { 
+// console.log(dog.age) // 6
+
+// invokeTwice(function () { 
 //   dog.growOneYear(); 
 // });
+
+dog.age;
+// 7
+
 // console.log(dog.age)
 // invokeTwice(dog.growOneYear.bind(dog));
 // console.log(dog.age)
-const myGrow = dog.growOneYear.bind(dog);
-invokeTwice(myGrow);
-console.log(dog.age);
+// const myGrow = dog.growOneYear.bind(dog);
+// invokeTwice(myGrow);
+// console.log(dog.age);
 
 const driver = {
   name: 'Danica',
@@ -151,5 +156,3 @@ carName()
 
 
 // 'Pride and Prejudice is a classic novel'
-
- 
