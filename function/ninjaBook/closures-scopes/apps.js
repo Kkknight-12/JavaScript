@@ -153,7 +153,6 @@ diet: "carnivore"
 __proto__: Object
 */
 console.log(snowball.__proto__ === bear);
-
 // true
 
 function GuineaPig (name) {
@@ -175,3 +174,5 @@ constructor: ƒ GuineaPig(name)
 __proto__: Object 
 */
 console.log(waffle.__proto__ === GuineaPig.prototype)
+waffle.isCute = false;
+console.log(GuineaPig)
