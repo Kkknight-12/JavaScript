@@ -107,46 +107,13 @@ Let's take a closer look: outerFunction2() returns a reference to the inner, nes
 When result(10); is executed, then, the function is still able to access num1's value of 5. As a result, 15 is logged to the console.
 */
 
-function Hamster() {
-  this.hasFur = true;
+function Longboard() {
+  this.material = 'bamboo';
 }
 
-let waffle = new Hamster();
-let pancake = new Hamster();
+const board = new Longboard();
+console.log(board.constructor);
 
-Hamster.prototype.eat = function () {
-  console.log('Chomp chomp chomp!');
-};
-
-waffle.eat();
-// 'Chomp chomp chomp!'
-
-pancake.eat();
-// 'Chomp chomp chomp!'
-
-Hamster.prototype = {
-  isHungry: false,
-  color: 'brown'
-};
-
-console.log(waffle.color);
-// undefined
-
-waffle.eat();
-// 'Chomp chomp chomp!'
-
-console.log(pancake.isHungry);
-// undefined
-
-console.dir(Hamster.prototype)
-
-const muffin = new Hamster();
-
-// muffin.eat();
-// TypeError: muffin.eat is not a function
-
-console.log(muffin.isHungry);
-// false
-
-console.log(muffin.color);
-// 'brown'
+// function Longboard() {
+//   this.material = 'bamboo';
+// }
