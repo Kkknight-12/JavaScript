@@ -194,10 +194,10 @@ function Cat(name) {
 Cat.prototype = Object.create(Animal.prototype)
 // Cat.prototype = Animal.prototype
 
-// Cat.prototype.constructor = Cat;
+Cat.prototype.constructor = Cat;
 // console.log(bill.constructor)
 
-console.log(Cat.prototype)
+console.log(Cat.prototype) // Animal {}
 
 
 Cat.prototype.meow = function(){
@@ -205,8 +205,11 @@ Cat.prototype.meow = function(){
 }
 
 const bill = new Cat('Bailey');
+bill.nickName = function(){
+  console.log('loadion')
+}
+console.log(Object.getPrototypeOf(bill)) // Animal {meow: ƒ}
 
-console.log(Object.getPrototypeOf(bill))
 bill.walk();
 bill.sayName()
 bill.meow()
