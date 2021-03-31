@@ -107,27 +107,55 @@ Let's take a closer look: outerFunction2() returns a reference to the inner, nes
 When result(10); is executed, then, the function is still able to access num1's value of 5. As a result, 15 is logged to the console.
 */
 
-const bear = {
-	claws: true,
-	diet: 'carnivore'
-};
+// const bear = {
+// 	claws: true,
+// 	diet: 'carnivore'
+// };
 
-function PolarBear() { 
-	// ...
+// function PolarBear() { 
+// 	// ...
+// }
+
+// PolarBear.prototype = bear;
+
+// console.dir(PolarBear.prototype)
+// /* 
+// Object
+// 	claws: true
+// 	diet: "carnivore"
+// 	__proto__: Object
+// */
+
+// const snowball = new PolarBear();
+// console.log(snowball.__proto__)
+// snowball.__proto__.claws = false;
+// console.log(snowball.__proto__)
+// console.dir(PolarBear.prototype)
+
+function GuineaPig (name) {
+	this.name = name;
+	this.isCute = true;
 }
 
-PolarBear.prototype = bear;
-
-console.dir(PolarBear.prototype)
+const waffle = new GuineaPig('Waffle');
+console.dir(waffle.__proto__)
 /* 
 Object
-	claws: true
-	diet: "carnivore"
+	constructor: ƒ GuineaPig(name)
 	__proto__: Object
 */
 
-const snowball = new PolarBear();
-console.log(snowball.__proto__)
-snowball.__proto__.claws = false;
-console.log(snowball.__proto__)
-console.dir(PolarBear.prototype)
+console.dir(GuineaPig.prototype)
+const p = Object.getPrototypeOf(waffle)
+console.log(p)
+console.log(waffle.hasOwnProperty('isCute'))
+/* 
+{constructor: ƒ}
+	constructor: ƒ GuineaPig(name)
+	__proto__: Object 
+*/
+console.log(waffle.__proto__ === GuineaPig.prototype)
+
+// waffle.__proto__.isCute = false;
+// console.log(waffle.__proto__)
+// console.dir(GuineaPig.prototype)
