@@ -214,3 +214,30 @@ bill.walk();
 bill.sayName()
 bill.meow()
 bill.nickName()
+
+console.log('---------')
+
+function Ninja(){
+   this.swung = true;
+ }
+ 
+ const ninja1 = new Ninja();
+
+ Ninja.prototype.swingSword = function(){
+   return this.swung;
+ };
+console.log(ninja1.swingSword())
+
+ Ninja.prototype = {
+  pierce: function() {
+    return `sharp as hel`;
+  }
+ }
+
+// console.log(ninja1.pierce())
+ 
+ const ninja2 = new Ninja();
+ console.log(ninja2.pierce());
+//  assert(!ninja2.swingSword, "But they cannot swing!");
+
+
