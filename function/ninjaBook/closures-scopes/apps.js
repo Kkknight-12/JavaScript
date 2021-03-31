@@ -108,71 +108,26 @@ When result(10); is executed, then, the function is still able to access num1's 
 */
 
 const bear = {
-  claws: true,
-  diet: 'carnivore'
+	claws: true,
+	diet: 'carnivore'
 };
+
 function PolarBear() { 
-  // ...
+	// ...
 }
 
 PolarBear.prototype = bear;
+
 console.dir(PolarBear.prototype)
 /* 
 Object
-  claws: true
-  diet: "carnivore"
-  __proto__: Object
+	claws: true
+	diet: "carnivore"
+	__proto__: Object
 */
 
 const snowball = new PolarBear();
-const s = new PolarBear();
-console.log(Object.getPrototypeOf(snowball)) 
-// checking the inherited property
-// {claws: true, diet: "carnivore"}
-
-// Setting up own properties
-snowball.color = 'white';
-snowball.favoriteDrink = 'cola';
-console.log(snowball.claws);
-// true
-
-console.log(snowball.diet);
-// 'carnivore'
-
-console.log(snowball.__proto__);
-// {claws: true, diet: "carnivore"}
-
-console.log(snowball)
-/* 
-PolarBear {color: "white", favoriteDrink: "cola"}
-color: "white"
-favoriteDrink: "cola"
-__proto__:
-claws: true
-diet: "carnivore"
-__proto__: Object
-*/
-console.log(snowball.__proto__ === bear);
-// true
-
-function GuineaPig (name) {
-  this.name = name;
-  this.isCute = true;
-}
-
-const waffle = new GuineaPig('Waffle');
-console.dir(waffle.__proto__)
-/* 
-Object
-constructor: ƒ GuineaPig(name)
-__proto__: Object
-*/
-console.log(GuineaPig.prototype)
-/* 
-{constructor: ƒ}
-constructor: ƒ GuineaPig(name)
-__proto__: Object 
-*/
-console.log(waffle.__proto__ === GuineaPig.prototype)
-waffle.isCute = false;
-console.log(GuineaPig)
+console.log(snowball.__proto__)
+snowball.__proto__.claws = false;
+console.log(snowball.__proto__)
+console.dir(PolarBear.prototype)
