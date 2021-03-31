@@ -191,17 +191,32 @@ function Cat(name) {
 		};
 }
 
-Cat.prototype = Object.create(Animal.prototype)
+/* 
+we previosly used this method to transfer inheritance but its a wrong way */
 // Cat.prototype = Animal.prototype
+
+// better way to create inheritance
+Cat.prototype = new Animal()
+// Cat.prototype = Object.create(Animal.prototype)
 
 Cat.prototype.constructor = Cat;
 // console.log(bill.constructor)
 
-console.log(Cat.prototype) // Animal {}
+// Object.defineProperty( Cat.prototype, 'constructor', {
+//   enumerable: false,
+//   value: Cat,
+//   writable: true,
+// });
 
+
+console.log(Cat.prototype) // Animal {}
 
 Cat.prototype.meow = function(){
   console.log(`My name is ${this.name} I do Meow`)
+}
+
+for( let prop in Cat.prototype ){
+  console.log(prop)
 }
 
 const bill = new Cat('Bailey');
@@ -217,28 +232,6 @@ bill.nickName()
 
 console.log('---------')
 
-function Ninja(){
-   this.swung = true;
- }
- 
- const ninja1 = new Ninja();
 
- Ninja.prototype.swingSword = function(){
-   return this.swung;
- };
-console.log(ninja1.swingSword())
-
- Ninja.prototype = {
-  pierce: function() {
-    return `sharp as hel`;
-  }
- }
-
-// console.log(ninja1.pierce())
- 
- const ninja2 = new Ninja();
- console.log(ninja1 instanceof Ninja);
-//  assert(!ninja2.swingSword, "But they cannot swing!");
-console.log(ninja2.constructor())
 
 
