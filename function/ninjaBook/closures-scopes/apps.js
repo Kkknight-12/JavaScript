@@ -213,3 +213,4 @@ console.log(Object.getPrototypeOf(bill)) // Animal {meow: ƒ}
 bill.walk();
 bill.sayName()
 bill.meow()
+bill.nickName()
