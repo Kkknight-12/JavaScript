@@ -237,7 +237,8 @@ console.log(ninja1.swingSword())
 // console.log(ninja1.pierce())
  
  const ninja2 = new Ninja();
- console.log(ninja2.pierce());
+ console.log(ninja1 instanceof Ninja);
 //  assert(!ninja2.swingSword, "But they cannot swing!");
+console.log(ninja2.constructor())
 
 
