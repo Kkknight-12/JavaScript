@@ -171,4 +171,42 @@ console.log(Object.getPrototypeOf(riceBowl))
 
 // console.log(PolarBear.prototype)
 
-// console.dir(riceBowl)
+
+console.log('---------')
+
+function Animal(){
+  // this.name = name
+}
+
+Animal.prototype.walk = function(){
+  console.log(`${this.name} walks`)
+}
+
+function Cat(name) {
+		this.lives = 9;
+		this.name = name;
+		
+		this.sayName = function () {
+			console.log(`Meow! My name is ${this.name}`);
+		};
+}
+
+Cat.prototype = Object.create(Animal.prototype)
+// Cat.prototype = Animal.prototype
+
+// Cat.prototype.constructor = Cat;
+// console.log(bill.constructor)
+
+console.log(Cat.prototype)
+
+
+Cat.prototype.meow = function(){
+  console.log(`My name is ${this.name} I do Meow`)
+}
+
+const bill = new Cat('Bailey');
+
+console.log(Object.getPrototypeOf(bill))
+bill.walk();
+bill.sayName()
+bill.meow()
