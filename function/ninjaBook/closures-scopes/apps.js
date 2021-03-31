@@ -132,30 +132,43 @@ When result(10); is executed, then, the function is still able to access num1's 
 // console.log(snowball.__proto__)
 // console.dir(PolarBear.prototype)
 
-function GuineaPig (name) {
-	this.name = name;
-	this.isCute = true;
+const bear = {
+	claws: true,
+	diet: 'carnivore'
+};
+
+
+function PolarBear() { 
+	// ...
 }
 
-const waffle = new GuineaPig('Waffle');
-console.dir(waffle.__proto__)
+// wrong way of adding prototype
+PolarBear.prototype = bear;
+
+console.dir(PolarBear.prototype)
 /* 
 Object
-	constructor: ƒ GuineaPig(name)
+	claws: true
+	diet: "carnivore"
 	__proto__: Object
 */
 
-console.dir(GuineaPig.prototype)
-const p = Object.getPrototypeOf(waffle)
-console.log(p)
-console.log(waffle.hasOwnProperty('isCute'))
-/* 
-{constructor: ƒ}
-	constructor: ƒ GuineaPig(name)
-	__proto__: Object 
-*/
-console.log(waffle.__proto__ === GuineaPig.prototype)
+const snowball = new PolarBear();
+console.log(snowball.__proto__)
 
-// waffle.__proto__.isCute = false;
-// console.log(waffle.__proto__)
-// console.dir(GuineaPig.prototype)
+// changing proto property of child also affect proto of parent
+snowball.__proto__.claws = false
+console.log(snowball.__proto__)
+
+// changes can be seen in proto of parent
+console.log(PolarBear.prototype)
+
+const riceBowl = Object.create(bear)
+console.log(Object.getPrototypeOf(riceBowl))
+// riceBowl.__proto__.claws = true;
+
+// console.log(riceBowl.__proto__)
+
+// console.log(PolarBear.prototype)
+
+// console.dir(riceBowl)
