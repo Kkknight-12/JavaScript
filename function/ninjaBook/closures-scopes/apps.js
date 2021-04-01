@@ -322,7 +322,7 @@ console.log(bill.constructor)
 // /////////////////
 /* hasOwnProperty() allows you to find the origin 
 of a particular property.  */
-console.log(bill.hasOwnProperty('nickName'))
+console.log(bill.hasOwnProperty('nickName')) // true
 
 bill.walk(); // Animal prototype method
 console.log(bill.specie) // Animal property
@@ -336,3 +336,18 @@ console.log('---------')
 
 
 
+
+const duck = {
+  hasBill: true
+};
+const beaver = {
+  hasTail: true
+};
+const otter = {
+  hasFur: true,
+  feet: 'webbed'
+};
+
+const platypus = Object.assign(duck, beaver, otter);
+console.log(platypus)
+console.log(platypus == duck)
