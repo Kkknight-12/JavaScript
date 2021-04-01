@@ -287,7 +287,9 @@ Child object's prototype chain
 console.log( bill instanceof Animal ) // true
 console.log( bill instanceof Cat ) // true
 
-// getPrototypeOf
+// ////////////////
+// getPrototypeOf /
+// ////////////////
 /* 
 Object.getPrototypeOf() is great for 
 retrieving the prototype of a given object. 
@@ -296,8 +298,32 @@ console.log(Object.getPrototypeOf(bill))
 // Animal {specie: "Animal", meow: ƒ, constructor: ƒ}
 // Animal {meow: ƒ, constructor: ƒ}, if you create Cat with Object.create
 
-// constructor
+// /////////////////
+// isPrototypeOf() /
+// /////////////////
+/* checks whether or not an object exists in 
+another object's prototype chain.
+*/
+const checkProto = Object.getPrototypeOf(bill)
+console.log(checkProto.isPrototypeOf(bill))
+
+// /////////////
+// constructor /
+// /////////////
+/* 
+Accessing an object's constructor property 
+returns a reference to the constructor function (Cat)
+that created that object (bill) in the first place 
+*/
 console.log(bill.constructor)
+
+// //////////////////
+// hasOwnProperty() /
+// /////////////////
+/* hasOwnProperty() allows you to find the origin 
+of a particular property.  */
+console.log(bill.hasOwnProperty('nickName'))
+
 bill.walk(); // Animal prototype method
 console.log(bill.specie) // Animal property
 bill.sayName() // Cat prototype method
