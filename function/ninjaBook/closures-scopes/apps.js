@@ -335,14 +335,19 @@ console.log('---------')
 
 
 
-function Basketball(color) {
-  return {
-    color: color,
-    numDots: 35000
-  };
+
+function CoffeeMaker(object) {
+  let needsRefill = false;
+
+  return Object.assign({}, object, {
+    pourAll: function () {
+      needsRefill = true;
+    },
+    isEmpty: function () {
+      return needsRefill;
+    }
+  });
 }
 
-const myBB = Basketball('blue and green');
-const yourBB = Basketball('purple');
-const bouncy = Basketball('neon pink');
-console.log(bouncy)
+const mixedCoffeeMaker = CoffeeMaker({ style: 'percolator' });
+console.log(mixedCoffeeMaker)
