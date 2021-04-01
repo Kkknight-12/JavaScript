@@ -192,43 +192,59 @@ function Cat(name) {
 }
 
 /* 
-we previosly used this method to transfer inheritance but its a wrong way */
-// Cat.prototype = Animal.prototype
+we previosly used this method to transfer inheritance
+but its a wrong way 
+Cat.prototype = Animal.prototype
+*/
 
 // better way to create inheritance
 Cat.prototype = new Animal()
-// Cat.prototype = Object.create(Animal.prototype)
-
-Cat.prototype.constructor = Cat;
-// console.log(bill.constructor)
-
-// Object.defineProperty( Cat.prototype, 'constructor', {
-//   enumerable: false,
-//   value: Cat,
-//   writable: true,
-// });
-
-
-console.log(Cat.prototype) // Animal {}
+// Cat.prototype = Object.create( Animal.prototype );
 
 Cat.prototype.meow = function(){
   console.log(`My name is ${this.name} I do Meow`)
 }
 
+/* 
+always remeber to set the constructor function back to itself 
+*/
+// shortcut but the constructor will be iterable
+// Cat.prototype.constructor = Cat;
+// console.log(bill.constructor)
+
+// proper way to create constructor  
+Object.defineProperty( Cat.prototype, 'constructor', {
+  enumerable: false, // setting the iterable property to false
+  value: Cat,
+  writable: true,
+});
+
+console.log(Cat.prototype) // Animal {meow: ƒ, constructor: ƒ}
+
 for( let prop in Cat.prototype ){
   console.log(prop)
+  // object constructor should not be itterable
+  /* 
+  meow
+  walk
+  */
 }
 
 const bill = new Cat('Bailey');
 bill.nickName = function(){
-  console.log('loadion')
+  console.log('kill bill panday')
 }
-console.log(Object.getPrototypeOf(bill)) // Animal {meow: ƒ}
 
-bill.walk();
-bill.sayName()
-bill.meow()
-bill.nickName()
+console.log(bill.constructor === Cat); // true
+// console.log(bill.constructor) 
+
+
+console.log(Object.getPrototypeOf(bill)) // Animal {meow: ƒ, constructor: ƒ}
+
+bill.walk(); // Animal prototype method
+bill.sayName() // Cat prototype method
+bill.meow() // Cat prototype method
+bill.nickName() // bill method
 
 console.log('---------')
 
