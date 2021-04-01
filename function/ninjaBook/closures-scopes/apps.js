@@ -174,14 +174,23 @@ console.log(Object.getPrototypeOf(riceBowl))
 
 console.log('---------')
 
+// ///////////////
+// Parent Object /
+// ///////////////
 function Animal(){
-  // this.name = name
+  this.specie = 'Animal'
 }
 
+// ////////////////////
+// prototype property /
+// ////////////////////
 Animal.prototype.walk = function(){
   console.log(`${this.name} walks`)
 }
 
+// //////////////
+// Child Object /
+// //////////////
 function Cat(name) {
 		this.lives = 9;
 		this.name = name;
@@ -191,24 +200,47 @@ function Cat(name) {
 		};
 }
 
+// //////////////////////
+// creating inheritance /
+// //////////////////////
+
+// wrong way to inherit 
 /* 
 we previosly used this method to transfer inheritance
 but its a wrong way 
 Cat.prototype = Animal.prototype
 */
 
-// better way to create inheritance
+// two better way to create inheritance
+
+// new operator 
 Cat.prototype = new Animal()
+
+// Object.create()
+
+// but with this method you will inherit just the 
+// prototype properties and method, 
+// we will not be access Animal own properties/method link specie
+/* 
+Object.create() takes in a single object as an argument,
+and returns a new object with its __proto__ property set 
+to what argument is passed into it 
+*/
 // Cat.prototype = Object.create( Animal.prototype );
 
 Cat.prototype.meow = function(){
   console.log(`My name is ${this.name} I do Meow`)
 }
 
+// //////////////////////////////////////
+// Set construtor back to object itself /
+// //////////////////////////////////////
 /* 
 always remeber to set the constructor function back to itself 
 */
-// shortcut but the constructor will be iterable
+
+// shortcut method
+// but the constructor will be iterable, which is not good
 // Cat.prototype.constructor = Cat;
 // console.log(bill.constructor)
 
@@ -219,8 +251,12 @@ Object.defineProperty( Cat.prototype, 'constructor', {
   writable: true,
 });
 
-console.log(Cat.prototype) // Animal {meow: ƒ, constructor: ƒ}
+console.log(Cat.prototype) // Animal {specie: "Animal", meow: ƒ, constructor: ƒ}
+// Animal {meow: ƒ, constructor: ƒ}, if you create Cat with Object.create
 
+// as we have set the value of object constructor to non itterable 
+// it will not be shown in for loop
+// using short cut method will make constructor iterable
 for( let prop in Cat.prototype ){
   console.log(prop)
   // object constructor should not be itterable
@@ -230,6 +266,9 @@ for( let prop in Cat.prototype ){
   */
 }
 
+// /////////////////
+// object instance /
+// /////////////////
 const bill = new Cat('Bailey');
 bill.nickName = function(){
   console.log('kill bill panday')
@@ -238,13 +277,33 @@ bill.nickName = function(){
 console.log(bill.constructor === Cat); // true
 // console.log(bill.constructor) 
 
+// ////////////
+// instanceof /
+// ////////////
+/* returns a boolean indicating whether 
+the Parent constructor exists in the 
+Child object's prototype chain 
+*/
+console.log( bill instanceof Animal ) // true
+console.log( bill instanceof Cat ) // true
 
-console.log(Object.getPrototypeOf(bill)) // Animal {meow: ƒ, constructor: ƒ}
+// getPrototypeOf
+/* 
+Object.getPrototypeOf() is great for 
+retrieving the prototype of a given object. 
+*/
+console.log(Object.getPrototypeOf(bill)) 
+// Animal {specie: "Animal", meow: ƒ, constructor: ƒ}
+// Animal {meow: ƒ, constructor: ƒ}, if you create Cat with Object.create
 
+// constructor
+console.log(bill.constructor)
 bill.walk(); // Animal prototype method
+console.log(bill.specie) // Animal property
 bill.sayName() // Cat prototype method
 bill.meow() // Cat prototype method
 bill.nickName() // bill method
+console.log(bill.lives)
 
 console.log('---------')
 
