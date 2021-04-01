@@ -335,19 +335,14 @@ console.log('---------')
 
 
 
+function Basketball(color) {
+  return {
+    color: color,
+    numDots: 35000
+  };
+}
 
-
-const duck = {
-  hasBill: true
-};
-const beaver = {
-  hasTail: true
-};
-const otter = {
-  hasFur: true,
-  feet: 'webbed'
-};
-
-const platypus = Object.assign(duck, beaver, otter);
-console.log(platypus)
-console.log(platypus == duck)
+const myBB = Basketball('blue and green');
+const yourBB = Basketball('purple');
+const bouncy = Basketball('neon pink');
+console.log(bouncy)
