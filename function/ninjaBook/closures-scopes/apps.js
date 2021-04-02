@@ -333,38 +333,25 @@ console.log(bill.lives)
 
 console.log('---------')
 
-// function instantiateDeveloper() {
-//   let change = 'no'
-//   this.name = 'erika'
 
-//   return {
-//     name: this.name,
-//     getName: function () {
-//       console.log(this)
-//       return this.name;
-//     }
-//   };
-// }
 
-// let developer = instantiateDeveloper();
-// console.log(developer.getName())
-// console.log(developer.name) // No Name
-// developer.name = 'No Name'
-// console.log(developer.name) // No Name
-// console.log(developer.getName()) // No Name
+let myModule = (function () {
+  // let message = message
 
-function myCounter() {
-  let count = 0;
+  let privateMessage = function(message){
+    console.log(`Private: ${message}`)
+  }
 
-  return function () {
-    count += 1;
-    return count;
+  let publicMessage = function(message){
+    console.log(`Public: ${message}`)
+  }
+
+  return {
+    publicMessage: publicMessage
   };
-}
 
-// console.log(myCounter()())
-let counter = myCounter();
-counter()
-counter()
-counter()
-console.log(counter())
+})();
+
+myModule.publicMessage('checking which will run');
+// myModule.privateMessage('checking which will run');
+// error -> myModule.privateMessage is not a function
