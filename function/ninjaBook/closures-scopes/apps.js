@@ -360,4 +360,6 @@ let person = (function () {
 person.privateName = 'Richard';
 
 person.name();
-// 'My name is Andrew'
+// Name: Andrew
+console.log(person.displayName())
+// {privateName: "Richard", name: ƒ, age: ƒ}
