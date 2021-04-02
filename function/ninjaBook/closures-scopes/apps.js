@@ -334,24 +334,30 @@ console.log(bill.lives)
 console.log('---------')
 
 
+let person = (function () {
+  let privateAge = 0;
+  let privateName = 'Andrew';
 
-let myModule = (function () {
-  // let message = message
-
-  let privateMessage = function(message){
-    console.log(`Private: ${message}`)
+  function privateAgeOneYear() {
+    privateAge += 1;
+    console.log(`One year has passed! Current age is ${privateAge}`);
   }
 
-  let publicMessage = function(message){
-    console.log(`Public: ${message}`)
+  function displayName() {
+    console.log(`Name: ${privateName}`);
+  }
+
+  function ageOneYear() {
+    privateAgeOneYear();
   }
 
   return {
-    publicMessage: publicMessage
+    name: displayName,
+    age: ageOneYear
   };
-
 })();
 
-myModule.publicMessage('checking which will run');
-// myModule.privateMessage('checking which will run');
-// error -> myModule.privateMessage is not a function
+person.privateName = 'Richard';
+
+person.name();
+// 'My name is Andrew'
