@@ -333,20 +333,39 @@ console.log(bill.lives)
 
 console.log('---------')
 
+// function instantiateDeveloper() {
+//   let change = 'no'
+//   this.name = 'erika'
 
+//   return {
+//     name: this.name,
+//     getName: function () {
+//       console.log(this)
+//       return this.name;
+//     }
+//   };
+// }
+
+// let developer = instantiateDeveloper();
+// console.log(developer.getName())
+// console.log(developer.name) // No Name
+// developer.name = 'No Name'
+// console.log(developer.name) // No Name
+// console.log(developer.getName()) // No Name
 
 function instantiateDeveloper() {
-  let name = 'Veronika'
-
   return {
+    name: 'Veronika',
     getName: function () {
       return this.name;
     }
   };
 }
-
 let developer = instantiateDeveloper();
+
 console.log(developer.getName())
-developer.name = 'No Name'
-console.log(developer.name) // No Name
-console.log(developer.getName()) // No Name
+// 'Veronika'
+
+
+console.log(developer.name)
+// 'Veronika'
