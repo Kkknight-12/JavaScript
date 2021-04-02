@@ -335,19 +335,18 @@ console.log('---------')
 
 
 
+function instantiateDeveloper() {
+  let name = 'Veronika'
 
-function CoffeeMaker(object) {
-  let needsRefill = false;
-
-  return Object.assign({}, object, {
-    pourAll: function () {
-      needsRefill = true;
-    },
-    isEmpty: function () {
-      return needsRefill;
+  return {
+    getName: function () {
+      return this.name;
     }
-  });
+  };
 }
 
-const mixedCoffeeMaker = CoffeeMaker({ style: 'percolator' });
-console.log(mixedCoffeeMaker)
+let developer = instantiateDeveloper();
+console.log(developer.getName())
+developer.name = 'No Name'
+console.log(developer.name) // No Name
+console.log(developer.getName()) // No Name
