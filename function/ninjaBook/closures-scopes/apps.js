@@ -353,19 +353,18 @@ console.log('---------')
 // console.log(developer.name) // No Name
 // console.log(developer.getName()) // No Name
 
-function instantiateDeveloper() {
-  return {
-    name: 'Veronika',
-    getName: function () {
-      return this.name;
-    }
+function myCounter() {
+  let count = 0;
+
+  return function () {
+    count += 1;
+    return count;
   };
 }
-let developer = instantiateDeveloper();
 
-console.log(developer.getName())
-// 'Veronika'
-
-
-console.log(developer.name)
-// 'Veronika'
+// console.log(myCounter()())
+let counter = myCounter();
+counter()
+counter()
+counter()
+console.log(counter())
