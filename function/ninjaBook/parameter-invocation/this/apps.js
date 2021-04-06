@@ -368,3 +368,4 @@ elem4.addEventListener('click', bindbt.click.bind(bindbt) ) // Button2 {clicked
 /* Whenever the button is clicked, that bound function will be invoked with the button object as its context,
 */
 console.log(bindbt.click()) // Button2 {clicked: false, click: ƒ}
+
