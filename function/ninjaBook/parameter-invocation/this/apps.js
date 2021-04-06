@@ -357,32 +357,27 @@ bind method is available to all functions, and is designed to create and return 
 let bindbt = {
     clicked: false,
     click: function(){
-        this.clicked = true, // this will refer to nearest scope -> bindbt
+        this.clicked = true, 
         console.log(this) // bindbt{clicked: true, click: ƒ}
         console.log( bindbt.clicked ) // true
     }
 }
 
 let elem4 = document.getElementById('test4');
-elem4.addEventListener('click', bindbt.click.bind(bindbt) ) // Button2 {clicked: true, click: ƒ}
+elem4.addEventListener('click', bindbt.click.bind(bindbt) ) //{clicked: true, click: ƒ}
 /* Whenever the button is clicked, that bound function will be invoked with the button object as its context,
 */
-console.log(bindbt.click()) // Button2 {clicked: false, click: ƒ}
+console.log(bindbt)//{clicked: false, click: ƒ}
 
 
+// ////////////////////////
+let revList = []
+const reverse = function(num){
 
-// //////
-
-console.log(new Date().getHours())
-
-const greet = function(){
-    let time = new Date().getHours();
-    let greeting = 'good'
-    if( time < 12 ){
-        return greeting + ' morning'
-    }else {
-        return greeting + ' afternoon'
+    for(let i=num; i > -1; i--){
+        revList.push(i)
     }
+    return revList;
 }
 
-console.log(greet())
+console.log(reverse(9))
