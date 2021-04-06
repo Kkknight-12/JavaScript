@@ -369,3 +369,20 @@ elem4.addEventListener('click', bindbt.click.bind(bindbt) ) // Button2 {clicked
 */
 console.log(bindbt.click()) // Button2 {clicked: false, click: ƒ}
 
+
+
+// //////
+
+console.log(new Date().getHours())
+
+const greet = function(){
+    let time = new Date().getHours();
+    let greeting = 'good'
+    if( time < 12 ){
+        return greeting + ' morning'
+    }else {
+        return greeting + ' afternoon'
+    }
+}
+
+console.log(greet())
