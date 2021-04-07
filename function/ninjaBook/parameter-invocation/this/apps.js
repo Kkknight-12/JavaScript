@@ -367,17 +367,18 @@ let elem4 = document.getElementById('test4');
 elem4.addEventListener('click', bindbt.click.bind(bindbt) ) //{clicked: true, click: ƒ}
 /* Whenever the button is clicked, that bound function will be invoked with the button object as its context,
 */
-console.log(bindbt)//{clicked: false, click: ƒ}
+console.log(bindbt) // {clicked: false, click: ƒ}
 
 
 // ////////////////////////
-let revList = []
-const reverse = function(num){
-
-    for(let i=num; i > -1; i--){
-        revList.push(i)
-    }
-    return revList;
-}
-
-console.log(reverse(9))
+var index = [
+    {key: 1, sector: 10, t_score: 18, id: '1236n7e8', value: 'Klingon'},
+    {key: 4, sector: 145, t_score: 12, id: '293847hs8', value: 'Minbari'},
+    {key: 8, sector: 214, t_score: 5, id: '283hy8347', value: 'Cylon'},
+    {key: 3, sector: 8346, t_score: 10, id: 'n9837ks857', value: 'Jawa'},
+]
+var newIndex = []
+index.map( (item) => {
+    newIndex.push({'id': item.id.slice(0,3) , 'value': item.value})
+})
+console.log(newIndex)
