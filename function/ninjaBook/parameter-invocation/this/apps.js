@@ -371,3 +371,10 @@ console.log(bindbt) // {clicked: false, click: ƒ}
 
 
 // ////////////////////////
+const words = ['tardis', 'grok', 'frak', 'blaster', 'klingon', 'shepherd']
+
+// Your Code
+const newWord = words.filter( (word) => {
+  return word.length > 7
+})
+console.log(newWord)
