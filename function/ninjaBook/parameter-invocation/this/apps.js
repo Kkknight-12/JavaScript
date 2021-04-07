@@ -375,36 +375,35 @@ console.log(bindbt) // {clicked: false, click: ƒ}
 // Your Code
 
 // Your Code Here
-const scores = [
+const ships = [
     {
-        team: 'A',
-        score: 20
+        name: 'Serenity',
+        speed: '4.2G',
     },
     {
-        team: 'B',
-        score: 17
+        name: 'Cylon Raider',
+        speed: '7.5G',
     },
     {
-        team: 'C',
-        score: 23
+        name: 'Swordfish II',
+        speed: '50G',
     },
     {
-        team: 'D',
-        score: 13
+        name: 'Tie Fighters',
+        speed: '4100G',
     }
-];
+]
 
-const winningTeam = scores.reduce( (runningTotal, currentValue) => {
-    const { score, team } = currentValue
-    
-    if( runningTotal.score > score ){
-        winner = runningTotal.team;
-        runningTotal = currentValue;
+const {speed} = ships.reduce( (runningTotal, currentValue) => {
+    if( parseFloat(runningTotal.speed.slice(0,-1)) > parseFloat(currentValue.speed.slice(0,-1)) ){
+        return runningTotal
     }else{
-        winner = currentValue.team
-        runningTotal = currentValue;
+        return currentValue
     }
-    return winner
 })
 
-console.log(winningTeam)
+console.log(speed)
+
+const text = 'abcdef'
+const editedText = text.slice(0, -1) //'abcde'
+console.log(editedText)
