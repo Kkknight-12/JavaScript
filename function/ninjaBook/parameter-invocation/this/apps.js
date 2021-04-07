@@ -371,39 +371,3 @@ console.log(bindbt) // {clicked: false, click: ƒ}
 
 
 // ////////////////////////
-
-// Your Code
-
-// Your Code Here
-const ships = [
-    {
-        name: 'Serenity',
-        speed: '4.2G',
-    },
-    {
-        name: 'Cylon Raider',
-        speed: '7.5G',
-    },
-    {
-        name: 'Swordfish II',
-        speed: '50G',
-    },
-    {
-        name: 'Tie Fighters',
-        speed: '4100G',
-    }
-]
-
-const {speed} = ships.reduce( (runningTotal, currentValue) => {
-    if( parseFloat(runningTotal.speed.slice(0,-1)) > parseFloat(currentValue.speed.slice(0,-1)) ){
-        return runningTotal
-    }else{
-        return currentValue
-    }
-})
-
-console.log(speed)
-
-const text = 'abcdef'
-const editedText = text.slice(0, -1) //'abcde'
-console.log(editedText)
