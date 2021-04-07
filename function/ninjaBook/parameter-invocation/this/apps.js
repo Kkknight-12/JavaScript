@@ -373,9 +373,37 @@ console.log(bindbt) // {clicked: false, click: ƒ}
 // ////////////////////////
 
 // Your Code
-const text = ['The ships', 'hung in the sky,', 'much the way', 'that bricks don`t']
 
 // Your Code Here
-const reducedText = text.reduce( (runningTotal, currentValue) => {
-  return runningTotal + currentValue.join()
+const scores = [
+    {
+        team: 'A',
+        score: 20
+    },
+    {
+        team: 'B',
+        score: 17
+    },
+    {
+        team: 'C',
+        score: 23
+    },
+    {
+        team: 'D',
+        score: 13
+    }
+];
+
+const winningTeam = scores.reduce( (runningTotal, currentValue) => {
+    const { score } = currentValue
+    let initial  = runningTotal.score;
+    let winner;
+    if( initial > score ){
+        winner = runningTotal
+    }else{
+        winner = score
+    }
+    return winner
 })
+
+console.log(winningTeam)
