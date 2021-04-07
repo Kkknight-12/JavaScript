@@ -371,10 +371,11 @@ console.log(bindbt) // {clicked: false, click: ƒ}
 
 
 // ////////////////////////
-const words = ['tardis', 'grok', 'frak', 'blaster', 'klingon', 'shepherd']
 
 // Your Code
-const newWord = words.filter( (word) => {
-  return word.length > 7
+const text = ['The ships', 'hung in the sky,', 'much the way', 'that bricks don`t']
+
+// Your Code Here
+const reducedText = text.reduce( (runningTotal, currentValue) => {
+  return runningTotal + currentValue.join()
 })
-console.log(newWord)
