@@ -395,13 +395,14 @@ const scores = [
 ];
 
 const winningTeam = scores.reduce( (runningTotal, currentValue) => {
-    const { score } = currentValue
-    let initial  = runningTotal.score;
-    let winner;
-    if( initial > score ){
-        winner = runningTotal
+    const { score, team } = currentValue
+    
+    if( runningTotal.score > score ){
+        winner = runningTotal.team;
+        runningTotal = currentValue;
     }else{
-        winner = score
+        winner = currentValue.team
+        runningTotal = currentValue;
     }
     return winner
 })
