@@ -369,5 +369,3 @@ elem4.addEventListener('click', bindbt.click.bind(bindbt) ) //{clicked: true, cl
 */
 console.log(bindbt) // {clicked: false, click: ƒ}
 
-
-// ////////////////////////
