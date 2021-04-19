@@ -26,6 +26,26 @@ function outerFunction(){
 outerFunction(); // -> local innerFunction, innervalue, this- window
 later(); // local -> this - window | Closure(outerFunction)-> innervalue
 
+// ///////////////////
+// private variable //
+// ///////////////////
+/* 
+Many programming languages use private variables—properties of an object that are hidden from outside parties. This is a useful feature, because we don’t want to overburden the users of our objects with unnecessary implementation details when accessing those objects from other parts of the code. Unfortunately, JavaScript doesn’t have native support for private variables. But by using a closure, we can achieve an acceptable approximation, as demonstrated by the following code
+*/
+
+function Ninja(){
+  let fients = 0;
+  this.getFients = function(){
+    return fients;
+  }
+  this.fient = function(){
+    fients++;
+  }
+}
+let ninja1 = new Ninja();
+ninja1.fient();
+console.log('-----')
+
 /*
 we are executing 'innerFunction' after 'outerFunction' has been executed via
 trick-> copying a referencing to the function to global variable 'later'. 
@@ -332,5 +352,3 @@ bill.nickName() // bill method
 console.log(bill.lives)
 
 console.log('---------')
-
-
