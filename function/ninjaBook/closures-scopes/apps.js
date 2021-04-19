@@ -29,22 +29,43 @@ later(); // local -> this - window | Closure(outerFunction)-> innervalue
 // ///////////////////
 // private variable //
 // ///////////////////
+console.log('PRIVATE VARIABLES')
 /* 
 Many programming languages use private variables—properties of an object that are hidden from outside parties. This is a useful feature, because we don’t want to overburden the users of our objects with unnecessary implementation details when accessing those objects from other parts of the code. Unfortunately, JavaScript doesn’t have native support for private variables. But by using a closure, we can achieve an acceptable approximation, as demonstrated by the following code
 */
 
-function Ninja(){
-  let fients = 0;
-  this.getFients = function(){
-    return fients;
+function Football(){
+  // private variable - which can't be accessed directly from outside, which prevents us from being able to make uncontrolled changes to the value of the variable
+  let goals = 0;
+
+  // accessor method -> use to obtain value of private variable
+  this.getGoals = function(){
+    return goals;
   }
-  this.fient = function(){
-    fients++;
+  this.goal = function(){
+    goals++;
   }
 }
-let ninja1 = new Ninja();
-ninja1.fient();
-console.log('-----')
+// 
+let TeamA = new Football();
+TeamA.goal();
+
+console.log(TeamA.goals) //undefined
+// private data is inaccessible to us
+
+console.log(TeamA.getGoals()) // 1
+// we are able to access internal goals count
+
+// creating new Team 
+// new will have there number of goals
+let TeamB = new Football();
+console.log(TeamB.getGoals()) // 0
+//  second ninja will get its own goals varaible
+
+/* 
+using closure allows the state of Football to be maintained within a method, 
+without letting it be direclty accessed by a user of the method - because variable is available to inner methods via their closures, but not to code that lies outside the constructor.
+*/
 
 /*
 we are executing 'innerFunction' after 'outerFunction' has been executed via
