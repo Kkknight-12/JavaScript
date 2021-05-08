@@ -1,0 +1,15 @@
+{
+  "name": "immutablejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "apps.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "arithmetic": "^1.0.1",
+    "immutable": "^4.0.0-rc.12"
+  }
+}
