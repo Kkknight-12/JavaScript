@@ -4,12 +4,16 @@
   "description": "",
   "main": "apps.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+	"webpack": "node_modules/.bin/webpack -w"
+},
   "author": "",
   "license": "ISC",
   "dependencies": {
     "arithmetic": "^1.0.1",
     "immutable": "^4.0.0-rc.12"
+  },
+  "devDependencies": {
+    "webpack": "5.36.2",
+    "webpack-cli": "4.7.0"
   }
 }
