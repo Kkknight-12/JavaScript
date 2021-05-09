@@ -28,8 +28,12 @@ console.log(map1.equals(map2)); // false
 // Use with ordinary objects
 const state1 = Immutable.Map({ a: 1, b: 2, c: 3, d: 4 });
 const state2 = Immutable.Map({ c: 10, a: 20, t: 30 });
+
 const obj = { d: 100, o: 200, g: 300 };
-const map3 = state1.merge(state2, obj);
+
+// .merge() to merge two object
+const map3 = state1.merge(state2, obj); 
+// { a: 20, b: 2, c: 10, d: 100, g: 300, o: 200, t: 30 }
 
 // toJS() is a helper method to convert immutable object into javascript dictionary
 console.log(map3.toJS()) 
@@ -40,6 +44,7 @@ console.log(map3.toJS())
 // ///////////////////////////
 // Use with ordinary arrays //
 // ///////////////////////////
+
 // An immutable array is declared as a `List` like this:
 // Immutable.List( [ ] );
 const numbers = Immutable.List([1, 2, 3]);
@@ -68,7 +73,7 @@ const otherNumbers = [4, 5, 6]
 console.log(otherNumbers);
 
 const alpha = Immutable.Map({ a: 1, b: 2, c: 3, d: 4 });
-const a = alpha.map((v, k) => k.toUpperCase())
+const a = alpha.map( (v, k) => k.toUpperCase() )
 console.log(a.toJS()) // {a: "A", b: "B", c: "C", d: "D"}
 console.log(a.join()) // 'A,B,C,D'
 
@@ -107,27 +112,52 @@ const map22 = Immutable.Map({
 
 console.log(map11.toJS())
 console.log(map22.toJS())
-console.log(map3.toJS())
 
+const map33 = map11.merge(map22)
+console.log(map33.toJS())
+/* 
+favoriteThing:
+    item: "Not complicated"
+history: ["Browncoat sergeant"]
+name: "Mal"
+role: "Captain"
+ship:
+    class: "Firefly"
+    name: "Serenity" 
+*/
 
 // -----------------------------------------------------------------
 // -----------------------------------------------------------------
 
 // PART 2. More with objects
 // This is a normal javascript object. It is very different from an Immutable Map
-const obj = { d: 100, o: 200, g: 300 };
+const obj1 = { d: 100, o: 200, g: 300 };
 
 // But thankfully, normal javascript objects are still valid in Immutable
 // Notice that here we can merge a normal object into an Immutable Map
-const map4 = map1.merge(map2, obj);
+const map4 = map1.merge(map22, obj1);
 
 // But also notice how different the two are when we console log map3 
 console.log(map4.toJS())
+/* 
+a: 1
+b: 2
+c: 3
+d: 100
+favoriteThing:
+    item: "Not complicated"
+g: 300
+history: ["Browncoat sergeant"]
+name: "Mal"
+o: 200
+role: "Captain" 
+*/
 
 // YOUR TURN --------------------------------------------------------------
 // Can you locate the contents of our variable 'obj' inside the Immutable Map map3?
 
 //Your code
+console.log(map4.get("history")) // ["Browncoat sergeant"]
 
 // -----------------------------------------------------------------
 // -----------------------------------------------------------------
@@ -135,7 +165,7 @@ console.log(map4.toJS())
 // PART 3. Arrays and Immutable Lists
 
 // An immutable array is called a LIST, and is declared like this:
-const numbers = Immutable.List([1, 2, 3]);
+const numbers11 = Immutable.List([1, 2, 3]);
 
 // We can turn normal JS arrays into Immutable Lists like this:
 const plainArray = [ 1, 2, 3, 4 ]
@@ -151,7 +181,7 @@ const myList1 = myList.set(1, 'toy lightsaber');
 console.log(Array.from(myList1)); // [ "stuffed t-rex", "toy lightsaber" ]
 
 // but, in order to not need to supply the index, we can also add new values with push
-const myList2 = myList1.push('Picard bobblehead')
+const myList2 = myList1.push( 'Picard bobblehead' )
 console.log(Array.from(myList2));
 
 // YOUR TURN --------------------------------------------------------------------------
@@ -160,6 +190,12 @@ console.log(Array.from(myList2));
 // 2. Add a character
 
 // Your code
+const newAr = [ 'Luff', 'coding', 'job' ]
+const ImNewAr = Immutable.List(newAr)
+console.log(Array.from(ImNewAr))
+
+const ImNewAr2 = ImNewAr.push('Kuro Hime')
+console.log(Array.from(ImNewAr2))
 
 // -----------------------------------------------------------------
 // -----------------------------------------------------------------
@@ -206,3 +242,27 @@ const characters = [
     power_level: 140
   }
 ]
+
+// solution
+const immutableCharacters = Immutable.List(characters).push({
+    name: 'Yoda',
+    role: 'Jedi Master',
+    universe: 'Star Wars',
+    weapon: 'The Force',
+    powerLevel: 900
+})
+console.log(Array.from(immutableCharacters))
+
+// STRETCH SOLUTION
+const withoutJabba = immutableCharacters.delete(1)
+console.log(Array.from(withoutJabba))
+
+// or, all in one line, you could do:
+const allatonce = Immutable.List(characters).push({
+    name: 'Yoda',
+    role: 'Jedi Master',
+    universe: 'Star Wars',
+    weapon: 'The Force',
+    powerLevel: 900
+}).delete(1)
+console.log(Array.from(allatonce))
