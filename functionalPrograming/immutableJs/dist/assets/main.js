@@ -6194,6 +6194,103 @@ const allatonce = Immutable.List(characters).push({
     powerLevel: 900
 }).delete(1)
 console.log(Array.from(allatonce))
+
+
+// Lets think about how we could refactor our application state flow to use Immutable. 
+// The original code is provided below, how might you re-write both the store object and updateStore function with Immutable?
+// if you need help, the docs should be the first place you look.
+
+let store = {
+    user: {
+        first_name: 'John',
+        last_name: 'Doe'
+    }
+}
+
+const updateStore = (store, newState) => {
+    store = Object.assign(store, newState)
+    render(root, store)
+}
+
+let ImmputableStore = Immutable.Map({
+    user: Immutable.Map({
+        first_name: 'Beni',
+        last_name: 'hime'
+    })
+})
+// console.log(ImmputableStore.toJS())
+
+let newState = {
+    work: 'Software Developer'
+}
+
+function updateStoreIm(state, newState) {
+    store = state.merge(newState)
+    return store
+    /* 
+    user:
+        first_name: "Beni"
+        last_name: "hime"
+    */
+};
+
+console.log(updateStoreIm(ImmputableStore, newState ).toJS());
+/* 
+user:
+    first_name: "Beni"
+    last_name: "hime"
+work: "Software Developer" 
+*/
+console.log(ImmputableStore.get('user').toJS()) 
+// {first_name: "Beni", last_name: "hime"}
+
+// getIn
+console.log(ImmputableStore.getIn([ 'user', 'first_name' ]))
+// Beni
+
+// ////////
+// Note  //
+// ////////
+
+/* 
+One important thing to note is that nested objects have to be declared as Immutable maps just like top level ones. Otherwise, they will be stored as normal JS objects, which Immutable handles differently. You can see the difference below.
+*/
+
+// Nest 1
+const currentShow1 = Immutable.Map({
+    title: 'Dr. Who',
+    seasons: 11,
+    currentSeason: 4,
+    characters: {
+        main: 'The Doctor',
+        supporting: ['Dalek1']
+    }
+})
+console.log( currentShow1.getIn( [ "characters", "supporting"] )) // The Doctor
+// ["Dalek1"]
+
+// Nest 2
+const currentShow2 = Immutable.Map({
+    title: 'Dr. Who',
+    seasons: 11,
+    currentSeason: 4,
+    //          Immutable.Map
+    characters: Immutable.Map({
+        main: 'The Doctor',
+        //          Immutable.List
+        supporting: Immutable.List(['Dalek1'])
+    })
+})
+console.log( currentShow2.getIn( [ "characters", "supporting"] )) // The Doctor
+// List {size: 1, _origin: 0, _capacity: 1, _level: 5, _root: null, …}
+
+
+/* 
+Nest 1 is not the same as Nest 2. The main difference is that the nested object characters is declared with Immutable.Map in Nest 2. characters in Nest 1 will not be immutable while characters in Nest 2 will be.
+
+Summary
+Immutable makes it possible for us to write even better Functional code - or just better code in general - without being a big task to learn, which makes it a big win to me. If you want to look further into the how’s and the why's of Persistent Data Structures and ImmutableJS, a great place to start is their well-written documentation. https://immutable-js.github.io/immutable-js/
+*/
 })();
 
 /******/ })()
