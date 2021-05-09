@@ -1,0 +1,14 @@
+{
+  "name": "functionalredux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "webpack": "node_modules/.bin/webpack -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "redux": "^4.1.0"
+  }
+}
