@@ -1,5 +1,10 @@
 // const R = require('ramda');
-var Rx = require('rxjs');
+// import Rx from 'rxjs';
+// import { of } from 'rxjs';
+// import { map } from 'rxjs/operators';
+
+// var Rx = require('rxjs');
+import * as Rx from 'rxjs';
 
 const observable = new Rx.Observable(subscriber => {
   subscriber.next(1);
@@ -20,3 +25,4 @@ observable.subscribe({
 });
 
 console.log('just after subscribe');
+
