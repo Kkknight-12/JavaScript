@@ -1,0 +1,19 @@
+{
+  "name": "ramdajs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "node_modules/.bin/webpack -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.36.2",
+    "webpack-cli": "^4.7.0"
+  },
+  "dependencies": {
+    "ramda": "^0.27.1",
+    "rxjs": "^7.0.0"
+  }
+}
