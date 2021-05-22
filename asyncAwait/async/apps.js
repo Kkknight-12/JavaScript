@@ -88,19 +88,17 @@ multiply('four',4)
 })
 
 
+// let recentAccountBalances = [];
 
-// Task 1 - write a program that acheives the following sequence
+// const appendBalance = () => {
+//   recentAccountBalances.push(Math.random() * (200 - 100) + 100)
+//   console.log(recentAccountBalances)
+// }
 
-// log "A"
-// wait 2s
-// log "B"
-// wait 3s
-// log "C"
-// log "D" immediately 
-const sq = function(){
-    console.log("A")
-    setTimeout(console.log, 2000, "B");
-    setTimeout(console.log, 5000, "C");
+// const pollAccount = () => {
+//   setInterval(appendBalance, 4000)
+// }
 
-}
-sq()
+// console.log("test")
+
+// pollAccount()
