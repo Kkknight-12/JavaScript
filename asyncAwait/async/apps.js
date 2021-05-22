@@ -1,3 +1,13 @@
+// basic asynchronous program!
+const printHelloWorld = () => {
+  
+  setTimeout(console.log, 2000, "World");
+  
+  console.log("Hello ");
+}
+
+printHelloWorld();
+
 // Async functions always return a promise
 // If the function returns a value, the promise will be resolved
 // with that value
