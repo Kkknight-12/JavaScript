@@ -8,6 +8,19 @@ const printHelloWorld = () => {
 
 printHelloWorld();
 
+const asyncprintHelloWorld = () => {
+
+    setTimeout(console.log, 4000, "...ronous!");
+
+    setTimeout(console.log, 2000, "async");  
+    
+    console.log("I'm ");
+
+}
+
+asyncprintHelloWorld();
+
+
 // Async functions always return a promise
 // If the function returns a value, the promise will be resolved
 // with that value
