@@ -20,7 +20,6 @@ const asyncprintHelloWorld = () => {
 
 asyncprintHelloWorld();
 
-
 // Async functions always return a promise
 // If the function returns a value, the promise will be resolved
 // with that value
@@ -90,3 +89,18 @@ multiply('four',4)
 
 
 
+// Task 1 - write a program that acheives the following sequence
+
+// log "A"
+// wait 2s
+// log "B"
+// wait 3s
+// log "C"
+// log "D" immediately 
+const sq = function(){
+    console.log("A")
+    setTimeout(console.log, 2000, "B");
+    setTimeout(console.log, 5000, "C");
+
+}
+sq()
