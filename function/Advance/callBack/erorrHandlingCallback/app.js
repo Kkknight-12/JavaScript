@@ -31,7 +31,9 @@ const runCallbacks = () => {
 
 runCallbacks();
 
-// example 2
+// ////////////
+// example 2 //
+// ////////////
 const dataJson = {
     response: {
         timeElapsed: 45938,
@@ -57,13 +59,13 @@ const parseResponse = (data, cb) => {
 }
 
 const handleResponse = (json) => {
-    let data = json
+    let data = JSON.parse(json) // parse the data into Js object
     parseResponse(data, useValues)
 }
 
 const getData = () => {
     // Mock API call
-    setTimeout(handleResponse, 1000, dataJson);
+    setTimeout(handleResponse, 1000, JSON.stringify(dataJson));
 }
 
 getData()
