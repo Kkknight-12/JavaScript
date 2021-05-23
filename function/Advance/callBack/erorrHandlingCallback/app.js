@@ -47,6 +47,8 @@ const useValues = (parsedData) => {
 
 // cb is a common naming choice for a callback argument
 const parseResponse = (data, cb) => {
+    const {response} = data;
+    console.log(response)
     const parsed = {
         points: [response.timeElapsed, response.distanceTotal],
         type: response.variant
@@ -56,12 +58,12 @@ const parseResponse = (data, cb) => {
 
 const handleResponse = (json) => {
     let data = json
-    parseResponse(data, parseResponse)
+    parseResponse(data, useValues)
 }
 
 const getData = () => {
     // Mock API call
-    setTimeout(handleResponse, 1000, JSON.stringify(dataJson));
+    setTimeout(handleResponse, 1000, dataJson);
 }
 
 getData()
