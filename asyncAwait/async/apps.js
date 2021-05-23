@@ -89,10 +89,12 @@ multiply('four',4)
 
 
 // //////
-
+//              ( {id: "123765"} ) ( "session-id", handleSession() )
+//              ( { firstname: "Bob" } ) ( { id: "123765" }, handleUser() )
+// (["lions", "tigers", "bears"]) ( {firstname: "Bob"}, handleFavorites() )
 const mockAPI = (returnValue) => (arg, cb) => {
     // setTimeout(() => cb(returnValue), 2000)
-    return cb(returnValue);
+    return cb(returnValue); // {id: "123765"} | { firstname: "Bob" } | [ "lions", "tigers", "bears" ]
 }
 
 const fetchSession = mockAPI({ id: "123765" })
@@ -100,18 +102,43 @@ const fetchUser = mockAPI({ firstname: "Bob" })
 const fetchUserFavorites = mockAPI([ "lions", "tigers", "bears" ])
 
 const runCallbacksFlat = () => {
-    const handleFavorites = (favorites) => {
+
+    const handleFavorites = (favorites) => { // ( ["lions", "tigers", "bears"] )
         console.log(favorites)
     }
 
-    const handleUser = (user) => {
+    const handleUser = (user) => { // { firstname: "Bob" }
+        //        {firstname: "Bob"}, handleFavorites()
         fetchUserFavorites(user, handleFavorites)
     }
 
-    const handleSession = (session) => {
+    const handleSession = (session) => { // { id: "123765" }
+        //   { id: "123765" }, handleUser()
         fetchUser(session, handleUser)
     }
 
     fetchSession("session-id", handleSession)
 }
 runCallbacksFlat();
+
+//////////////////////////////////////////////////////////
+// small function to understand above callback hellllll
+//         ( {Name: "Knight"} ) ( "workkkk", fun5 )   
+const fun3 = (returnValue) => ( arg , cb) => {
+    // console.log(arg) // workkkk
+    return cb(returnValue)
+}
+
+const fun2 = fun3( { Name: "Knight" } );
+
+const fun1 = function() {
+
+    const fun5 = (user) => {
+        console.log(user)
+        // { Name: "Knight" }
+    }
+
+    fun2( "workkkk", fun5 ) 
+};
+
+fun1()
