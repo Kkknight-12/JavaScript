@@ -84,7 +84,7 @@ new Promise((resolve, reject) => {
     resolve(alerts)
 })
 .then(data => {
-    console.log(data)
+    // console.log(data)
     const unread = data.filter(d => d.readStatus === false);
     if (unread.length === 0) {
         throw new Error('There are no unread alerts');
@@ -93,23 +93,29 @@ new Promise((resolve, reject) => {
 })
 // you can name this whatever you want, so make it descriptive!
 .then(unreadAlerts => {
+    // console.log(unreadAlerts) // readStatus === false
     // might be tempted to save this into a variable, but you don't have to
     return unreadAlerts.filter(alert => {
         if(alert.type === "system") {
+            // console.log('If ran')
             printSystemAlert(alert)
         } else {
-            return true
+            // console.log('else ran')
+            return true // alert.type === "users"
         }
     })
 })
-.then(filteredAlerts => filteredAlerts.map(alert => {
-    // console.log(alert)
+.then(filteredAlerts => {
+    console.log(filteredAlerts) // alert.type === "users"
+    filteredAlerts.map(alert => {
+    // console.log(filteredAlerts) // 
     if(alert.severity === "critical") {
         console.error(alert.message)
     } else {
         console.log(`${alert.severity} ${alert.type} alert: ${alert.message}`)
     }
-}))
+    }
+)})
 
 
 // Something is wrong with this promise chain!
