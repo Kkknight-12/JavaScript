@@ -16,7 +16,7 @@ const moVEX  = ( element, amount, delay  ) => {
             // callback will call the function again
             resolve();
             }
-        }, delay);
+    }, delay);
     });
 };
 
@@ -45,5 +45,3 @@ moVEX( btn, 50, 1000 )
         console.log( `Element is at ${elRight}px, ${amount}px is too large` );
     });
 
-
-    

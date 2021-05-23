@@ -1,9 +1,9 @@
 // saving promise in a function
 
 const makePromise = () =>   {
-     return new Promise((resolve, reject) => {
+     return new Promise( (resolve, reject) => {
 
-        setTimeout(() => {
+        setTimeout( () => {
             const rand = Math.random();
             if ( rand < 0.5 ) {
                 resolve();
