@@ -88,17 +88,29 @@ multiply('four',4)
 })
 
 
-// let recentAccountBalances = [];
+// //////
 
-// const appendBalance = () => {
-//   recentAccountBalances.push(Math.random() * (200 - 100) + 100)
-//   console.log(recentAccountBalances)
-// }
+const mockAPI = (returnValue) => (arg, cb) => {
+    setTimeout(() => cb(returnValue), 2000)
+}
 
-// const pollAccount = () => {
-//   setInterval(appendBalance, 4000)
-// }
+const fetchSession = mockAPI({ id: "123765" })
+const fetchUser = mockAPI({ firstname: "Bob" })
+const fetchUserFavorites = mockAPI([ "lions", "tigers", "bears" ])
 
-// console.log("test")
+const runCallbacksFlat = () => {
+    const handleFavorites = (favorites) => {
+        console.log(favorites)
+    }
 
-// pollAccount()
+    const handleUser = (user) => {
+        fetchUserFavorites(user, handleFavorites)
+    }
+
+    const handleSession = (session) => {
+        fetchUser(session, handleUser)
+    }
+
+    fetchSession("session-id", handleSession)
+}
+runCallbacksFlat();
