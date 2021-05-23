@@ -91,7 +91,8 @@ multiply('four',4)
 // //////
 
 const mockAPI = (returnValue) => (arg, cb) => {
-    setTimeout(() => cb(returnValue), 2000)
+    // setTimeout(() => cb(returnValue), 2000)
+    return cb(returnValue);
 }
 
 const fetchSession = mockAPI({ id: "123765" })
