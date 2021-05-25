@@ -6,6 +6,15 @@
 // await work only inside async function
 
 // 
+const getTodos = async () =>{
+    const response = await fetch("../promise/todos.json")
+    const data = await response.json(); // reposne.json return promise so need to await
+    // console.log(data)
+    return data
+}
+getTodos().then( ( data ) => console.log( "resposne:", data))
+
+
 async function geTPlanets(){
    return axios.get("https://swapi.dev/api/planets/")
 
@@ -113,3 +122,5 @@ async function trackUserHandler() {
     console.log( 'Getting position...' )
 }
 button.addEventListener( 'click', trackUserHandler );
+
+
