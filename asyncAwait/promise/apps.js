@@ -52,7 +52,7 @@ getSomething()
 // fetch //
 // ////////
 
-fetch('todos.json')
+fetch('todos.json') // can be a web api, or can be local json file
     .then( (response) => {
     // console.log("response", response)
     return response.json() // this will return a promise which can be rejected or resolved,
@@ -62,9 +62,14 @@ fetch('todos.json')
         console.log(data)
     })
     .catch( (err) => {
-        console.log(err)
+        console.log( "rejected", err )
     })  
 
+/* 
+in fetch api promise is only rejected( catch() ) when there is a network error. So we can't catch error 
+if there is some mis type in web address. so if we type todos.jsonnn we will still get resolved and 
+we will get response but with status of 404. 
+*/
 
 //////////////////////////////////////////////
 
