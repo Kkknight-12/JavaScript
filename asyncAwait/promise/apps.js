@@ -1,4 +1,6 @@
-// Promise
+// //////////
+// Promise //
+// //////////
 
 // Resolve example
 // const getSomething = ( )=>{
@@ -13,20 +15,58 @@
 //     })
 
 // Reject Example
-const getSomething = ( )=>{
+const getSomething = ( ) => {
     return new Promise(( resolve, reject ) =>{
         reject("Some Error")
     })
 
-}
+};
+
 getSomething()
     .then( (data) => {
         // console.log(data) // won't runn 
-    }, ( err ) => {
-        console.log(err) // errors are caught in .catch( )
+    })
+    .catch( ( err ) => {
+        console.log(err) // errors are caught in .catch()
     })
 
+// /////////////////////////////////////
+// error can also be caught like this //
+// /////////////////////////////////////
 
+// const getSomething = ( )=>{
+//     return new Promise(( resolve, reject ) =>{
+//         reject("Some Error")
+//     })
+// }
+
+// getSomething()
+//     .then( (data) => {
+//         // console.log(data) // won't runn 
+//     }, ( err ) => {
+//         console.log(err) // errors are caught in .catch( )
+//     })
+
+
+// ////////
+// fetch //
+// ////////
+
+fetch('todos.json')
+    .then( (response) => {
+    // console.log("response", response)
+    return response.json() // this will return a promise which can be rejected or resolved,
+    //  so we return it to tackle it in another then method
+    })
+    .then( (data) => {
+        console.log(data)
+    })
+    .catch( (err) => {
+        console.log(err)
+    })  
+
+
+//////////////////////////////////////////////
 
 // new Promise((resolve, reject) => {
 //     console.log('A')
