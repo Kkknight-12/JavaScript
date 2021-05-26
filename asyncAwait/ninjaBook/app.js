@@ -68,7 +68,7 @@ There are two ways of rejecting a promsie
 2) implicitly -> if during the handling of a promise, an unhandled exception occurs.
 */
 
-const promise = new Promise((resolve, reject) => {
+const promise = new Promise( (resolve, reject) => {
   reject("Explicitly reject a promise!");
 });
 
