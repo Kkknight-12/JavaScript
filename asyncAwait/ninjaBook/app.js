@@ -1,53 +1,53 @@
 // Example 1
-const ninjaPromise = new Promise( (resolve, reject) => {
-//   resolve("Hattori");
-  reject("An error resolving a promise!");
-});
+// const ninjaPromise = new Promise( (resolve, reject) => {
+// //   resolve("Hattori");
+//   reject("An error resolving a promise!");
+// });
 
-ninjaPromise
-    .then(ninja => {
-        console.log(ninja);
-    }, err => {
-        console.log("There shouldn't be an error")
-    });
+// ninjaPromise
+//     .then(ninja => {
+//         console.log(ninja);
+//     }, err => {
+//         console.log("There shouldn't be an error")
+//     });
 
 
 // Example 2
-console.log("1 At code start");
+// console.log("1 At code start");
 
-var ninjaDelayedPromise = new Promise((resolve, reject) => {
+// var ninjaDelayedPromise = new Promise((resolve, reject) => {
 
-  console.log("2 ninjaDelayedPromise executor");
+//   console.log("2 ninjaDelayedPromise executor");
   
-  setTimeout( () => {
-    console.log("7 Resolving ninjaDelayedPromise");
-    resolve("Hattori");
-  }, 500);
+//   setTimeout( () => {
+//     console.log("7 Resolving ninjaDelayedPromise");
+//     resolve("Hattori");
+//   }, 500);
 
-});
+// });
 
-if(ninjaDelayedPromise !== null){
-    console.log("3 After creating ninjaDelayedPromise");
-}
+// if(ninjaDelayedPromise !== null){
+//     console.log("3 After creating ninjaDelayedPromise");
+// }
 
-ninjaDelayedPromise.then(ninja => {
-    if(ninja === "Hattori"){
-        console.log("8 ninjaDelayedPromise resolve handled with Hattori");
-    }
-});
+// ninjaDelayedPromise.then(ninja => {
+//     if(ninja === "Hattori"){
+//         console.log("8 ninjaDelayedPromise resolve handled with Hattori");
+//     }
+// });
 
-const ninjaImmediatePromise = new Promise((resolve, reject) => {
-    console.log("4 ninjaImmediatePromise executor. Immediate resolve.");
-    resolve("Yoshi");
-});
+// const ninjaImmediatePromise = new Promise((resolve, reject) => {
+//     console.log("4 ninjaImmediatePromise executor. Immediate resolve.");
+//     resolve("Yoshi");
+// });
 
-ninjaImmediatePromise.then(ninja => {
-    if(ninja === "Yoshi"){
-        console.log("6 ninjaImmediatePromise resolve handled with Yoshi");
-    }
-});
+// ninjaImmediatePromise.then(ninja => {
+//     if(ninja === "Yoshi"){
+//         console.log("6 ninjaImmediatePromise resolve handled with Yoshi");
+//     }
+// });
 
-console.log("5 At code end");
+// console.log("5 At code end");
 
 /* 
 After the ninjaDelayedPromise has been created, it still doesn’t know the 
@@ -68,8 +68,9 @@ There are two ways of rejecting a promsie
 2) implicitly -> if during the handling of a promise, an unhandled exception occurs.
 */
 
+// explicitly rejecting promise 
 const promise = new Promise( (resolve, reject) => {
-  reject("Explicitly reject a promise!");
+  reject("Explicitly reject a promise!"); 
 });
 
 promise.then(
@@ -77,4 +78,9 @@ promise.then(
   error => console.log("A promise was explicitly rejected!")
 );
 
-
+/* 
+We can explicitly reject a promise, by calling the passed-in 
+reject method: reject("Explicitly reject a promise!"). If a 
+promise is rejected, when registering callbacks through the 
+then method, the second, error, callback will always be invoked. 
+*/
