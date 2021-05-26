@@ -134,7 +134,8 @@ function getJSON(url) {
 }
 
 getJSON("data/ninjas.json").then(ninjas => {
-  assert(ninjas !== null, "Ninjas obtained!");
-}).catch(e => fail("Shouldn't be here:" + e));
-
-
+  console.log(ninjas)
+  if( ninjas !== null ){
+    console.log("Ninjas obtained!");
+  } 
+}).catch( e => console.log( "Shouldn't be here:" + e ) );
