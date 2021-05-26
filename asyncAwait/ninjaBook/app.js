@@ -204,3 +204,25 @@ Promise.race([
         }
         }).catch(error => console.log("Failure! :", error));
 
+
+// //////////////
+// async await //
+// //////////////
+/* 
+We use the async keyword in front of the function keyword to specify that 
+this function relies on asynchronous values, and at every place where we 
+call an asynchronous task, we place the await keyword that says to the JavaScript
+engine, please wait for this result without blocking 
+*/
+( async function (){
+  try {
+    const ninjas = await getJSON("data/ninjas.json");
+    const missions = await ninjas.profile
+
+    console.log(missions);
+  }
+  catch(e) {
+    console.log("Error: ", e);
+  }
+})()
+
