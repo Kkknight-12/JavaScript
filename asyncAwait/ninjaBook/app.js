@@ -137,7 +137,7 @@ function getJSON(url) {
   });
 }
 
-getJSON("http://localhost:3000/ninja/")
+getJSON("http://localhost:3000/ninjaa/")
   .then( ninjas => {
     // console.log(ninjas)
     if( ninjas !== null ){
@@ -146,3 +146,7 @@ getJSON("http://localhost:3000/ninja/")
 }).catch( e => {
   console.log( "Shouldn't be here:" + e )
 } );
+
+// ///////////////////
+// Chaining Promise //
+// ///////////////////
