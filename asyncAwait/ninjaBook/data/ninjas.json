@@ -1,6 +1,7 @@
 {
-  "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" }
+  "ninja": [
+    { "id": 1, "title": "Black Belt", "style": "Taekwondo" },
+    { "id": 2, "title": "Belt", "style": "Karate" }
   ],
   "comments": [
     { "id": 1, "body": "some comment", "postId": 1 }

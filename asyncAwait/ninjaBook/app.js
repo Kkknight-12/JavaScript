@@ -106,15 +106,19 @@ all errors and rejection reasons are directed to our rejection callback.
 // /////////////////////
 // real world promise //
 // /////////////////////
+// https://www.npmjs.com/package/json-server
 
 function getJSON(url) {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
+    // console.log(request)
     
     request.open("GET", url);
     
     request.onload = function() {
       try {
+        // console.log(this)
+
         if(this.status === 200 ){
           resolve(JSON.parse(this.response));
         } else{
@@ -133,9 +137,12 @@ function getJSON(url) {
   });
 }
 
-getJSON("data/ninjas.json").then(ninjas => {
-  console.log(ninjas)
-  if( ninjas !== null ){
-    console.log("Ninjas obtained!");
-  } 
-}).catch( e => console.log( "Shouldn't be here:" + e ) );
+getJSON("http://localhost:3000/ninja/")
+  .then( ninjas => {
+    // console.log(ninjas)
+    if( ninjas !== null ){
+      console.log("Ninjas obtained!");
+  }
+}).catch( e => {
+  console.log( "Shouldn't be here:" + e )
+} );
