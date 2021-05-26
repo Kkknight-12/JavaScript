@@ -137,7 +137,7 @@ function getJSON(url) {
   });
 }
 
-getJSON("http://localhost:3000/ninjaa/")
+getJSON("http://localhost:3000/ninja/")
   .then( ninjas => {
     // console.log(ninjas)
     if( ninjas !== null ){
@@ -150,3 +150,13 @@ getJSON("http://localhost:3000/ninjaa/")
 // ///////////////////
 // Chaining Promise //
 // ///////////////////
+
+getJSON("http://localhost:3000/ninja/")
+  .then( ( data ) =>  getJSON(`http://localhost:3000/ninja/${data[0].id}`)  )
+  .then( ( data ) => console.log(data) )
+  // .then(ninjas => getJSON(ninjas[0].missionsUrl))
+  // .then(missions => getJSON(missions[0].detailsUrl))
+  // .then(mission => assert(mission !== null, "Ninja mission obtained!"))
+  // .catch(error => fail("An error has occurred"));
+
+

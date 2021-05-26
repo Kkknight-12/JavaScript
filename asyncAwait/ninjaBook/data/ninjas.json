@@ -1,7 +1,9 @@
 {
   "ninja": [
-    { "id": 1, "title": "Black Belt", "style": "Taekwondo" },
-    { "id": 2, "title": "Belt", "style": "Karate" }
+    { "id": 1, "title": "Black Belt", "style": "Taekwondo",
+    "missionsUrl" : "Class S", "detailsUrl": "#234" },
+    { "id": 2, "title": "White Belt", "style": "Karate",
+    "missionsUrl" : "Class A", "detailsUrl": "#2354"  }
   ],
   "comments": [
     { "id": 1, "body": "some comment", "postId": 1 }
