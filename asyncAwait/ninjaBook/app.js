@@ -107,6 +107,7 @@ all errors and rejection reasons are directed to our rejection callback.
 // real world promise //
 // /////////////////////
 // https://www.npmjs.com/package/json-server
+// json-server --watch data/ninjas.json
 
 function getJSON(url) {
   return new Promise((resolve, reject) => {
