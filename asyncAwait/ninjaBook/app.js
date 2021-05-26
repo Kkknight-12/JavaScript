@@ -160,19 +160,47 @@ getJSON("http://localhost:3000/ninja/")
   // .catch(error => fail("An error has occurred"));
 
 
-  // Waiting for a number of promises
-  Promise.all([getJSON("data/ninjas.json"),
-            getJSON("data/mapInfo.json"),
-            getJSON("data/plan.json")]
-  ).then(results => {
-    console.log(results)
-    const ninjas = results[0], mapInfo = results[1], plan = results[2];
-    console.log(ninjas)
+// //////////////
+// promise.all //
+// //////////////
+/* 
+built-in Promise.all method. This method takes in an array of promises and creates 
+a new promise that successfully resolves when all passed-in promises resolve, and 
+rejects if even one of the promises fails. 
+*/
 
-    if( ninjas !== undefined
-        && mapInfo !== undefined && plan !== undefined ){
-        console.log("The plan is ready to be set in motion!");
-      }
-  }).catch( error => {
-  console.log("A problem in carrying out our plan! :", error);
-});
+// Waiting for a number of promises
+//   Promise.all([getJSON("data/ninjas.json"),
+//             getJSON("data/mapInfo.json"),
+//             getJSON("data/plan.json")]
+//   ).then(results => {
+//     console.log(results)
+//     const ninjas = results[0], mapInfo = results[1], plan = results[2];
+//     console.log(ninjas)
+
+//     if( ninjas !== undefined
+//         && mapInfo !== undefined && plan !== undefined ){
+//         console.log("The plan is ready to be set in motion!");
+//       }
+//   }).catch( error => {
+//   console.log("A problem in carrying out our plan! :", error);
+// });
+
+// //////////////////
+// Racing Promises //
+// //////////////////
+
+// the one that return the first is the winner 
+// i.e will be shown on then block
+Promise.race([
+            getJSON("data/mapInfo.json"),
+            getJSON("data/ninjas.json"),
+            getJSON("data/plan.json")
+          ])
+      .then( ninja => {
+        // console.log(ninja)
+        if( ninja !== null ){
+          console.log( ninja.profile.name + " responded first")
+        }
+        }).catch(error => console.log("Failure! :", error));
+
