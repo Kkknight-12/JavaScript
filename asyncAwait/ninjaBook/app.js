@@ -73,9 +73,10 @@ const promise = new Promise( (resolve, reject) => {
   reject("Explicitly reject a promise!"); 
 });
 
-promise.then(
-  () => console.log("Happy path, won't be called!"),
-  error => console.log("A promise was explicitly rejected!")
+promise
+  .then(
+    () => console.log("Happy path, won't be called!"),
+    error => console.log("A promise was explicitly rejected!")
 );
 
 /* 
@@ -84,3 +85,56 @@ reject method: reject("Explicitly reject a promise!"). If a
 promise is rejected, when registering callbacks through the 
 then method, the second, error, callback will always be invoked. 
 */
+
+// chaining catch in promise 
+const promiseChain = new Promise((resolve, reject) => {
+  undeclaredVariable++;
+});
+
+promiseChain
+  .then(() => console.log("Happy path, won't be called!"))
+  .catch(error => console.log("Third promise was also rejected"));
+
+/* 
+This way of treating all problems that happen while working with 
+promises in a uniform way is extremely handy.
+Regardless of how the promise was rejected, whether explicitly by 
+calling the reject method or even implicitly, if an exception occurs, 
+all errors and rejection reasons are directed to our rejection callback.  
+*/
+
+// /////////////////////
+// real world promise //
+// /////////////////////
+
+function getJSON(url) {
+  return new Promise((resolve, reject) => {
+    const request = new XMLHttpRequest();
+    
+    request.open("GET", url);
+    
+    request.onload = function() {
+      try {
+        if(this.status === 200 ){
+          resolve(JSON.parse(this.response));
+        } else{
+            reject(this.status + " " + this.statusText);
+        }
+      } catch(e){
+        reject(e.message);
+      }
+    };
+    
+    request.onerror = function() {
+      reject(this.status + " " + this.statusText);
+    };
+    
+    request.send();
+  });
+}
+
+getJSON("data/ninjas.json").then(ninjas => {
+  assert(ninjas !== null, "Ninjas obtained!");
+}).catch(e => fail("Shouldn't be here:" + e));
+
+
