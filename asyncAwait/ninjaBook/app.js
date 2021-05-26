@@ -160,3 +160,19 @@ getJSON("http://localhost:3000/ninja/")
   // .catch(error => fail("An error has occurred"));
 
 
+  // Waiting for a number of promises
+  Promise.all([getJSON("data/ninjas.json"),
+            getJSON("data/mapInfo.json"),
+            getJSON("data/plan.json")]
+  ).then(results => {
+    console.log(results)
+    const ninjas = results[0], mapInfo = results[1], plan = results[2];
+    console.log(ninjas)
+
+    if( ninjas !== undefined
+        && mapInfo !== undefined && plan !== undefined ){
+        console.log("The plan is ready to be set in motion!");
+      }
+  }).catch( error => {
+  console.log("A problem in carrying out our plan! :", error);
+});

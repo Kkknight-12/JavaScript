@@ -1,0 +1,12 @@
+{
+  "Champaklal": [
+    { "id": 1, "title": "Jayanti Lal Gada", "style": "lathi charge",
+    "missionsUrl" : "Jeta ko Sudharo", "detailsUrl": "#234" },
+    { "id": 2, "title": "White Belt", "style": "Karate",
+    "missionsUrl" : "Class A", "detailsUrl": "#2354"  }
+  ],
+  "comments": [
+    { "id": 1, "body": "Jethiya Babuchak", "postId": 1 }
+  ],
+  "profile": { "name": "Champak Chu" }
+}
