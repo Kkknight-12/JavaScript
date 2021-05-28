@@ -113,7 +113,7 @@ function getJSON(url) {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
     // console.log(request)
-    
+      
     request.open("GET", url);
     
     request.onload = function() {
