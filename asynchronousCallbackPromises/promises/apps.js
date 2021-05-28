@@ -75,10 +75,10 @@ function trackUserHandler() {
         while positining .then(), if you position .then() after catch 
         it will run after catching the error.  
         */
-    setTimer(1000).then( () => { // wait for 1sec
-        console.log( 'Timer done!' )
-    });
-    console.log( 'Getting position...' )
+        setTimer(1000).then( () => { // wait for 1sec
+            console.log( 'Timer done!' )
+        });
+        console.log( 'Getting position...' )
 }
 
 button.addEventListener( 'click', trackUserHandler );
