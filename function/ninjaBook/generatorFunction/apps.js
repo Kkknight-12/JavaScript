@@ -118,9 +118,12 @@ if(ninja3.id === 3) {console.log("Third ninja has id 3")}; // Third ninja has id
 function traverseDOM(element, callback) {
   callback(element);
   element = element.firstElementChild;
+  // console.log("element: ",element)
 
   while (element) {
+    console.log("element: 124 ",element)
     traverseDOM(element, callback);
+     console.log("element: 126",element)
       element = element.nextElementSibling;
   }
 }
