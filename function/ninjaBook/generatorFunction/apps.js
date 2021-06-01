@@ -43,4 +43,27 @@ if(typeof result3 === "object"
         console.log("There are no more results!")
 }
 
+console.log(result3) //{value: undefined, done: true}
 
+function* weaponGenerator3(){
+	yield "Katana";
+	yield "Wakizashi";
+}
+
+const weaponIterator3 = weaponGenerator3();
+let item;
+while( !( item = weaponIterator3.next() ).done ){ // while this condition dont turn false continue looping
+	if( item !== null ){
+		console.log( item.value )
+  }
+};
+
+// console.log(( item = weaponIterator3.next() )) // {value: "Katana", done: false}
+// console.log(( item = weaponIterator3.next() ).done) // false
+// console.log( !( item = weaponIterator3.next() ).done) // true
+
+for(var item2 of weaponGenerator3()){
+  if(item2 !== null) {
+    console.log(item2)
+  }
+}
