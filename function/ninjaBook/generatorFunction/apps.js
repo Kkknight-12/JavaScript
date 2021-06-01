@@ -69,10 +69,12 @@ for(var item2 of weaponGenerator3()){
   }
 }
 
-// Yielding to another generator
+// ////////////////////////////////
+// Yielding to another generator //
+// ////////////////////////////////
 function* WarriorGenerator(){
   yield "Sun Tzu";
-  yield* NinjaGenerator();
+  yield* NinjaGenerator(); // calling NinjaGenerator()
   yield "Genghis Khan";
 }
 
@@ -82,6 +84,49 @@ function* NinjaGenerator(){
 }
 
 for(let warrior of WarriorGenerator()){
-  if(warrior !== null){console.log(warrior)};
+  if(warrior !== null) { console.log(warrior) };
 }
+
+/* 
+  Sun Tzu
+  Hattori
+  Yoshi
+  Genghis Khan
+*/
+
+// 
+function *IdGenerator(){
+  let id = 0;
+  while(true){
+    yield ++id;
+  }
+}
+
+const idIterator = IdGenerator();
+
+const ninja1 = { id: idIterator.next().value };
+const ninja2 = { id: idIterator.next().value };
+const ninja3 = { id: idIterator.next().value };
+
+if(ninja1.id === 1) { console.log("First ninja has id 1")} // First ninja has id 1
+if(ninja2.id === 2) {console.log("Second ninja has id 2")} // Second ninja has id 2
+if(ninja3.id === 3) {console.log("Third ninja has id 3")}; // Third ninja has id 3
+
+
+
+// Dom
+function traverseDOM(element, callback) {
+  callback(element);
+  element = element.firstElementChild;
+
+  while (element) {
+    traverseDOM(element, callback);
+      element = element.nextElementSibling;
+  }
+}
+const subTree = document.getElementById("subTree");
+traverseDOM(subTree, function (element) {
+  if(element !== null){console.log(element.nodeName)};
+});
+
 
