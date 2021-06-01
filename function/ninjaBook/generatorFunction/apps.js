@@ -62,8 +62,26 @@ while( !( item = weaponIterator3.next() ).done ){ // while this condition dont t
 // console.log(( item = weaponIterator3.next() ).done) // false
 // console.log( !( item = weaponIterator3.next() ).done) // true
 
+// same result with for of loop
 for(var item2 of weaponGenerator3()){
   if(item2 !== null) {
     console.log(item2)
   }
 }
+
+// Yielding to another generator
+function* WarriorGenerator(){
+  yield "Sun Tzu";
+  yield* NinjaGenerator();
+  yield "Genghis Khan";
+}
+
+function* NinjaGenerator(){
+  yield "Hattori";
+  yield "Yoshi";
+}
+
+for(let warrior of WarriorGenerator()){
+  if(warrior !== null){console.log(warrior)};
+}
+
