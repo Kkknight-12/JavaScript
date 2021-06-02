@@ -137,6 +137,7 @@ traverseDOM(subTree, function (element) {
 function* DomTraversal(element){
   yield element;
   element = element.firstElementChild;
+
   while (element) {
     yield* DomTraversal(element);
     element = element.nextElementSibling;
@@ -147,4 +148,28 @@ const subTreeYield = document.getElementById("subTree");
 for(let element of DomTraversal(subTreeYield)) {
   if(element !== null){console.log(element.nodeName)};
 }
+
+// ///////////////////////////////
+// Communicating with generator //
+// ///////////////////////////////
+function* CommunicatingNinjaGenerator(action) {
+  const imposter = yield ("Hattori " + action);
+  
+  if(imposter === "Hanzo"){
+    console.log("The generator has been infiltrated"); // The generator has been infiltrated (2)
+  }
+  
+  yield ("Yoshi (" + imposter + ") " + action);
+}
+ 
+const ninjaIterator = CommunicatingNinjaGenerator("skulk");
+
+const result1Com = ninjaIterator.next();
+console.log(result1Com) // {value: "Hattori skulk", done: false}
+if(result1Com.value === "Hattori skulk") {console.log("Hattori is skulking")};
+// Hattori is skulking (1)
+
+const result2Com = ninjaIterator.next("Hanzo");
+if(result2Com.value === "Yoshi (Hanzo) skulk"){console.log("We have an imposter!")}; 
+// We have an imposter! (3)
 
