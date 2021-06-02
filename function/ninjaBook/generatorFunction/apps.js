@@ -94,7 +94,9 @@ for(let warrior of WarriorGenerator()){
   Genghis Khan
 */
 
-// 
+// ///////////////////////////////////
+// Using generators to generate IDs //
+// ///////////////////////////////////
 function *IdGenerator(){
   let id = 0;
   while(true){
@@ -113,22 +115,24 @@ if(ninja2.id === 2) {console.log("Second ninja has id 2")} // Second ninja has i
 if(ninja3.id === 3) {console.log("Third ninja has id 3")}; // Third ninja has id 3
 
 
+// ////////////////////////////////////////
+// Using generators to traverse the DOM  //
+// ////////////////////////////////////////
 
-// Dom
-// function traverseDOM(element, callback) {
-//   callback(element);
-//   element = element.firstElementChild;
-//   // console.log("element: ",element)
+function traverseDOM(element, callback) {
+  callback(element);
+  element = element.firstElementChild;
+  // console.log("element: ",element)
 
-//   while (element) {
-//     traverseDOM(element, callback);
-//       element = element.nextElementSibling;
-//   }
-// }
-// const subTree = document.getElementById("subTree");
-// traverseDOM(subTree, function (element) {
-//   if(element !== null){console.log(element.nodeName)};
-// });
+  while (element) {
+    traverseDOM(element, callback);
+      element = element.nextElementSibling;
+  }
+}
+const subTree = document.getElementById("subTree");
+traverseDOM(subTree, function (element) {
+  if(element !== null){console.log(element.nodeName)};
+});
 
 function* DomTraversal(element){
   yield element;
@@ -139,8 +143,8 @@ function* DomTraversal(element){
   }
 }
 
-const subTree = document.getElementById("subTree");
-for(let element of DomTraversal(subTree)) {
+const subTreeYield = document.getElementById("subTree");
+for(let element of DomTraversal(subTreeYield)) {
   if(element !== null){console.log(element.nodeName)};
 }
 
