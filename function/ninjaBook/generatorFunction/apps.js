@@ -161,7 +161,9 @@ function* CommunicatingNinjaGenerator(action) {
   
   yield ("Yoshi (" + imposter + ") " + action);
 
-  yield (imposter)
+  const imposter2 = yield (action);
+  console.log(imposter2)
+  yield (imposter2)
 }
  
 const ninjaIterator = CommunicatingNinjaGenerator("skulk");
@@ -176,5 +178,16 @@ console.log(result2Com) // {value: "Yoshi (Hanzo) skulk", done: false}
 if(result2Com.value === "Yoshi (Hanzo) skulk"){console.log("We have an imposter!")}; 
 // We have an imposter! (3)
 
-const result3Com = ninjaIterator.next("Knight");
-console.log(result3Com)
+const result3Com = ninjaIterator.next("");
+console.log(result3Com.value)
+// const result4Com = ninjaIterator.next("Luffy");
+// console.log(result4Com.value)
+
+const SomeObj = {
+  *[Symbol.iterator] () {
+    yield 'a';
+    yield 'b';
+  }
+}
+
+console.log(Array.from(SomeObj)); // [ 'a', 'b' ]
