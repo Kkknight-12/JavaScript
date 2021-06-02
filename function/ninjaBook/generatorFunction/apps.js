@@ -153,36 +153,34 @@ for(let element of DomTraversal(subTreeYield)) {
 // Communicating with generator //
 // ///////////////////////////////
 function* CommunicatingNinjaGenerator(action) {
-  const imposter = yield ("Hattori " + action);
-  
-  if(imposter === "Hanzo"){
-    console.log("The generator has been infiltrated"); // The generator has been infiltrated (2)
-  }
-  
-  yield ("Yoshi (" + imposter + ") " + action);
 
-  const imposter2 = yield (action);
-  console.log(imposter2)
-  // yield (imposter2)
+  const imposter1 = yield ("Hattori " + action);
+  
+  if(imposter1 === "Hanzo"){
+    console.log("2 The generator has been infiltrated"); // The generator has been infiltrated (2)
+  }
+  const imposter2 = yield ("Yoshi (" + imposter1 + ") " + action); //
+  
+  console.log("4",imposter2)
+  const imposter3 = yield "action";
+  
+  console.log("6", imposter3) // undefined
+
 }
  
 const ninjaIterator = CommunicatingNinjaGenerator("skulk");
 
 const result1Com = ninjaIterator.next();
-console.log(result1Com) // {value: "Hattori skulk", done: false}
-if(result1Com.value === "Hattori skulk") {console.log("Hattori is skulking")};
-// Hattori is skulking (1)
+console.log("1",result1Com) // {value: "Hattori skulk", done: false} 
 
-const result2Com = ninjaIterator.next("Hanzo");
-console.log(result2Com) // {value: "Yoshi (Hanzo) skulk", done: false}
-if(result2Com.value === "Yoshi (Hanzo) skulk"){console.log("We have an imposter!")}; 
-// We have an imposter! (3)
+const result2Com = ninjaIterator.next("Hanzo"); // will initiate 2
+console.log("3", result2Com) // {value: "Yoshi (Hanzo) skulk", done: false}
 
-const result3Com = ninjaIterator.next("Knight");
-console.log(result3Com.value)
+const result3Com = ninjaIterator.next("Knight"); //  // will initiate 4
+console.log("5", result3Com.value) // action
 
-// const result4Com = ninjaIterator.next("Luffy");
-// console.log(result4Com.value)
+const result4Com = ninjaIterator.next(); // will intiate 6
+console.log("7", result3Com.value) // action
 
 function* gen() {
   let ask1 = yield "2 + 2 = ?";
@@ -192,6 +190,9 @@ function* gen() {
   let ask2 = yield "3 * 3 = ?"
 
   console.log(ask2); // 9
+
+  let ask3 = yield "????"
+  console.log(ask3)
 }
 
 let generator = gen();
@@ -200,4 +201,6 @@ console.log( generator.next().value ); // "2 + 2 = ?"
 
 console.log( generator.next(4).value ); // "3 * 3 = ?"
 
-console.log( generator.next(9).done ); // true
+console.log( generator.next(9).value ); // true
+
+console.log( generator.next(99999).value ); // true
