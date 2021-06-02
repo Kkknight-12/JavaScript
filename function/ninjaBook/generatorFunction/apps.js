@@ -160,6 +160,8 @@ function* CommunicatingNinjaGenerator(action) {
   }
   
   yield ("Yoshi (" + imposter + ") " + action);
+
+  yield (imposter)
 }
  
 const ninjaIterator = CommunicatingNinjaGenerator("skulk");
@@ -170,6 +172,9 @@ if(result1Com.value === "Hattori skulk") {console.log("Hattori is skulking")};
 // Hattori is skulking (1)
 
 const result2Com = ninjaIterator.next("Hanzo");
+console.log(result2Com) // {value: "Yoshi (Hanzo) skulk", done: false}
 if(result2Com.value === "Yoshi (Hanzo) skulk"){console.log("We have an imposter!")}; 
 // We have an imposter! (3)
 
+const result3Com = ninjaIterator.next("Knight");
+console.log(result3Com)
