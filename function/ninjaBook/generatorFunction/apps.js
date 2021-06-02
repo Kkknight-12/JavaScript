@@ -159,13 +159,13 @@ function* CommunicatingNinjaGenerator(action) {
   if(imposter1 === "Hanzo"){
     console.log("2 The generator has been infiltrated"); // The generator has been infiltrated (2)
   }
-  const imposter2 = yield ("Yoshi (" + imposter1 + ") " + action); //
+  const imposter2 = yield ("Yoshi (" + imposter1 + ") " + action); 
   
-  console.log("4",imposter2)
-  const imposter3 = yield "action";
+  console.log("4",imposter2) // knight
+  const imposter3 = yield ("action ("+ imposter2 +")");
   
   console.log("6", imposter3) // undefined
-
+  console.log("7", imposter1, imposter2, imposter3) // Hanzo Knight undefined
 }
  
 const ninjaIterator = CommunicatingNinjaGenerator("skulk");
@@ -175,13 +175,18 @@ console.log("1",result1Com) // {value: "Hattori skulk", done: false}
 
 const result2Com = ninjaIterator.next("Hanzo"); // will initiate 2
 console.log("3", result2Com) // {value: "Yoshi (Hanzo) skulk", done: false}
+/* on second iteration we are sending value to imposter1 and changing it's value: "Hattori skulk" to value: "Yoshi (Hanzo) skulk"
+ */
 
-const result3Com = ninjaIterator.next("Knight"); //  // will initiate 4
-console.log("5", result3Com.value) // action
+const result3Com = ninjaIterator.next("Knight"); // will initiate 4
+console.log("5", result3Com.value) // action (Knight)
 
-const result4Com = ninjaIterator.next(); // will intiate 6
-console.log("7", result3Com.value) // action
+const result4Com = ninjaIterator.next(); // will intiate 6 and 7
+console.log("8", result3Com.value) // action
 
+
+
+// Example
 function* gen() {
   let ask1 = yield "2 + 2 = ?";
 
