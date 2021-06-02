@@ -115,21 +115,32 @@ if(ninja3.id === 3) {console.log("Third ninja has id 3")}; // Third ninja has id
 
 
 // Dom
-function traverseDOM(element, callback) {
-  callback(element);
-  element = element.firstElementChild;
-  // console.log("element: ",element)
+// function traverseDOM(element, callback) {
+//   callback(element);
+//   element = element.firstElementChild;
+//   // console.log("element: ",element)
 
+//   while (element) {
+//     traverseDOM(element, callback);
+//       element = element.nextElementSibling;
+//   }
+// }
+// const subTree = document.getElementById("subTree");
+// traverseDOM(subTree, function (element) {
+//   if(element !== null){console.log(element.nodeName)};
+// });
+
+function* DomTraversal(element){
+  yield element;
+  element = element.firstElementChild;
   while (element) {
-    console.log("element: 124 ",element)
-    traverseDOM(element, callback);
-     console.log("element: 126",element)
-      element = element.nextElementSibling;
+    yield* DomTraversal(element);
+    element = element.nextElementSibling;
   }
 }
-const subTree = document.getElementById("subTree");
-traverseDOM(subTree, function (element) {
-  if(element !== null){console.log(element.nodeName)};
-});
 
+const subTree = document.getElementById("subTree");
+for(let element of DomTraversal(subTree)) {
+  if(element !== null){console.log(element.nodeName)};
+}
 
