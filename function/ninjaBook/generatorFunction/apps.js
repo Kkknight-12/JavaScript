@@ -185,7 +185,6 @@ const result4Com = ninjaIterator.next(); // will intiate 6 and 7
 console.log("8", result3Com.value) // action
 
 
-
 // Example
 function* gen() {
   let ask1 = yield "2 + 2 = ?";
