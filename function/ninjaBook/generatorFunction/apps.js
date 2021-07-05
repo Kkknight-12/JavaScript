@@ -10,7 +10,6 @@ for(let weapon of WeaponGenerator()) {
   } 
 }
 
-
 // example 2
 function* WeaponGenerator2(){
   yield "Katana";
