@@ -207,3 +207,4 @@ console.log( generator.next(4).value ); // "3 * 3 = ?"
 console.log( generator.next(9).value ); // true
 
 console.log( generator.next(99999).value ); // true
+
