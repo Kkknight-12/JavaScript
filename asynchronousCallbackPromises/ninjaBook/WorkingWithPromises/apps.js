@@ -14,37 +14,35 @@
 
 // 
 // Example
-console.log("At code start");
+console.log("At code start"); // 1
 
 var ninjaDelayedPromise = new Promise((resolve, reject) => {
-  console.log("ninjaDelayedPromise executor");
+  console.log("ninjaDelayedPromise executor"); // 2
   setTimeout(() => {
-    console.log("Resolving ninjaDelayedPromise");
+    console.log("Resolving ninjaDelayedPromise"); // 7
     resolve("Hattori");
   }, 500);
 });
 
 if(ninjaDelayedPromise !== null){
-    console.log("After creating ninjaDelayedPromise")
+    console.log("After creating ninjaDelayedPromise") // 3
 } 
 
 ninjaDelayedPromise.then(ninja => {
   if(ninja === "Hattori"){
-    console.log("ninjaDelayedPromise resolve handled with Hattori");
+    console.log("ninjaDelayedPromise resolve handled with Hattori"); // 8
   }
 });
 
 const ninjaImmediatePromise = new Promise((resolve, reject) => {
-  console.log("ninjaImmediatePromise executor. Immediate resolve.");
+  console.log("ninjaImmediatePromise executor. Immediate resolve."); // 4
   resolve("Yoshi");
 });
 
 ninjaImmediatePromise.then(ninja => {
   if(ninja === "Yoshi"){
-    console.log("ninjaImmediatePromise resolve handled with Yoshi");
+    console.log("ninjaImmediatePromise resolve handled with Yoshi"); // 6
   }
 });
 
-console.log("At code end");
-
-
+console.log("At code end"); // 5
