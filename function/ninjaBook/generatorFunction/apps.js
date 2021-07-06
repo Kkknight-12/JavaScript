@@ -195,7 +195,7 @@ function* gen() {
   console.log(ask2); // 9
 
   let ask3 = yield "????"
-  console.log(ask3)
+  console.log(ask3) // 99999
 }
 
 let generator = gen();
@@ -204,7 +204,7 @@ console.log( generator.next().value ); // "2 + 2 = ?"
 
 console.log( generator.next(4).value ); // "3 * 3 = ?"
 
-console.log( generator.next(9).value ); // true
+console.log( generator.next(9).value ); // ????
 
-console.log( generator.next(99999).value ); // true
+console.log( generator.next(99999).value ); // undefined
 
