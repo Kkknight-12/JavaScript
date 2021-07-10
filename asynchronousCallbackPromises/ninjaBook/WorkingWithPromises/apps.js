@@ -47,11 +47,20 @@
 
 // console.log("At code end"); // 5
 
-const promise = new Promise((resolve, reject) => {
-  reject("Explicitly reject a promise!");
+// const promise = new Promise((resolve, reject) => {
+//   reject("Explicitly reject a promise!");
+// });
+
+// promise.then(
+//   () => console.log("Happy path, won't be called!"),
+//   error => console.log("A promise was explicitly rejected!") 
+// );
+// alternative syntax
+var promise = new Promise((resolve, reject) => {
+  reject("Explicitly reject a promise!");	
 });
 
-promise.then(
-  () => console.log("Happy path, won't be called!"),
-  error => console.log("A promise was explicitly rejected!")
-);
+promise.then(()=> console.log("Happy path, won't be called!"))
+       .catch(() => console.log("Promise was also rejected"));
+
+
