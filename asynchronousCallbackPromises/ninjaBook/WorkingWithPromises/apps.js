@@ -55,12 +55,64 @@
 //   () => console.log("Happy path, won't be called!"),
 //   error => console.log("A promise was explicitly rejected!") 
 // );
-// alternative syntax
-var promise = new Promise((resolve, reject) => {
-  reject("Explicitly reject a promise!");	
+// // alternative syntax
+// var promise = new Promise((resolve, reject) => {
+//   reject("Explicitly reject a promise!");	
+// });
+
+// promise.then(()=> console.log("Happy path, won't be called!"))
+//        .catch(() => console.log("Promise was also rejected"));
+
+
+// ////////////////////////
+// Promise and generator //
+// ////////////////////////
+
+const data = require('./data/ninjas.json')
+
+// try {
+//    const ninjas = data
+//    console.log(ninjas[0])
+//    const missions = ninjas[0].missionsUrl;
+//    console.log(missions)
+//    const missionDetails = missions[0].detailsUrl;
+//    console.log(missionDetails)
+//    //Study the mission description
+// } catch(e){
+//   //Oh no, we weren't able to get the mission details
+// }
+
+
+// /////////////////////////////////
+async(function*(){
+  try {
+    const ninjas = yield $.getJSON("./data/ninjas.json");
+    const missions = yield $.getJSON(ninjas[0].missionsUrl);
+    const missionDescription = yield $.getJSON(missions[0].detailsUrl);
+    //Study the mission details
+  }
+  catch(e) {
+    //Oh no, we weren't able to get the mission details
+  }
 });
 
-promise.then(()=> console.log("Happy path, won't be called!"))
-       .catch(() => console.log("Promise was also rejected"));
+function async(generator) {
+  var iterator = generator();
 
+  function handle(iteratorResult) {
+    if(iteratorResult.done) { return; }
+    
+    const iteratorValue = iteratorResult.value;
+    
+    if(iteratorValue instanceof Promise) {
+      iteratorValue.then(res => handle(iterator.next(res)))
+                   .catch(err => iterator.throw(err))
+    }
+  }
+
+  try {
+    handle(iterator.next());
+  }
+  catch (e) { iterator.throw(e); }
+}
 
