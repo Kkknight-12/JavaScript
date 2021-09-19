@@ -149,7 +149,7 @@ const sum = new Function( 'a', 'b','return a + b');
 console.log(sum(1,2));
 /* 
 DONT MIX FUNCTION() CONSTRUCTOR WITH CONSTRUCTOR FUNCTIONS.
-Here we are studing constructor function that carea and initialise
+Here we are studing constructor function that create and initialise
 object instance
 */
 
@@ -169,7 +169,7 @@ new keyword trigger a new empty object, object is passed
 to the constructor as this parameter thus becomes constructor's
 function context. Newly constructed object is returned as new opertor's value.
 if we compare it to the previous function we create to check this.
-We excaped the hassle to write the same code again as
+We escaped the hassle to write the same code again as
 we are using new Knight() to refer to the function. We can create
 as many new copy as we want and each time the property of new Knight
 will be borrowed by new function.
@@ -182,15 +182,15 @@ function Knight1(){
     }
     return 1;
 }
-console.log(Knight1())
+console.log(Knight1()) // 1
 let samurai1 = new Knight1();
 console.log(samurai1) // Knight1 {skill: ƒ}
 console.log( typeof samurai1  ) // object
-console.log( typeof samurai1.skill === 'function' ) // function
+console.log( typeof samurai1.skill === 'function' ) // true
 
 /* 
 if we call Knight1 function it returns 1 and if we call it as a constructor
-with new key word a new knight1 object is constructed and returned */
+with new key word a new samurai1 object is constructed and returned */
 
 let puppy = {
     labrador: false,
