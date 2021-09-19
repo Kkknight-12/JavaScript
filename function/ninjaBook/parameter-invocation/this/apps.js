@@ -92,8 +92,8 @@ const thisObj = {
 // return this which is whole object so we are getting whole object as return value
 console.log(thisObj.checkingThis())
 // this refer to object
-console.log(thisObj.checkingThis() ===  thisObj )
-console.log(thisObj.getNameValue())
+console.log(thisObj.checkingThis() ===  thisObj )// true
+console.log(thisObj.getNameValue())// knight
 
 /* 
 Look closely the getMyThis and getName are normal function.
@@ -106,7 +106,7 @@ thisObj which is invoking it.
 const thisObjTwo = {
     checkingThisAgain : getMyThis,
 }
- console.log(thisObjTwo.checkingThisAgain() === thisObjTwo)
+ console.log(thisObjTwo.checkingThisAgain() === thisObjTwo) // true
 
 /* 
 here we go again using the same getMyThis function and this time it is returning
