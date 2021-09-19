@@ -73,11 +73,11 @@ function infiltrate(person){
     
     // accessing value 'Mali Bhaia' through parameter person
     // and also through arguments object.
-    if( person === 'Mali Bhaia' ){
-        console.log(person) // Mali Bhaia
+    if( person === 'Kaido Fortress' ){
+        console.log(person) // Kaido Fortress
     }
-    if( arguments[0] === 'Mali Bhaia' ){
-        console.log('Bingo') // Bingo
+    if( arguments[0] === 'Kaido Fortress' ){
+        console.log('Luffy will penetrate through the defence') // Bingo
     }
 
     /*
@@ -87,15 +87,15 @@ function infiltrate(person){
 
     changing parameter 
     */
-    arguments[0] = 'ninja boy rantaro'
-    console.log(person) // ninja boy rantaro
+    arguments[0] = 'Luffy, Zoro, Kid, Yamato'
+    console.log(person) // Luffy, Zoro, Kid, Yamato
 
     /*  
     same is true if we change parameter, the changes can be observed in paramter and arguments
      */
-    person = 'Kirimaru'
-    console.log(arguments[0]) // Kirimaru
+    person = 'Sanji, Nami, Yoho Ho ho, Samurai, Ussop, Chopper are on there way'
+    console.log(arguments[0]) // Sanji, Nami, Yoho Ho ho, Samurai, Ussop, Chopper are on there way
 
 }
 
-infiltrate('Mali Bhaia')
+infiltrate('Kaido Fortress')
