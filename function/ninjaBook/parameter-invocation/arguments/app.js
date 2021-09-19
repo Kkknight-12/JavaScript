@@ -14,17 +14,19 @@ arguments is collection of all parameters passed to a function, usefull as it al
  */
 
 function abc(a,b,b){
-    console.log(`argument 1 is ${arguments[0]}`)
-    console.log( `argument 2 is ${arguments[1]}`)
-    console.log(`argument 3 is ${arguments[2]}`)
+    console.log(`argument 1 is ${arguments[0]}`)// argument 1 is a
+    console.log( `argument 2 is ${arguments[1]}`) // argument 2 is b
+    console.log(`argument 3 is ${arguments[2]}`) // argument 3 is c
             
 }
 abc('a','b','c');
 
+// checking the length of arguments passed
+// with arguments.length
 function agrLength( a, b, c, d){
-    console.log(arguments.length)
+    console.log(arguments.length) 
 }
-agrLength('a','b','c','d')
+agrLength('a','b','c','d') // // 4
 
 /*
 arguments parameter is not and array, array method won't
