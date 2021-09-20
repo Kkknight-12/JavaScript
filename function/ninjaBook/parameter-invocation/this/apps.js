@@ -194,6 +194,7 @@ with new key word a new samurai1 object is constructed and returned */
 
 let puppy = {
     labrador: false,
+    re:this
 }
 
 function Dog(){ 
