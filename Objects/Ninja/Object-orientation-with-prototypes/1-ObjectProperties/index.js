@@ -21,17 +21,21 @@ const yoshi = { skulk: true };
 const hattori = { sneak: true };
 const kuma = { creep: true };
 
-assert("skulk" in yoshi, "Yoshi can skulk");
-assert(!("sneak" in yoshi)), "Yoshi cannot sneak");
-assert(!("creep" in yoshi)), "Yoshi cannot creep");
+if("skulk" in yoshi){ console.log("Yoshi can skulk") }; // Yoshi can skulk
 
-Object.setPrototypeOf(yoshi, hattori);
+if(!("sneak" in yoshi)){ console.log("Yoshi cannot sneak") } // Yoshi cannot sneak
+if(!("creep" in yoshi)){ console.log("Yoshi cannot creep")}; // Yoshi cannot creep
 
-assert("sneak" in yoshi, "Yoshi can now sneak");
-assert(!("creep" in hattori)), "Hattori cannot creep");
+//
+console.log(Object.setPrototypeOf(yoshi, hattori)); // { skulk: true }
+if("sneak" in yoshi){ console.log("Yoshi can now sneak")}; // Yoshi can now sneak
 
-Object.setPrototypeOf(hattori, kuma);
-assert("creep" in hattori, "Hattori can now creep");
-assert("creep" in yoshi, "Yoshi can also creep");
+//
+if(!("creep" in hattori)){ console.log("Hattori cannot creep")}; // Hattori cannot creep
+
+//
+console.log(Object.setPrototypeOf(hattori, kuma)); // { sneak: true }
+if("creep" in hattori){ console.log("Hattori can now creep")}; // Hattori can now creep
+if("creep" in yoshi){ console.log("Yoshi can also creep")} ; // Yoshi can also creep
 
 
