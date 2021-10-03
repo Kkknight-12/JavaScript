@@ -64,3 +64,45 @@ if(
 
 
 
+///
+function Ninja(){
+  this.swung = false;
+  this.swingSword = function(){
+    return !this.swung;
+  };
+ }
+ Ninja.prototype.swingSword = function(){
+   return this.swung;
+ };
+
+ const ninja = new Ninja();
+ if(ninja.swingSword()){ console.log(  "Called the instance method, not the prototype method.")};
+//Called the instance method, not the prototype method.
+console.log(ninja.swingSword()) // true
+
+//
+function Ninja(){
+  this.swung = true;
+}
+
+const ninja3 = new Ninja();
+
+Ninja.prototype.swingSword = function(){
+  return this.swung;
+};
+if(ninja3.swingSword()){console.log("Method exists, even out of order.")};
+// Method exists, even out of order.
+
+Ninja.prototype.pierce = function() {
+    return true;
+  }
+
+if(ninja3.swingSword()){console.log("Our ninja can still swing!")};
+// Our ninja can still swing!
+
+const ninja4 = new Ninja();
+if(ninja4.pierce()){ console.log("Newly created ninjas can pierce")};
+// Newly created ninjas can pierce
+if(ninja4.swingSword){ console.log("But they cannot swing!")};
+// But they cannot swing!
+
