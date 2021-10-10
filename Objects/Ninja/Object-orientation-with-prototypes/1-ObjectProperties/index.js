@@ -127,10 +127,50 @@
 
 // console.log(ninja instanceof Ninja)
 
+// function Ninja(){}
+
+// const ninja = new Ninja();
+// const ninja2 = new Ninja();
+
+// if(ninja2 instanceof Ninja){console.log("It's a Ninja!")};
+// if(ninja !== ninja2){console.log("But not the same Ninja!")};
+
+
+///////////////////////////
+// Achieving inheritance
+////////////////////////////
+
+// function Person(){}
+// Person.prototype.dance = function(){};
+
+// function Ninja(){}
+// Ninja.prototype = { dance: Person.prototype.dance };
+
+// const ninja = new Ninja();
+
+// if(ninja instanceof Ninja){
+// console.log( "ninja receives  functionality from the Ninja prototype")}; 
+// // ninja receives  functionality from the Ninja prototype
+// if(ninja instanceof Person){ console.log("... and the Person prototype")};
+// if(ninja instanceof Object){ console.log("... and the Object prototype" )};
+// // ... and the Object prototype
+
+
+////
+function Person(){}
+Person.prototype.dance = function(){};
+
 function Ninja(){}
+Ninja.prototype = new Person();
 
 const ninja = new Ninja();
-const ninja2 = new Ninja();
+if(ninja instanceof Ninja){
+console.log( "ninja receives  functionality from the Ninja prototype")}; 
+// ninja receives  functionality from the Ninja prototype
+if(ninja instanceof Person){ console.log("... and the Person prototype")};
+if(ninja instanceof Object){ console.log("... and the Object prototype" )};
+// ... and the Object prototype
+if(typeof ninja.dance === "function") { console.log("... and can dance!")};
 
-if(ninja2 instanceof Ninja){console.log("It's a Ninja!")};
-if(ninja !== ninja2){console.log("But not the same Ninja!")};
+
+
