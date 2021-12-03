@@ -240,7 +240,7 @@ console.log(bill.constructor)
 of a particular property. */
 console.log(bill.hasOwnProperty('nickName')) // true
 
-
+// 
 bill.walk(); // Animal prototype method
 console.log(bill.specie) // Animal property, will be undefined if we user Object.create method
 bill.sayName() // Cat prototype method

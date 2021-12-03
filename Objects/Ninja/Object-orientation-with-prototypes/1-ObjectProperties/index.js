@@ -172,7 +172,4 @@ if(ninja instanceof Person){ console.log("... and the Person prototype")};
 if(ninja instanceof Object){ console.log("... and the Object prototype" )};
 // ... and the Object prototype
 if(typeof ninja.dance === "function") { console.log("... and can dance!")};
-// ... and can dance!
-
-
-
+// ... and can dance !
