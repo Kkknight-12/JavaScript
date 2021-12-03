@@ -64,7 +64,7 @@
 //     name = 'Max';
 
 //     constructor(){
-       
+
 //         this.age = 30;
 //     }
 
