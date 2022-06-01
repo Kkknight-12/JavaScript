@@ -25,3 +25,26 @@ In getText function
 Domo arigato!
 After the calls have been made
 */
+
+// storing
+var store = {
+  nextId: 1,
+  cache: {},
+  add: function (fn) {
+    if (!fn.id) {
+      fn.id = this.nextId++
+      this.cache[fn.id] = fn
+      return true
+    }
+  },
+}
+function ninja() {}
+console.log(store.add(ninja)) // true
+console.log(store.add(ninja)) // false
+console.log(store)
+/* 
+{
+  nextId: 2,
+  cache: { '1': [Function: ninja] { id: 1 } },
+  add: [Function: add]
+} */
