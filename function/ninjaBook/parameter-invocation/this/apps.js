@@ -23,29 +23,27 @@ enabling object-oriented programming.
 // /////////////////
 // Simple function /
 // /////////////////
-function ninja(){}; // function declaration
-ninja();
+function ninja() {} // function declaration
+ninja()
 
-// expression to which the () operator is applied 
+// expression to which the () operator is applied
 // doesn’t reference the function as a property of an object.
-var samurai = function(){}; // function expresion
-samurai('a');
-
-( function () {} ) () // Immediately invoked expression invoked as a function
-
+var samurai = function () {} // function expresion
+samurai("a")
+;(function () {})() // Immediately invoked expression invoked as a function
 
 // //////////////////////////////////////////
-// behaviour is this in simple function    //
+// behaviour of this in simple function    //
 // when using strict mode vs not using it  //
 // //////////////////////////////////////////
-function ninja(){
-    return this;
+function ninja() {
+  return this
 }
 console.log(ninja()) // return window object
 
-function samurai(){
-    "use strict"
-    return this
+function samurai() {
+  "use strict"
+  return this
 }
 console.log(samurai()) // return undefined
 
@@ -55,10 +53,12 @@ console.log(samurai()) // return undefined
 
 // function is assigned to a property of an object
 let ninjaObj = {}
-ninjaObj.skill = function(){ console.log('you got me')}
+ninjaObj.skill = function () {
+  console.log("you got me")
+}
 
 // invocation occurs by referencing the function using that property
-ninjaObj.skill();
+ninjaObj.skill()
 
 /* 
 special thing about it is object to which a method belongs
@@ -70,30 +70,35 @@ object becomes function context as is available within
 function via 'this' parameter.
 */
 
-function getMyThis(){
-    return this
+function getMyThis() {
+  return this
 }
-function getName(){
-    return this.name
+
+function getName() {
+  return this.name
 }
 
 const thisObj = {
-    // not invoking getMyThis
-    // checkingThis will recieve reference to getMyThis function
-    // doing so we created a method named checkingThis on object thisObj
-    // getMyThis didn't become a method of object thisObj
-    checkingThis : getMyThis,
+  // not invoking getMyThis
+  // checkingThis will recieve reference to getMyThis function
+  // doing so we created a method named checkingThis on object thisObj
+  // getMyThis didn't become a method of object thisObj
+  checkingThis: getMyThis,
 
-    getNameValue: getName,
-    
-    name : 'knight',
+  getNameValue: getName,
 
+  name: "knight",
 }
 // return this which is whole object so we are getting whole object as return value
 console.log(thisObj.checkingThis())
 // this refer to object
-console.log(thisObj.checkingThis() ===  thisObj )// true
-console.log(thisObj.getNameValue())// knight
+/* {
+  checkingThis: [Function: getMyThis],
+  getNameValue: [Function: getName],
+  name: 'knight'
+} */
+console.log(thisObj.checkingThis() === thisObj) // true
+console.log(thisObj.getNameValue()) // knight
 
 /* 
 Look closely the getMyThis and getName are normal function.
@@ -104,9 +109,9 @@ thisObj which is invoking it.
 */
 
 const thisObjTwo = {
-    checkingThisAgain : getMyThis,
+  checkingThisAgain: getMyThis,
 }
- console.log(thisObjTwo.checkingThisAgain() === thisObjTwo) // true
+console.log(thisObjTwo.checkingThisAgain() === thisObjTwo) // true
 
 /* 
 here we go again using the same getMyThis function and this time it is returning
@@ -132,35 +137,35 @@ object insatances.
 */
 
 // we use keyword 'new' to invoke constructor function
-function whatMyContext(){
-    return this;
+function whatMyContext() {
+  return this
 }
 // invoking
-console.log( whatMyContext() )
-const a = new whatMyContext();
+console.log("whatMyContext->", whatMyContext()) // global window object
+const a = new whatMyContext()
 console.log(a) // whatMyContext {}
 
-console.log( typeof a) // object
+console.log(typeof a) // object
 
 /* 
 re-calling Function() constructors from chapter.
 they enable us to new function from string. 3*/
-const sum = new Function( 'a', 'b','return a + b');
-console.log(sum(1,2));
+const sum = new Function("a", "b", "return a + b")
+console.log(sum(1, 2))
 /* 
 DONT MIX FUNCTION() CONSTRUCTOR WITH CONSTRUCTOR FUNCTIONS.
 Here we are studing constructor function that create and initialise
 object instance
 */
 
-function Knight(){
-    this.skill = function(){
-        return this;
-    }
+function Knight() {
+  this.skill = function () {
+    return this
+  }
 }
 
-let knight1 = new Knight();
-let knight2 = new Knight();
+let knight1 = new Knight()
+let knight2 = new Knight()
 
 console.log(knight1.skill() === knight1) // this will be knight1
 console.log(knight2.skill() === knight2) // this will be knight2
@@ -176,36 +181,36 @@ will be borrowed by new function.
 */
 
 // adding a return value of the function
-function Knight1(){
-    this.skill = function(){
-        return this;
-    }
-    return 1;
+function Knight1() {
+  this.skill = function () {
+    return this
+  }
+  return 1
 }
 console.log(Knight1()) // 1
-let samurai1 = new Knight1();
+let samurai1 = new Knight1()
 console.log(samurai1) // Knight1 {skill: ƒ}
-console.log( typeof samurai1  ) // object
-console.log( typeof samurai1.skill === 'function' ) // true
+console.log(typeof samurai1) // object
+console.log(typeof samurai1.skill === "function") // true
 
 /* 
 if we call Knight1 function it returns 1 and if we call it as a constructor
 with new key word a new samurai1 object is constructed and returned */
 
 let puppy = {
-    labrador: false,
-    re:this
+  labrador: false,
+  re: this,
 }
 
-function Dog(){ 
-    this.labrador = true;
-    return puppy;
+function Dog() {
+  this.labrador = true
+  return puppy
 }
 
 let dog = new Dog()
 
-console.log(  dog === puppy  ) // true
-console.log(  dog.labrador === puppy ) // false
+console.log(dog === puppy) // true
+console.log(dog.labrador === puppy) // false
 
 /* 
 when we try to access the value of labrador constructor dog run
@@ -217,36 +222,35 @@ puppy change the value of labrador from true to false
 // apply and call method  //
 // ////////////////////////
 
-function Button(){
-    this.clicked = false;
-    this.click = function(){
-        this.clicked = true; // this refer to window object when invoked with click
-        console.log(this) 
-        console.log( button.clicked ) // false
-    }
+function Button() {
+  this.clicked = false
+  this.click = function () {
+    this.clicked = true // this refer to window object when invoked with click
+    console.log(this)
+    console.log(button.clicked) // false
+  }
 }
-let button = new Button();
-let ele = document.getElementById('test');
-ele.addEventListener('click', button.click) // <button id="test">Click me!</button>
+let button = new Button()
+let ele = document.getElementById("test")
+ele.addEventListener("click", button.click) // <button id="test">Click me!</button>
 // with bind you can bind the object button and send it with the event listner
 // so when ever click invoke the function, the function will
 // refer to object button
 // ele.addEventListener( 'click', button.click.bind(button) )
 
-
-function juggle(){
-    let result = 0;
-    for( let n = 0; n < arguments.length; n++ ){
-        result += arguments[n]
-    }
-    this.result = result;
-    // return result;
+function juggle() {
+  let result = 0
+  for (let n = 0; n < arguments.length; n++) {
+    result += arguments[n]
+  }
+  this.result = result
+  // return result;
 }
 // console.log(juggle(1,2,3))
-let ninja1= {}
+let ninja1 = {}
 let ninja2 = {
-    name:'ninja2', // you can also use an object the already have property
-    rank: 2
+  name: "ninja2", // you can also use an object the already have property
+  rank: 2,
 }
 
 /* 
@@ -257,37 +261,33 @@ second is an array of values to be used as the invocation argument
 'call' method is similar to apply expect the second argument 
 is passed directly in the argument list rather than as an array
 */
-juggle.apply( ninja1, [1,2,3,4,5] ) 
-juggle.call( ninja2, 6,7,8,9 ) 
+juggle.apply(ninja1, [1, 2, 3, 4, 5])
+juggle.call(ninja2, 6, 7, 8, 9)
 
-console.log( ninja1 ) // {result: 15}
-console.log( ninja2 ) // {name: "ninja2", rank: 2, result: 30}
-
+console.log(ninja1) // {result: 15}
+console.log(ninja2) // {name: "ninja2", rank: 2, result: 30}
 
 // ///////////////////////////////
 // forcing context in call back //
 // ///////////////////////////////
 
-let weapons = [
-    { type: 'kusarigama'},
-    { type: 'katana'},
-    { type: 'odachi'}
-]
+let weapons = [{ type: "kusarigama" }, { type: "katana" }, { type: "odachi" }]
 console.log(weapons[0]) // { type: "kusarigama" } // typeof -> object
 console.log(typeof weapons) // typeof -> object
 
-function foreach( list, callback ){
-    for( let n = 0; n < list.length; n++ ){
-        callback.call( list[n], n ); // { type: "kusarigama" }, passing in 'n'
-    } 
+function foreach(list, callback) {
+  for (let n = 0; n < list.length; n++) {
+    callback.call(list[n], n) // { type: "kusarigama" }, passing in 'n'
+  }
 }
 
 //                callback
-foreach( weapons, function( index ){ // index will be our 'n'
-    // this.result = index;
-    console.log(this) // current entry will become current context
-    console.log(this === weapons[index])
-});
+foreach(weapons, function (index) {
+  // index will be our 'n'
+  // this.result = index;
+  console.log(this) // current entry will become current context
+  console.log(this === weapons[index])
+})
 
 /* 
 when to use call and when to use apply...?
@@ -306,47 +306,44 @@ we can use call and apply to get result. But we will using 'bind' and
 'arrow function' which is 'more elegent' way to achieve same result
 */
 
-function Button2(){
-    this.clicked = false,
-    this.click=()=>{
-        this.clicked = true, // this will refer to nearest scope
+function Button2() {
+  ;(this.clicked = false),
+    (this.click = () => {
+      ;(this.clicked = true), // this will refer to nearest scope
         console.log(this) // Button2 {clicked: true, click: ƒ}
-        console.log( button2.clicked ) // true
-    }
+      console.log(button2.clicked) // true
+    })
 }
-let button2 = new Button2();
-let elem2 = document.getElementById('test2');
-console.log(button2.click === Button2.click )
-elem2.addEventListener('click', button2.click ) // Button2 {clicked: true, click: ƒ}
+let button2 = new Button2()
+let elem2 = document.getElementById("test2")
+console.log(button2.click === Button2.click)
+elem2.addEventListener("click", button2.click) // Button2 {clicked: true, click: ƒ}
 
 console.log(button2) // Button2 {clicked: false, click: ƒ}
-
-
 
 // ////////////////////////////
 //  strange behavior of this //
 // ////////////////////////////
 let bt = {
-    clicked: false,
-    click: () => {
-        this.clicked = true;
-        console.log(this)
-    }
+  clicked: false,
+  click: () => {
+    this.clicked = true
+    console.log(this)
+  },
 }
-let elem3 = document.getElementById('test3');
-elem3.addEventListener('click', bt.click )
+let elem3 = document.getElementById("test3")
+elem3.addEventListener("click", bt.click)
 /* 
 Arrow functions pick up the value of the this parameter at the moment of their creation. Because the click arrow function is created as a property value on an object literal, and the object literal is created in global code, the this value of the arrow function will be the this value of the global code.
 */
 
 // b is created in global context
 let b = {
-    click: () => {
-        return this
-    }
+  click: () => {
+    return this
+  },
 }
 console.log(b.click()) // when we call arrow function it will refer to window
-
 
 // ///////////////
 // Bind method  //
@@ -356,16 +353,15 @@ bind method is available to all functions, and is designed to create and return 
 */
 
 let bindbt = {
-    clicked: false,
-    click: function(){
-        this.clicked = true, 
-        console.log(this) // bindbt{clicked: true, click: ƒ}
-        console.log( bindbt.clicked ) // true
-    }
+  clicked: false,
+  click: function () {
+    ;(this.clicked = true), console.log(this) // bindbt{clicked: true, click: ƒ}
+    console.log(bindbt.clicked) // true
+  },
 }
 
-let elem4 = document.getElementById('test4');
-elem4.addEventListener('click', bindbt.click.bind(bindbt) ) //{clicked: true, click: ƒ}
+let elem4 = document.getElementById("test4")
+elem4.addEventListener("click", bindbt.click.bind(bindbt)) //{clicked: true, click: ƒ}
 /* Whenever the button is clicked, that bound function will be invoked with the button object as its context,
-*/
+ */
 console.log(bindbt) // {clicked: false, click: ƒ}
