@@ -214,11 +214,15 @@ console.log("DOG", dog)
 // {labrador: false, re: Window}
 console.log(dog === puppy) // true
 console.log(dog.labrador === puppy) // false
+console.log(dog.re)
 
 /* 
-when we try to access the value of labrador constructor dog run
-which says labrador is true then function return puppy.
-puppy change the value of labrador from true to false
+when we return an object from a contructor function, that object ( puppy ) 
+becomes the the value of the whole new expression.
+
+all the values/methods before return in the Dog function will be ignored 
+in the constructor function. The constructor function will take only the 
+object puppy properties which is returned.
 */
 
 // /////////////////////////
