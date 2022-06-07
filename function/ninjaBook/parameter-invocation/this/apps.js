@@ -8,6 +8,7 @@ what this parameter points to isn't defined only by how and where the function i
 /* 
 the manner in which a function is invoked has a huge impact on how the code within it operates, primarily in how the 'this' parameter, the function context, is established
 */
+// ------------------------------------------------------------------------------
 
 // /////////////////////////////////
 // invoke a function in four ways, /
@@ -19,6 +20,8 @@ enabling object-oriented programming.
 - As a contructor - new Ninja(), in Which a new object is brought into being
 - via function's call and apply methods - simple.call(ninja) or simple.apply(ninja)
 */
+
+// ------------------------------------------------------------------------------
 
 // /////////////////
 // Simple function /
@@ -46,6 +49,8 @@ function samurai() {
   return this
 }
 console.log(samurai()) // return undefined
+
+// ------------------------------------------------------------------------------
 
 // ////////////////////////////////
 // Invoking a function as method //
@@ -124,6 +129,8 @@ We dont need make different copy of getMyThis to perform exact same processing o
 different object.
 */
 
+// ------------------------------------------------------------------------------
+
 // ///////////////////////////////////////
 // invoking a function as a constructor //
 // ///////////////////////////////////////
@@ -194,8 +201,12 @@ console.log(typeof samurai1) // object
 console.log(typeof samurai1.skill === "function") // true
 
 /* 
-if we call Knight1 function it returns 1 and if we call it as a constructor
-with new key word a new samurai1 object is constructed and returned */
+- if we call Knight1 function it returns 1 and 
+- if we call it as a constructor
+- with new key word a new samurai1 object is constructed and returned 
+
+- Test varify that the return value of 1 is ignored and 
+- that a new, initialzed object has been returend from new*/
 
 let puppy = {
   labradors: false,
@@ -224,6 +235,18 @@ all the values/methods before return in the Dog function will be ignored
 in the constructor function. The constructor function will take only the 
 object puppy properties which is returned.
 */
+
+/* 
+summary
+- if a construtor returns an object, that object is returned as the value of whole
+- new expression, the newly constructed object passed as this to the constructor is 
+- discarded. 
+ 
+- if, a nonobject is returned from the constructor, the returned value is ignored
+- and a newly created object is returned
+*/
+
+// ------------------------------------------------------------------------------
 
 // /////////////////////////
 // apply and call method  //
