@@ -198,17 +198,20 @@ if we call Knight1 function it returns 1 and if we call it as a constructor
 with new key word a new samurai1 object is constructed and returned */
 
 let puppy = {
-  labrador: false,
+  labradors: false,
   re: this,
 }
 
 function Dog() {
   this.labrador = true
+  this.name = "knight"
   return puppy
 }
 
 let dog = new Dog()
 
+console.log("DOG", dog)
+// {labrador: false, re: Window}
 console.log(dog === puppy) // true
 console.log(dog.labrador === puppy) // false
 
