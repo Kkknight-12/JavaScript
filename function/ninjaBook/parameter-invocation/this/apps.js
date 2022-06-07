@@ -327,6 +327,8 @@ in its argument list.
 We use 'apply' when we have values in array or when its convenient to collect them. 
 */
 
+// ------------------------------------------------------------------------------
+
 // ///////////////////////////////
 // Back to fixing our click me  //
 // //////////////////////////////
@@ -340,7 +342,7 @@ function Button2() {
   ;(this.clicked = false),
     (this.click = () => {
       ;(this.clicked = true), // this will refer to nearest scope
-        console.log(this) // Button2 {clicked: true, click: ƒ}
+        console.log(this.clicked) // Button2 {clicked: true, click: ƒ}
       console.log(button2.clicked) // true
     })
 }
@@ -354,8 +356,27 @@ console.log(button2) // Button2 {clicked: false, click: ƒ}
 // ////////////////////////////
 //  strange behavior of this //
 // ////////////////////////////
+
+const doggy = {
+  // normal function
+  bark: function () {
+    console.log("Woof!")
+  },
+  clicked: false,
+  barkTwice: function () {
+    this.bark()
+    // this.clicked = true
+    console.log("THIS clicked", this.clicked)
+  },
+}
+
+doggy.bark()
+// Woof!
+doggy.barkTwice()
+
 let bt = {
   clicked: false,
+  // arrow function
   click: () => {
     this.clicked = true
     console.log(this)
