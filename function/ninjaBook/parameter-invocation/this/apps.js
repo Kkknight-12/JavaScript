@@ -353,10 +353,13 @@ elem2.addEventListener("click", button2.click) // Button2 {clicked: true, click
 
 console.log(button2) // Button2 {clicked: false, click: ƒ}
 
+// ------------------------------------------------------------------------------
+
 // ////////////////////////////
 //  strange behavior of this //
 // ////////////////////////////
 
+// this in normal function in object
 const doggy = {
   // normal function
   bark: function () {
@@ -374,6 +377,7 @@ doggy.bark()
 // Woof!
 doggy.barkTwice()
 
+// this in arrow function in object
 let bt = {
   clicked: false,
   // arrow function
@@ -395,6 +399,8 @@ let b = {
   },
 }
 console.log(b.click()) // when we call arrow function it will refer to window
+
+// ------------------------------------------------------------------------------
 
 // ///////////////
 // Bind method  //
