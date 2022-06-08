@@ -6,49 +6,51 @@ Scope is part of the program in which a certain name is bound to a certain varia
 */
 
 // global variables
-var outerValue = 'Knight';
-var later; // innerFunction()
+var outerValue = "Knight"
+var later // innerFunction()
 
-function outerFunction(){
-  var innerValue = 'ninja'; // local variable
+function outerFunction() {
+  var innerValue = "ninja" // local variable
 
-  function innerFunction(){
-    if( outerValue === 'Knight' ){ // global variable is accessible
-      console.log('i can see Knight')
+  function innerFunction() {
+    if (outerValue === "Knight") {
+      // global variable is accessible
+      console.log("i can see Knight")
     }
-    if( innerValue === 'ninja' ){ // local variable is accessible
-      console.log('i can see ninja')
+    if (innerValue === "ninja") {
+      // local variable is accessible
+      console.log("i can see ninja")
     }
   }
   later = innerFunction // creating refernce to global variable
   // innerFunction();
 }
-outerFunction(); // -> local innerFunction, innervalue, this- window
-later(); // local -> this - window | Closure(outerFunction)-> innervalue
+outerFunction() // -> local innerFunction, innervalue, this- window
+later() // local -> this - window | Closure(outerFunction)-> innervalue
 
 // ///////////////////
 // private variable //
 // ///////////////////
-console.log('PRIVATE VARIABLES')
+console.log("PRIVATE VARIABLES")
 /* 
 Many programming languages use private variables—properties of an object that are hidden from outside parties. This is a useful feature, because we don’t want to overburden the users of our objects with unnecessary implementation details when accessing those objects from other parts of the code. Unfortunately, JavaScript doesn’t have native support for private variables. But by using a closure, we can achieve an acceptable approximation, as demonstrated by the following code
 */
 
-function Football(){
+function Football() {
   // private variable - which can't be accessed directly from outside, which prevents us from being able to make uncontrolled changes to the value of the variable
-  let goals = 0;
+  let goals = 0
 
   // accessor method -> use to obtain value of private variable
-  this.getGoals = function(){
-    return goals;
+  this.getGoals = function () {
+    return goals
   }
-  this.goal = function(){
-    goals++;
+  this.goal = function () {
+    goals++
   }
 }
-// 
-let TeamA = new Football();
-TeamA.goal();
+//
+let TeamA = new Football()
+TeamA.goal()
 
 console.log(TeamA.goals) //undefined
 // private data is inaccessible to us
@@ -56,15 +58,15 @@ console.log(TeamA.goals) //undefined
 console.log(TeamA.getGoals()) // 1
 // we are able to access internal goals count
 
-// creating new Team 
+// creating new Team
 // new will have there number of goals
-let TeamB = new Football();
+let TeamB = new Football()
 console.log(TeamB.getGoals()) // 0
 //  second ninja will get its own goals varaible
 
 /* 
 using closure allows the state of Football to be maintained within a method, 
-without letting it be direclty accessed by a user of the method - because variable is available to inner methods via their closures, but not to code that lies outside the constructor.
+without letting it be directly accessed by a user of the method - because variable is available to inner methods via their closures, but not to code that lies outside the constructor.
 */
 
 /*
@@ -77,15 +79,58 @@ declaration defined, but the closure is created that encompasses the function
 definition as we as all variables in scope at the point of function definition.
 */
 
-function remember(number) {
-    return function() {
-        return number;
+// -------------------------------------------------------------------------------------
+
+// //////////////////////////////
+// using closure with callbacks /
+// //////////////////////////////
+
+function animateIt(elementID) {
+  var elem = document.getElementById(elementID)
+  var tick = 0
+  //                       callback
+  var timer = setInterval(function () {
+    if (tick < 100) {
+      elem.style.left = elem.style.top = tick + "px"
+      tick++
+    } else {
+      clearInterval(timer)
+      console.log("tick")
+
+      if (tick === 100) {
+        console.log("tick accessed via a colsure.")
+      }
+      if (elem) {
+        console.log("Element also accessed via a closure")
+      }
+      if (timer) {
+        console.log("Timer reference also obtained via a closure")
+      }
     }
+  }, 10)
 }
 
-const returnedFunction = remember(5);
+console.log("ANIMATE")
+animateIt("box1")
+// tick accessed via a colsure.
+// Element also accessed via a closure
+// Timer reference also obtained via a closure
+console.log("------------")
+// -------------------------------------------------------------------------------------
 
-console.log( returnedFunction() );
+////////////
+// Udacity /
+////////////
+
+function remember(number) {
+  return function () {
+    return number
+  }
+}
+
+const returnedFunction = remember(5)
+
+console.log(returnedFunction())
 
 /* 
 When the Javascript engine enters remember(), it creates a new execution scope that points back to the prior execution scope. This new scope includes a reference to the number parameter (an immutable Number with the value 5). When the engine reaches the inner function (a function expression), it attaches a link to the current execution scope.
@@ -93,33 +138,33 @@ When the Javascript engine enters remember(), it creates a new execution scope t
 This 'process of a function retaining access to its "scope" is called a "closure" '. In this example, the inner function "closes over" number. A closure can capture any number of parameters and variables that it needs. 
 */
 
-const myName = 'Knight';
+const myName = "Knight"
 
 function introduceMyself() {
-	const you = 'Learner';
-	
-	function inner(){
+  const you = "Learner"
+
+  function inner() {
     /* 
     local - introduce(), str
     Closure - you
     */
-    const str = 'nothing'; 
-    
+    const str = "nothing"
+
     function introduce() {
       /* Closure 1 (inner)
       variable - str: 'nothing'
       Closure 2 (introduceMyself)
       variable - you: 'student'
       */
-      console.log(`Hello, ${you}, I'm ${myName}!`);
+      console.log(`Hello, ${you}, I'm ${myName}!`)
       console.log(str)
     }
-  
+
     return introduce()
   }
-return inner();
+  return inner()
 }
-introduceMyself();
+introduceMyself()
 // Hello, Learner, I'm Knight!
 
 /* 
@@ -129,16 +174,16 @@ As it turns out, the introduce() function and its lexical environment form a 
 */
 
 function outerFunction2() {
-  let num1 = 5;
+  let num1 = 5
 
-  return function(num2) {
-    console.log(num1 + num2);
-  };
+  return function (num2) {
+    console.log(num1 + num2)
+  }
 }
 
-let result = outerFunction2();
+let result = outerFunction2()
 
-result(10);
+result(10)
 
 /* 
 After outerFunction2() is returned, it may seem that all of its local variables would be allocated back to available memory. As it turns out, however, the nested innerFunction() still has access to the num1 variable!
@@ -153,14 +198,14 @@ When result(10); is executed, then, the function is still able to access num1's 
 // 	diet: 'carnivore'
 // };
 
-// function PolarBear() { 
+// function PolarBear() {
 // 	// ...
 // }
 
 // PolarBear.prototype = bear;
 
 // console.dir(PolarBear.prototype)
-// /* 
+// /*
 // Object
 // 	claws: true
 // 	diet: "carnivore"
@@ -174,17 +219,16 @@ When result(10); is executed, then, the function is still able to access num1's 
 // console.dir(PolarBear.prototype)
 
 const bear = {
-	claws: true,
-	diet: 'carnivore'
-};
+  claws: true,
+  diet: "carnivore",
+}
 
-
-function PolarBear() { 
-	// ...
+function PolarBear() {
+  // ...
 }
 
 // wrong way of adding prototype
-PolarBear.prototype = bear;
+PolarBear.prototype = bear
 
 console.dir(PolarBear.prototype)
 /* 
@@ -194,7 +238,7 @@ Object
 	__proto__: Object
 */
 
-const snowball = new PolarBear();
+const snowball = new PolarBear()
 console.log(snowball.__proto__)
 
 // changing proto property of child also affect proto of parent
@@ -212,20 +256,19 @@ console.log(Object.getPrototypeOf(riceBowl))
 
 // console.log(PolarBear.prototype)
 
-
-console.log('---------')
+console.log("---------")
 
 // ///////////////
 // Parent Object /
 // ///////////////
-function Animal(){
-  this.specie = 'Animal'
+function Animal() {
+  this.specie = "Animal"
 }
 
 // ////////////////////
 // prototype property /
 // ////////////////////
-Animal.prototype.walk = function(){
+Animal.prototype.walk = function () {
   console.log(`${this.name} walks`)
 }
 
@@ -233,19 +276,19 @@ Animal.prototype.walk = function(){
 // Child Object /
 // //////////////
 function Cat(name) {
-		this.lives = 9;
-		this.name = name;
-		
-		this.sayName = function () {
-			console.log(`Meow! My name is ${this.name}`);
-		};
+  this.lives = 9
+  this.name = name
+
+  this.sayName = function () {
+    console.log(`Meow! My name is ${this.name}`)
+  }
 }
 
 // //////////////////////
 // creating inheritance /
 // //////////////////////
 
-// wrong way to inherit 
+// wrong way to inherit
 /* 
 we previosly used this method to transfer inheritance
 but its a wrong way 
@@ -254,13 +297,13 @@ Cat.prototype = Animal.prototype
 
 // two better way to create inheritance
 
-// new operator 
+// new operator
 Cat.prototype = new Animal()
 
 // Object.create()
 
-// but with this method you will inherit just the 
-// prototype properties and method, 
+// but with this method you will inherit just the
+// prototype properties and method,
 // we will not be access Animal own properties/method link specie
 /* 
 Object.create() takes in a single object as an argument,
@@ -269,7 +312,7 @@ to what argument is passed into it
 */
 // Cat.prototype = Object.create( Animal.prototype );
 
-Cat.prototype.meow = function(){
+Cat.prototype.meow = function () {
   console.log(`My name is ${this.name} I do Meow`)
 }
 
@@ -285,20 +328,20 @@ always remeber to set the constructor function back to itself
 // Cat.prototype.constructor = Cat;
 // console.log(bill.constructor)
 
-// proper way to create constructor  
-Object.defineProperty( Cat.prototype, 'constructor', {
+// proper way to create constructor
+Object.defineProperty(Cat.prototype, "constructor", {
   enumerable: false, // setting the iterable property to false
   value: Cat,
   writable: true,
-});
+})
 
 console.log(Cat.prototype) // Animal {specie: "Animal", meow: ƒ, constructor: ƒ}
 // Animal {meow: ƒ, constructor: ƒ}, if you create Cat with Object.create
 
-// as we have set the value of object constructor to non itterable 
+// as we have set the value of object constructor to non itterable
 // it will not be shown in for loop
 // using short cut method will make constructor iterable
-for( let prop in Cat.prototype ){
+for (let prop in Cat.prototype) {
   console.log(prop)
   // object constructor should not be itterable
   /* 
@@ -310,13 +353,13 @@ for( let prop in Cat.prototype ){
 // /////////////////
 // object instance /
 // /////////////////
-const bill = new Cat('Bailey');
-bill.nickName = function(){
-  console.log('kill bill panday')
+const bill = new Cat("Bailey")
+bill.nickName = function () {
+  console.log("kill bill panday")
 }
 
-console.log(bill.constructor === Cat); // true
-// console.log(bill.constructor) 
+console.log(bill.constructor === Cat) // true
+// console.log(bill.constructor)
 
 // ////////////
 // instanceof /
@@ -325,8 +368,8 @@ console.log(bill.constructor === Cat); // true
 the Parent constructor exists in the 
 Child object's prototype chain 
 */
-console.log( bill instanceof Animal ) // true
-console.log( bill instanceof Cat ) // true
+console.log(bill instanceof Animal) // true
+console.log(bill instanceof Cat) // true
 
 // ////////////////
 // getPrototypeOf /
@@ -335,7 +378,7 @@ console.log( bill instanceof Cat ) // true
 Object.getPrototypeOf() is great for 
 retrieving the prototype of a given object. 
 */
-console.log(Object.getPrototypeOf(bill)) 
+console.log(Object.getPrototypeOf(bill))
 // Animal {specie: "Animal", meow: ƒ, constructor: ƒ}
 // Animal {meow: ƒ, constructor: ƒ}, if you create Cat with Object.create
 
@@ -363,13 +406,13 @@ console.log(bill.constructor)
 // /////////////////
 /* hasOwnProperty() allows you to find the origin 
 of a particular property.  */
-console.log(bill.hasOwnProperty('nickName')) // true
+console.log(bill.hasOwnProperty("nickName")) // true
 
-bill.walk(); // Animal prototype method
+bill.walk() // Animal prototype method
 console.log(bill.specie) // Animal property
 bill.sayName() // Cat prototype method
 bill.meow() // Cat prototype method
 bill.nickName() // bill method
 console.log(bill.lives)
 
-console.log('---------')
+console.log("---------")
