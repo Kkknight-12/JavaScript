@@ -184,17 +184,17 @@ EXECUTION CONTEXT is an internal Js concept which it uses to track the execution
 - take existing items only from top. 
 */
 
-function BabuBhaiaFunc(ninja) {
-  rajuReporting(ninja + " time running") // calling another function
+function sneak(ninja) {
+  crouch(ninja + " time running") // calling another function
 }
 
-function rajuReporting(message) {
+function crouch(message) {
   console.log(message) // logging message to console
 }
 
 // funciton call from global code
-BabuBhaiaFunc("first")
-BabuBhaiaFunc("second")
+sneak("first")
+sneak("second")
 
 // -------------------------------------------------------------------------------------
 
