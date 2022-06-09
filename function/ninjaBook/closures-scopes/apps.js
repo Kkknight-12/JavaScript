@@ -184,16 +184,17 @@ EXECUTION CONTEXT is an internal Js concept which it uses to track the execution
 - take existing items only from top. 
 */
 
-function skulk(ninja) {
-  report(ninja + " skulking")
+function BabuBhaiaFunc(ninja) {
+  rajuReporting(ninja + " time running") // calling another function
 }
 
-function report(message) {
-  console.log(message)
+function rajuReporting(message) {
+  console.log(message) // logging message to console
 }
 
-skulk("Kuma")
-skulk("Yoshi")
+// funciton call from global code
+BabuBhaiaFunc("first")
+BabuBhaiaFunc("second")
 
 // -------------------------------------------------------------------------------------
 
