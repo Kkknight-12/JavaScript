@@ -88,14 +88,29 @@ definition as we as all variables in scope at the point of function definition.
 function animateIt(elementID) {
   var elem = document.getElementById(elementID)
   var tick = 0
+  /* 
+  - every 300 milisecond this timer function will be called
+  - which will increase the tick count
+  - the count will increase till 100 then the 
+  - clear function will run 
+  
+  https://www.codingame.com/playgrounds/347/javascript-promises-mastering-the-asynchronous/what-is-asynchronous-in-javascript
+  
+  - setInterval is an async function
+  - so it will run after the main thread is complete, 
+  - will run at last, after all the functions have been executed 
+  
+  - closure can be seen here as the timer function needs to remember
+  - and access variable tick, elem, timer
+  */
   //                       callback
   var timer = setInterval(function () {
     if (tick < 100) {
       elem.style.left = elem.style.top = tick + "px"
+      console.log("tick", tick) // increment by 1 every time till reach 100
       tick++
     } else {
       clearInterval(timer)
-      console.log("tick")
 
       if (tick === 100) {
         console.log("tick accessed via a colsure.")
@@ -107,15 +122,14 @@ function animateIt(elementID) {
         console.log("Timer reference also obtained via a closure")
       }
     }
-  }, 10)
+  }, 300)
 }
 
 console.log("ANIMATE")
-animateIt("box1")
+// animateIt("box1")
 // tick accessed via a colsure.
 // Element also accessed via a closure
 // Timer reference also obtained via a closure
-console.log("------------")
 // -------------------------------------------------------------------------------------
 
 ////////////
