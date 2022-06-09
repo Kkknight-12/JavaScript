@@ -2,7 +2,12 @@
 Closures allow function to access and manipulate variables that are external to that
 function. It Allow a function to access all the variables, as well as other functions
 
-Scope is part of the program in which a certain name is bound to a certain variable
+Scope is part of the program in which a certain name is bound to a certain variable.
+
+// using closure with callbacks
+- Closue isn't a snapshot of the state of scope at the time of creation, but
+- an active encapsulation of that start that we can
+- modify as long as the closure exists.
 */
 
 // global variables
@@ -125,11 +130,71 @@ function animateIt(elementID) {
   }, 300)
 }
 
-console.log("ANIMATE")
 // animateIt("box1")
 // tick accessed via a colsure.
 // Element also accessed via a closure
 // Timer reference also obtained via a closure
+/*  
+- If we keep the variable in the global scope, we need new set of varaibles 
+- for each function we needed to run.
+- By defining the variable inside function 
+- relying on closures to make them available to the
+- timer callback invocations, each animation gets its own
+- private 'bubble' of variables*/
+
+// -------------------------------------------------------------------------------------
+
+//////////////////////
+// Execution Context /
+//////////////////////
+
+/* 
+- Two main types of Javascript code 
+- global code, function code
+
+- When a code is executed in Js engine, each statement is executed
+- in a certain EXECUTION CONTEXT.
+
+Two types of EXECUTION CONTEXT
+- global execution context
+- function execution context
+
+- only one GLOBAL EXECUTION CONTEXT which is created when the JS program starts
+- executing
+- whereas a new FUNCTION EXECUTION CONTEXT is created on each function invocation
+
+- FUNCTION EXECUTION CONTEXT is an object on which our function is invoked, which 
+- can be accessed through this keyword.
+
+WARNING: Dont confuse FUNCTION EXECUTION CONTEXT with EXECUTION CONTEXT.
+
+EXECUTION CONTEXT is an internal Js concept which it uses to track the execution
+- of our functions.
+
+- Js is single-threaded. One piece of code is executed at a time. 
+- Everytime a function is invoked. current execution context is stopped
+- new function context is created. After function perform its task
+- function execution context is discarded. And Caller ( the function which called it )
+- execution context is restored.
+
+- EXECUTION CONTEXT STACK is used to keep track of all these execution contexts- both
+- one that's executing and one that is waiting. 
+
+- STACK is a Data Structure in which you can put new items only to top and can
+- take existing items only from top. 
+*/
+
+function skulk(ninja) {
+  report(ninja + " skulking")
+}
+
+function report(message) {
+  console.log(message)
+}
+
+skulk("Kuma")
+skulk("Yoshi")
+
 // -------------------------------------------------------------------------------------
 
 ////////////
