@@ -198,6 +198,29 @@ sneak("second")
 
 // -------------------------------------------------------------------------------------
 
+//////////////////
+// Code Nesting //
+//////////////////
+
+var ninjaN = "Misashi"
+
+function nesting() {
+  var action = "Sneak"
+
+  function report() {
+    var reportNum = 3
+
+    for (var i = 0; i < reportNum; i++) {
+      console.log(`${ninjaN} ${action} level ${i}`)
+    }
+  }
+  report()
+}
+
+nesting()
+
+// -------------------------------------------------------------------------------------
+
 ////////////
 // Udacity /
 ////////////
