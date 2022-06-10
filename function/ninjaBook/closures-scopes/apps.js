@@ -202,14 +202,19 @@ sneak("second")
 // Code Nesting //
 //////////////////
 
+// global variable and function
 var ninjaN = "Misashi"
 
 function nesting() {
+  /* 
+  scope - https://www.w3schools.com/js/js_scope.asp */
+  // function scope
   var action = "Sneak"
 
   function report() {
     var reportNum = 3
 
+    // block scope
     for (var i = 0; i < reportNum; i++) {
       console.log(`${ninjaN} ${action} level ${i}`)
     }
