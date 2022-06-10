@@ -33,6 +33,8 @@ function outerFunction() {
 outerFunction() // -> local innerFunction, innervalue, this- window
 later() // local -> this - window | Closure(outerFunction)-> innervalue
 
+// -------------------------------------------------------------------------------------
+
 // ///////////////////
 // private variable //
 // ///////////////////
@@ -140,13 +142,14 @@ function animateIt(elementID) {
 - By defining the variable inside function 
 - relying on closures to make them available to the
 - timer callback invocations, each animation gets its own
-- private 'bubble' of variables*/
+- private 'bubble' of variables
+*/
 
 // -------------------------------------------------------------------------------------
 
-//////////////////////
+// ///////////////////
 // Execution Context /
-//////////////////////
+// ///////////////////
 
 /* 
 - Two main types of Javascript code 
@@ -198,9 +201,9 @@ sneak("second")
 
 // -------------------------------------------------------------------------------------
 
-//////////////////
-// Code Nesting //
-//////////////////
+// //////////////
+// Code Nesting /
+// //////////////
 
 // global variable and function
 var ninjaN = "Misashi"
@@ -226,9 +229,9 @@ nesting()
 
 // -------------------------------------------------------------------------------------
 
-////////////
-// Udacity /
-////////////
+// //////////
+// Udacity  /
+// //////////
 
 function remember(number) {
   return function () {
@@ -366,6 +369,8 @@ console.log(Object.getPrototypeOf(riceBowl))
 
 console.log("---------")
 
+// -------------------------------------------------------------------------------------
+
 // ///////////////
 // Parent Object /
 // ///////////////
@@ -416,7 +421,7 @@ Cat.prototype = new Animal()
 /* 
 Object.create() takes in a single object as an argument,
 and returns a new object with its __proto__ property set 
-to what argument is passed into it 
+to what argument is passed into it.  
 */
 // Cat.prototype = Object.create( Animal.prototype );
 
@@ -457,6 +462,8 @@ for (let prop in Cat.prototype) {
   walk
   */
 }
+
+// -------------------------------------------------------------------------------------
 
 // /////////////////
 // object instance /
@@ -511,7 +518,7 @@ console.log(bill.constructor)
 
 // //////////////////
 // hasOwnProperty() /
-// /////////////////
+// //////////////////
 /* hasOwnProperty() allows you to find the origin 
 of a particular property.  */
 console.log(bill.hasOwnProperty("nickName")) // true
