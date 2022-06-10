@@ -171,7 +171,7 @@ Two types of EXECUTION CONTEXT
 
 WARNING: Dont confuse FUNCTION EXECUTION CONTEXT with EXECUTION CONTEXT.
 
-EXECUTION CONTEXT is an internal Js concept which it uses to track the execution
+- EXECUTION CONTEXT is an internal Js concept which it uses to track the execution
 - of our functions.
 
 - Js is single-threaded. One piece of code is executed at a time. 
@@ -201,9 +201,61 @@ sneak("second")
 
 // -------------------------------------------------------------------------------------
 
-// //////////////
-// Code Nesting /
-// //////////////
+// /////////////////////
+// Lexical Environment /
+// /////////////////////
+
+/* 
+- Execution Context is vital in IDENTIFIER RESOLUTION
+- ( process of figuring out which variable a certain identifier refers to  eg:
+- const | var | let naam = "champak lal" 
+- function Bhide() { } ).
+- Execution context do this via LEXICAL ENVIRONMENT.
+- */
+
+// identifier      value
+// variable
+var ninjaLE = "Hattori Hanzo"
+console.log(ninjaLE)
+
+/* 
+- LEXICAL ENVIRONMENT is used to keep track of mapping from identifiers to 
+- specific varaibles.
+------------------------------------------------------------------
+|- All JavaScript variables must be identified with unique names.  |
+|- These unique names are called identifiers.                      |
+------------------------------------------------------------------
+*/
+
+// -------------------------------------------------------------------------------------
+
+// /////////////////////////////////////
+// Code Nesting and Lexical Environment/
+// /////////////////////////////////////
+
+var ninjaNLE = "Yamamoto"
+
+function sneakNLE() {
+  var action = "Skulking"
+
+  function report() {
+    var intro = "Aye Aye..!"
+
+    if (intro === "Aye Aye..!") {
+      console.log("local")
+    }
+    if (action === "Skulking") {
+      console.log("Outer")
+    }
+    if (ninjaNLE === "Yamamoto") {
+      console.log("Global")
+    }
+  }
+  report()
+}
+sneakNLE()
+
+// -------------------------------------------------------------------------------------
 
 // global variable and function
 var ninjaN = "Misashi"
