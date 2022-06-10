@@ -206,8 +206,17 @@ sneak("second")
 // /////////////////////
 
 /* 
+- LEXICAL ENVIRONMENT is used to keep track of mapping from identifiers to 
+- specific varaibles.
+------------------------------------------------------------------
+|- All JavaScript variables must be identified with unique names.  |
+|- These unique names are called identifiers.                      |
+------------------------------------------------------------------
+*/
+
+/* 
 - Execution Context is vital in IDENTIFIER RESOLUTION
-- ( process of figuring out which variable a certain identifier refers to  eg:
+- ( process of figuring out which variable a certain identifier refers to eg:
 - const | var | let naam = "champak lal" 
 - function Bhide() { } ).
 - Execution context do this via LEXICAL ENVIRONMENT.
@@ -218,44 +227,19 @@ sneak("second")
 var ninjaLE = "Hattori Hanzo"
 console.log(ninjaLE)
 
-/* 
-- LEXICAL ENVIRONMENT is used to keep track of mapping from identifiers to 
-- specific varaibles.
-------------------------------------------------------------------
-|- All JavaScript variables must be identified with unique names.  |
-|- These unique names are called identifiers.                      |
-------------------------------------------------------------------
-*/
-
 // -------------------------------------------------------------------------------------
 
-// /////////////////////////////////////
-// Code Nesting and Lexical Environment/
-// /////////////////////////////////////
+// //////////////
+// Code Nesting /
+// //////////////
 
-var ninjaNLE = "Yamamoto"
+/*  
+- Lexical Environemnt is heavily based on code nesting.
+- Enable One code structure to be contained within another
 
-function sneakNLE() {
-  var action = "Skulking"
-
-  function report() {
-    var intro = "Aye Aye..!"
-
-    if (intro === "Aye Aye..!") {
-      console.log("local")
-    }
-    if (action === "Skulking") {
-      console.log("Outer")
-    }
-    if (ninjaNLE === "Yamamoto") {
-      console.log("Global")
-    }
-  }
-  report()
-}
-sneakNLE()
-
-// -------------------------------------------------------------------------------------
+- nesting () is contained within gloabal code
+- report is nested within nesting function
+- loop is nested within report function*/
 
 // global variable and function
 var ninjaN = "Misashi"
@@ -278,6 +262,58 @@ function nesting() {
 }
 
 nesting()
+/* 
+- each of these code structure gets an associated lexical environment
+- everytime code is evaluated.
+- inner code structure has access to varaibles defined in outter code
+ 
+*/
+
+// -------------------------------------------------------------------------------------
+
+// /////////////////////////////////////
+// Code Nesting and Lexical Environment/
+// /////////////////////////////////////
+/*  
+- In addition to keeping track of local variables, function declarations,
+- function parameters, each lexical env has to keep track of its outer
+- lexical enviroment.
+
+- If the identifier is not found in the current enviroment, outer
+- environment is searched.
+*/
+
+// global variable
+var ninjaNLE = "Yamamoto"
+
+function sneakNLE() {
+  // have access to local action and gobal ninjaNLE
+  var action = "Skulking"
+
+  function report() {
+    // have access to local intro and outer action and gobal ninjaNLE
+    var intro = "Aye Aye..!"
+
+    if (intro === "Aye Aye..!") {
+      console.log("local")
+    }
+    if (action === "Skulking") {
+      console.log("Outer")
+    }
+    if (ninjaNLE === "Yamamoto") {
+      console.log("Global")
+    }
+  }
+  report()
+}
+sneakNLE()
+
+/* 
+- sneakNLE will keep a reference to global environment, 
+- report function will keep a reference to skull environment
+*/
+
+// -------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------
 
