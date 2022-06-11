@@ -314,12 +314,14 @@ sneakNLE()
 */
 
 // -------------------------------------------------------------------------------------
+
 // /////////////////////
 // Variable Mutability /
 // /////////////////////
 
 // **const**
 // while initializing const, it should be given the value.
+
 const firstConst = "Knight"
 
 function ChangeConst() {
@@ -356,12 +358,75 @@ NOTE: blocks are ignored in case of var. With Es6 we have been give const,
 - let to work with bock. 
 */
 
+// scope is global
 var globalKnight = "Sir Dot"
 
 function reportActivity() {
   console.log(globalKnight)
+  // functionActivity -> scope is within the function.
+  var functionActivity = "Strong Attacks"
 }
+
 reportActivity()
+
+try {
+  console.log(functionActivity)
+} catch (error) {
+  console.error(error) // functionActivity is not defined
+}
+
+// var dont work in block scope
+function checkVarBlockScope() {
+  var functionScope = "Fun"
+
+  for (var i = 1; i < 3; i++) {
+    var forMessage = globalKnight + " " + functionScope
+
+    if (forMessage === "Sir Dot Fun") {
+      console.log("JS is fun")
+    }
+  }
+
+  // can assess the block scope value ( i and forMessage ) outside the loop
+  if (i === 3 && forMessage === "Sir Dot Fun") {
+    console.log("Loop variable is assesible outside the loop")
+  }
+}
+
+checkVarBlockScope()
+
+// **const and let**
+
+const globalKnightCL = "Luffy"
+
+function reportActivityCL() {
+  const functionActivityCL = "Jumping"
+
+  for (let i = 1; i < 3; i++) {
+    let forMessage = globalKnightCL + " " + functionActivityCL
+
+    if (forMessage === "Luffy Jumping") {
+      console.log("luffy is jumping within for block") // luffy is jumping within for block
+    }
+  }
+
+  // you can't access varaible declared with let or const inside
+  // the block scope | loop outiside the scope
+  if (typeof i === "undefined" && typeof forMessage === "undefined") {
+    console.log("loop varaible are not accessible outiside the loop") // loop varaible are not accessible outiside the loop
+  }
+}
+
+reportActivityCL()
+
+if (
+  typeof functionActivityCL === "undefined" &&
+  typeof i === "undefined" &&
+  typeof forMessage === "undefined"
+) {
+  console.table("we can't see function varaibles outside of a function")
+}
+
 // -------------------------------------------------------------------------------------
 
 // //////////
