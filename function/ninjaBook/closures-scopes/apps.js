@@ -314,7 +314,54 @@ sneakNLE()
 */
 
 // -------------------------------------------------------------------------------------
+// /////////////////////
+// Variable Mutability /
+// /////////////////////
 
+// **const**
+// while initializing const, it should be given the value.
+const firstConst = "Knight"
+
+function ChangeConst() {
+  if (firstConst === "Knight") {
+    console.log("firstConst is a Knight")
+  }
+
+  try {
+    firstConst = "Samurai"
+  } catch (error) {
+    console.error("An exception has occurred.")
+  }
+
+  if (firstConst === "Knight") {
+    console.log("firstConst is still a Knight")
+  }
+}
+
+ChangeConst()
+/* can't assign a new value to const after it's initializtion */
+
+//
+const secondConst = {}
+secondConst.skills = "Long Sword"
+console.log(secondConst)
+/* 
+- an object | array initilized with const can be modified later
+*/
+
+// var
+/* var scope is either defined in global or function lexical environment 
+
+NOTE: blocks are ignored in case of var. With Es6 we have been give const, 
+- let to work with bock. 
+*/
+
+var globalKnight = "Sir Dot"
+
+function reportActivity() {
+  console.log(globalKnight)
+}
+reportActivity()
 // -------------------------------------------------------------------------------------
 
 // //////////
