@@ -16,6 +16,19 @@ console.log("assign new prop to obj", obj) // { prop1: 2, prop2: [] }
 obj.prop4 = "Hello"
 console.log("adding property to obj", obj) // { prop1: 2, prop2: [], prop4: 'Hello' }
 
+// -------------------------------------------------------------------------------------
+
+// //////////////////////////
+// Understanding Prototype  /
+// //////////////////////////
+
+/*  
+- Prototype - an object to which seach for a particular property can be delegated. Prototype
+- are convenient means of defining properties and functionality which will be automatically
+- accessible to other objects. 
+- If you search for an object and that object dont have that property. That object prototype will be searched for that property. Every object can have refernece to its prototype.
+*/
+
 const yoshi = { skulk: true }
 const hattori = { sneak: true }
 const kuma = { creep: true }
@@ -30,6 +43,16 @@ if (!("sneak" in yoshi)) {
 if (!("creep" in yoshi)) {
   console.log("Yoshi cannot creep")
 } // Yoshi cannot creep
+
+// ///////////////////////
+// Object.setPrototypeOf /
+// //////////////////////
+
+/*  
+- Object.setPrototypeOf is used to set one object prototype of another
+- it is an internal property which is not directly accessible
+- it takes two object arguments and set the second object as prototype of another
+*/
 
 // if yoshi doesn't have any property then he will search hattori
 console.log(Object.setPrototypeOf(yoshi, hattori)) // { skulk: true }
@@ -56,23 +79,41 @@ if ("creep" in yoshi) {
   console.log("Yoshi can also creep")
 } // Yoshi can also creep
 
-// Object construction and prototypes
-// function Ninja(){}
+// -------------------------------------------------------------------------------------
 
-// Ninja.prototype.swingSword = function(){
-//   return true;
-// };
+// ////////////////////////////////////
+// Object construction and prototypes /
+// ////////////////////////////////////
 
-// const ninja1 = Ninja();
-// if(ninja1 === undefined){ console.log("No instance of Ninja created.") }; // No instance of Ninja created.
+function Ninja() {}
 
-// const ninja2 = new Ninja();
+/* 
+ - when a funcion is created, it immediately gets a new object assigend to its prototype
+ - object, an object that we can extend just like any other object. In this case 
+ - we are adding swingsword method.
+*/
+// with .prototype we can add properties
+Ninja.prototype.swingSword = function () {
+  return true
+}
 
-// if(
-//     ninja2 &&
-//     ninja2.swingSword &&
-//     ninja2.swingSword()
-// ){ console.log("Instance exists and method is callable." )}; // Instance exists and method is callable.
+// calling function as a function
+const ninja1 = Ninja()
+
+if (ninja1 === undefined) {
+  console.log("No instance of Ninja created.")
+} // No instance of Ninja created.
+
+// calling function as a constructor function
+const ninja2 = new Ninja()
+
+// have the prototype of function Ninja
+if (ninja2 && ninja2.swingSword && ninja2.swingSword()) {
+  console.log("Instance exists and method is callable.")
+} // Instance exists and method is callable.
+
+console.log("prototype check", ninja2.prototype === Ninja.prototype)
+// -------------------------------------------------------------------------------------
 
 ///
 // function Ninja(){
