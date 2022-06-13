@@ -429,6 +429,53 @@ if (
 
 // -------------------------------------------------------------------------------------
 
+// ///////////////////////////////////////////////////
+// Registering Identifiers within lexical environment /
+// ///////////////////////////////////////////////////
+
+// -------------------------------------------------------------------------------------
+
+// ///////////////////////////////////////////
+// Mimicking private varaibles with closures /
+// ///////////////////////////////////////////
+
+// -------------------------------------------------------------------------------------
+
+// //////////////////////////
+// Private Variables Caveat /
+/////////////////////////////
+
+function superNinja() {
+  var feints = 0
+
+  // will output the value of "private" variable
+  this.getFients = function () {
+    return feints
+  }
+
+  // will increase "private" varaible
+  this.feints = function () {
+    feints++
+  }
+}
+
+var ninja1 = new superNinja()
+// incrementing feints
+ninja1.feints()
+
+var imposter = {}
+// copying the method from ninja1 object
+imposter.getFients = ninja1.getFients
+
+function checkPrivate() {
+  if (imposter.getFients() === 1) {
+    console.log("The imposter has access to the feints variables!")
+  }
+}
+checkPrivate() // The imposter......varaibles!
+
+// -------------------------------------------------------------------------------------
+
 // //////////
 // Udacity  /
 // //////////
