@@ -229,34 +229,43 @@ if (ninjaOT.constructor === NinjaOT) {
 }
 // The ninja object was created by the Ninja function.
 
-// function Ninja(){}
+// ///////////////////////////////////////////////////////
+// instatiating new object using refernce to constructor /
+// ///////////////////////////////////////////////////////
 
-// const ninja = new Ninja();
-// const ninja2 = new Ninja();
+function NinjaRE() {}
 
-// if(ninja2 instanceof Ninja){console.log("It's a Ninja!")};
-// if(ninja !== ninja2){console.log("But not the same Ninja!")};
+const ninjaRE = new NinjaRE()
+const ninjaRE2 = new ninjaRE.constructor()
+
+if (ninjaRE2 instanceof NinjaRE) {
+  console.log("It's a Ninja!")
+}
+
+if (ninjaRE !== ninjaRE2) {
+  console.log("But not the same Ninja!")
+}
 
 ///////////////////////////
 // Achieving inheritance
 ////////////////////////////
 
-function Person() {}
-Person.prototype.dance = function () {}
+function PersonAI() {}
+PersonAI.prototype.dance = function () {}
 
-function Ninja() {}
-Ninja.prototype = { dance: Person.prototype.dance }
+function NinjaAI() {}
+Ninja.prototype = { dance: PersonAI.prototype.dance }
 
-const ninja = new Ninja()
+const ninjaAI = new NinjaAI()
 
-if (ninja instanceof Ninja) {
-  console.log("ninja receives  functionality from the Ninja prototype")
+if (ninjaAI instanceof NinjaAI) {
+  console.log("ninja receives functionality from the Ninja prototype")
 }
 // ninja receives  functionality from the Ninja prototype
-if (ninja instanceof Person) {
+if (ninjaAI instanceof PersonAI) {
   console.log("... and the Person prototype")
 }
-if (ninja instanceof Object) {
+if (ninjaAI instanceof Object) {
   console.log("... and the Object prototype")
 }
 // ... and the Object prototype
