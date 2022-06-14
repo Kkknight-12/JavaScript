@@ -154,71 +154,80 @@ NOTE: Every instances gets its own version of properties created within the
 - constructor, but they all have accesss to the same prototype property. 
 */
 
-function Increment() {
-  this.counter = 0
-  this.count = 8
+// -------------------------------------------------------------------------------------
 
-  this.add = () => {
-    return this.counter++
-  }
+// //////////////////////////////////////////////
+// Side Effects of dynamic nature of Javascript /
+// //////////////////////////////////////////////
+
+function NinjaSE() {
+  this.swung = true
 }
-Increment.prototype.subs = () => {
-  //   this.count = 8
 
-  return this
+const ninja3 = new NinjaSE()
+
+// adding a prototype method
+NinjaSE.prototype.swingSword = function () {
+  return this.swung
 }
-//
 
-const checkCounter = new Increment()
-checkCounter.add()
-console.log(checkCounter.counter) // 1
-console.log(checkCounter.subs()) // 8
-
-const checkCounter2 = new Increment()
-console.log(checkCounter2.counter) // 0
-console.log(checkCounter2.subs()) // 8
-
-// function Ninja(){
-//   this.swung = true;
-// }
-
-// const ninja3 = new Ninja();
-
-// Ninja.prototype.swingSword = function(){
-//   return this.swung;
-// };
-// if(ninja3.swingSword()){console.log("Method exists, even out of order.")};
+if (ninja3.swingSword()) {
+  console.log("Method exists, even out of order.")
+}
 // Method exists, even out of order.
 
 // new we are resetting the prototype
-// watch carefully are setting the new prototype
+// watch carefully we are setting new prototype
 // we are not adding a new prototype prooerty
-// Ninja.prototype = {
-//   pierce: function() {
-//     return true;
-//   }
-// }
+Ninja.prototype = {
+  pierce: function () {
+    return true
+  },
+}
 
-// if(ninja3.swingSword()){console.log("Our ninja can still swing!")};
-// // Our ninja can still swing!
+if (ninja3.swingSword()) {
+  console.log("Our ninja can still swing!")
+}
+// Our ninja can still swing!
 
-// const ninja4 = new Ninja();
-// if(ninja4.pierce()){ console.log("Newly created ninjas can pierce")};
-// // Newly created ninjas can pierce
-// if(!ninja4.swingSword){ console.log("But they cannot swing!")};
-// // But they cannot swing!
+const ninja4 = new Ninja()
+if (ninja4.pierce()) {
+  console.log("Newly created ninjas can pierce")
+}
+// Newly created ninjas can pierce
+if (!ninja4.swingSword) {
+  console.log("But they cannot swing!")
+}
+// But they cannot swing!
 
-// function Ninja(){}
-// const ninja = new Ninja();
+/*  
+- Even Though we have completely replaced
+- Ninja constructor's proptotype 
+- our Ninja can still swing sword, because it 
+- keep reference to Old Ninja prototype
+*/
 
-// if(typeof ninja === "object") { console.log("The type of the instance is object.")};
-// // The type of the instance is object.
-// if(ninja instanceof Ninja){console.log("instanceof identifies the constructor." )}
-// // instanceof identifies the constructor.
-// if(ninja.constructor === Ninja) {console.log("The ninja object was created by the Ninja function.")};
-// // The ninja object was created by the Ninja function.
+// -------------------------------------------------------------------------------------
 
-// console.log(ninja instanceof Ninja)
+// ///////////////////////////////
+// Object typing via constructor /
+// ///////////////////////////////
+
+function NinjaOT() {}
+const ninjaOT = new NinjaOT()
+
+if (typeof ninjaOT === "object") {
+  console.log("The type of the instance is object.")
+}
+// The type of the instance is object.
+if (ninjaOT instanceof NinjaOT) {
+  console.log("instanceof identifies the constructor.")
+}
+// instanceof identifies the constructor.
+if (ninjaOT.constructor === NinjaOT) {
+  console.log("The ninja object was created by the Ninja function.")
+}
+// The ninja object was created by the Ninja function.
 
 // function Ninja(){}
 
