@@ -115,23 +115,69 @@ if (ninja2 && ninja2.swingSword && ninja2.swingSword()) {
 console.log("prototype check", ninja2.prototype === Ninja.prototype)
 // -------------------------------------------------------------------------------------
 
-///
-// function Ninja(){
-//   this.swung = false;
-//   this.swingSword = function(){
-//     return !this.swung;
-//   };
-//  }
-//  Ninja.prototype.swingSword = function(){
-//    return this.swung;
-//  };
+// /////////////////////
+// Instance Properties /
+// /////////////////////
 
-//  const ninja = new Ninja();
-//  if(ninja.swingSword()){ console.log(  "Called the instance method, not the prototype method.")};
-// //Called the instance method, not the prototype method.
-// console.log(ninja.swingSword()) // true
+// intance method are accessed before prototype methods
 
-// //
+function NinjaIP() {
+  this.swung = false
+  this.swingSword = function () {
+    return !this.swung
+  }
+}
+
+/*
+- swingSword is already defined as a property to NinjaIP
+- we are defining a prototype method with same name 
+*/
+NinjaIP.prototype.swingSword = function () {
+  return this.swung
+}
+
+const ninjaIp = new NinjaIP()
+if (ninjaIp.swingSword()) {
+  console.log("Called the instance method, not the prototype method.")
+}
+// Called the instance method, not the prototype method.
+console.log(ninjaIp.swingSword()) // true
+
+/*
+- when we try to access swingSword method. The instance method was called not the
+- proptotype as the search chain start by search the method's on object itself
+- then its prototype.
+*/
+
+/*  
+NOTE: Every instances gets its own version of properties created within the 
+- constructor, but they all have accesss to the same prototype property. 
+*/
+
+function Increment() {
+  this.counter = 0
+  this.count = 8
+
+  this.add = () => {
+    return this.counter++
+  }
+}
+Increment.prototype.subs = () => {
+  //   this.count = 8
+
+  return this
+}
+//
+
+const checkCounter = new Increment()
+checkCounter.add()
+console.log(checkCounter.counter) // 1
+console.log(checkCounter.subs()) // 8
+
+const checkCounter2 = new Increment()
+console.log(checkCounter2.counter) // 0
+console.log(checkCounter2.subs()) // 8
+
 // function Ninja(){
 //   this.swung = true;
 // }
