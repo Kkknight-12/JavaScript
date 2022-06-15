@@ -273,10 +273,65 @@ if (ninjaAI instanceof Object) {
 }
 /* 
 - what we really wanted was to achieve a prototype chain.
-- so Ninja can ce a Person 
+- so Ninja can be a Person 
 
 - BEST way to acheive prototype chain is use
 - instance of an object as other object's prototype
 
 SubClass.prototype = new SuperClass();
 */
+
+// //////////////////////////////////////
+// Acheiving Inheritance with prototype /
+// //////////////////////////////////////
+
+function PersonAIP() {}
+
+PersonAIP.prototype.dance = function () {}
+
+function NinjaAPI() {}
+
+/* 
+- makes a Ninja a Person by making Ninja prototype 
+- an instance of Person
+*/
+NinjaAPI.prototype = new PersonAIP()
+
+const ninja1API = new NinjaAPI()
+
+if (ninja1API instanceof NinjaAPI) {
+  // true
+  console.log("true")
+}
+if (ninja1API instanceof PersonAIP) {
+  // true
+  console.log("true")
+}
+if (ninja1API instanceof Object) {
+  // true
+  console.log("true")
+}
+
+/* 
+- In order to achieve inheritace, we replace prototype of Ninja
+- function with new Person instance.
+
+- now when we create ninja object
+- internal prototype property of newly created ninja(ninja1API) object 
+- will be set to object to which current Ninja(NinjaAPI) prototype 
+- property points to(PersonAIP)
+*/
+
+/*  
+- Internal mechanism to search method.
+- first Js will check ninja object itself,
+- then will check person object, 
+- then will check person object
+- prototype
+*/
+
+// -------------------------------------------------------------------------------------
+
+// ///////////////////////////////////////////
+// Problem of Overiding Constructor property /
+// ///////////////////////////////////////////
