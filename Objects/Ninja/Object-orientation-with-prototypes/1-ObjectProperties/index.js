@@ -23,7 +23,7 @@ console.log("adding property to obj", obj) // { prop1: 2, prop2: [], prop4: 'Hel
 // //////////////////////////
 
 /*  
-- Prototype - an object to which seach for a particular property can be delegated. Prototype
+- Prototype - an object to which serach for a particular property can be delegated. Prototype
 - are convenient means of defining properties and functionality which will be automatically
 - accessible to other objects. 
 - If you search for an object and that object dont have that property. That object prototype will be searched for that property. Every object can have refernece to its prototype.
@@ -254,36 +254,29 @@ function PersonAI() {}
 PersonAI.prototype.dance = function () {}
 
 function NinjaAI() {}
-Ninja.prototype = { dance: PersonAI.prototype.dance }
+NinjaAI.prototype = { dance: PersonAI.prototype.dance }
 
 const ninjaAI = new NinjaAI()
 
 if (ninjaAI instanceof NinjaAI) {
+  // true
   console.log("ninja receives functionality from the Ninja prototype")
 }
-// ninja receives  functionality from the Ninja prototype
+
 if (ninjaAI instanceof PersonAI) {
+  // false
   console.log("... and the Person prototype")
 }
 if (ninjaAI instanceof Object) {
+  // true
   console.log("... and the Object prototype")
 }
-// ... and the Object prototype
+/* 
+- what we really wanted was to achieve a prototype chain.
+- so Ninja can ce a Person 
 
-////
-// function Person(){}
-// Person.prototype.dance = function(){};
+- BEST way to acheive prototype chain is use
+- instance of an object as other object's prototype
 
-// function Ninja(){}
-// Ninja.prototype = new Person();
-
-// const ninja = new Ninja();
-// if(ninja instanceof Ninja){
-// console.log( "ninja receives  functionality from the Ninja prototype")};
-// // ninja receives  functionality from the Ninja prototype
-// if(ninja instanceof Person){ console.log("... and the Person prototype")};
-// //... and the Person prototype
-// if(ninja instanceof Object){ console.log("... and the Object prototype" )};
-// // ... and the Object prototype
-// if(typeof ninja.dance === "function") { console.log("... and can dance!")};
-// // ... and can dance !
+SubClass.prototype = new SuperClass();
+*/
