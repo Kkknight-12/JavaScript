@@ -335,3 +335,16 @@ if (ninja1API instanceof Object) {
 // ///////////////////////////////////////////
 // Problem of Overiding Constructor property /
 // ///////////////////////////////////////////
+
+/*  
+- by setting new Person object as prototype of Ninja
+- constructor, we have lost our connection to Ninja
+- constructor. 
+*/
+function checkConnection() {
+  if (ninja1API.constructor !== NinjaAPI) {
+    console.log("The Ninja object connection to Ninja constructor is broken")
+  }
+  //   console.log(ninja1API.constructor) // [Function: PersonAIP]
+}
+checkConnection()
