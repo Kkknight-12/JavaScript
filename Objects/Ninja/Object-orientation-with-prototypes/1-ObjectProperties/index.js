@@ -345,6 +345,90 @@ function checkConnection() {
   if (ninja1API.constructor !== NinjaAPI) {
     console.log("The Ninja object connection to Ninja constructor is broken")
   }
-  //   console.log(ninja1API.constructor) // [Function: PersonAIP]
 }
 checkConnection()
+
+/*  
+- If we ask the ninja object which function has constructed it,
+- we'll get Person as the answer.
+*/
+console.log(ninja1API.constructor) // [Function: PersonAIP]
+
+// ///////////////////////
+// Object.defineProperty /
+// ///////////////////////
+var ninjaDP = {}
+ninjaDP.name = "yosshhh"
+ninjaDP.weapon = "split staff"
+
+Object.defineProperty(ninjaDP, "sneak", {
+  configurable: false,
+  enumerable: false,
+  value: true,
+  writable: true,
+})
+
+function checkSneak() {
+  if ("sneak" in ninjaDP) {
+    console.log("We can access the new property")
+  }
+}
+checkSneak()
+// we can access sneak property
+console.log(ninjaDP.sneak)
+
+// but its not iterable
+for (let props in ninjaDP) {
+  if (props != undefined) {
+    console.log("enumerable property : ", props)
+  }
+}
+
+/*  
+- by setting enumerable tp false
+- we can be sure that the property won't appear
+- when using the for in loop
+*/
+
+// ////////////////////////////////////
+// solution to overriding constructor /
+// ////////////////////////////////////
+
+function PersonOC() {}
+PersonOC.prototype.dance = function () {}
+
+function NinjaOC() {}
+NinjaOC.prototype = new PersonOC()
+
+// define a new non enumerable
+// constructor property pointing
+// back to Ninja
+Object.defineProperty(NinjaOC.prototype, "constructor", {
+  enumerable: false,
+  value: NinjaOC,
+  writable: true,
+})
+var ninjaOC = new NinjaOC()
+
+function checkOCWorking() {
+  if (ninjaOC.constructor === NinjaOC) {
+    console.log(
+      "Connection from ninja instance to Ninja constructor re-established."
+    )
+  }
+}
+checkOCWorking() // Connection... re-established.
+
+for (let prop in NinjaOC.prototype) {
+  if (prop === "dance") {
+    console.log("The only enumerable property is dance")
+  }
+}
+
+/*  
+- we have re-stablished the connection between 
+- ninja and Ninja function. In addition, if anybody 
+- tries to loop through the property of Ninja.prototype
+- object, we have made sure the our patched-on property
+- constructor won't be visited
+*/
