@@ -15,7 +15,8 @@ var outerValue = "Knight"
 var later // innerFunction()
 
 function outerFunction() {
-  var innerValue = "ninja" // local variable
+  // local variable
+  var innerValue = "ninja"
 
   function innerFunction() {
     if (outerValue === "Knight") {
@@ -27,12 +28,26 @@ function outerFunction() {
       console.log("i can see ninja")
     }
   }
-  later = innerFunction // creating refernce to global variable
+  // creating refernce to global variable
+  // which will allow us to call the function later
+  later = innerFunction
   // innerFunction();
 }
-outerFunction() // -> local innerFunction, innervalue, this- window
+
+outerFunction() // -> local innerFunction, innervalue: 'ninja', this- window
 later() // local -> this - window | Closure(outerFunction)-> innervalue
 
+/*
+- later is a variable which we are using to form a refrence to Func innerFunction()
+- outerFunction() runs an registeres variable innerValue
+- and create link later = innerFunction
+- later() is then used to call innerFunction()
+- when innerFunction() runs it needs  var innerValue which is
+- inside outerFunction()
+- its is kept alive with closure which is formed when outerFunction() ran
+*/
+
+console.log("-----------------")
 // -------------------------------------------------------------------------------------
 
 // ///////////////////
