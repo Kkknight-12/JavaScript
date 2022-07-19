@@ -35,7 +35,7 @@ function outerFunction() {
 }
 
 outerFunction() // -> local innerFunction, innervalue: 'ninja', this- window
-later() // local -> this - window | Closure(outerFunction)-> innervalue
+later() // local -> this - window | Closure(outerFunction)-> innervalue: 'ninja'
 
 /*
 - later is a variable which we are using to form a refrence to Func innerFunction()
@@ -47,6 +47,16 @@ later() // local -> this - window | Closure(outerFunction)-> innervalue
 - its is kept alive with closure which is formed when outerFunction() ran
 */
 
+/*
+we are executing 'innerFunction' after 'outerFunction' has been executed via
+trick-> copying a referencing to the function to global variable 'later'. 
+When innerFunction executes, scope inside outerfunction is long gone. But because we have 'closure' the 'innervalue' variable will be available when we execute inner function.
+
+When we declare innerFunction inside the outer function, not only is the function
+declaration defined, but the closure is created that encompasses the function
+definition as we as all variables in scope at the point of function definition.
+*/
+
 console.log("-----------------")
 // -------------------------------------------------------------------------------------
 
@@ -55,29 +65,37 @@ console.log("-----------------")
 // ///////////////////
 console.log("PRIVATE VARIABLES")
 /* 
-Many programming languages use private variables—properties of an object that are hidden from outside parties. This is a useful feature, because we don’t want to overburden the users of our objects with unnecessary implementation details when accessing those objects from other parts of the code. Unfortunately, JavaScript doesn’t have native support for private variables. But by using a closure, we can achieve an acceptable approximation, as demonstrated by the following code
+- private variables — properties of an object that are hidden from outside parties.
+- JavaScript doesn’t have native support for private variables. 
+- But by using a closure, we can achieve an acceptable approximation, 
+  - as demonstrated by the following code
 */
 
 function Football() {
   // private variable - which can't be accessed directly from outside, which prevents us from being able to make uncontrolled changes to the value of the variable
   let goals = 0
 
+  // getter method
   // accessor method -> use to obtain value of private variable
   this.getGoals = function () {
     return goals
   }
+
+  // setter method
   this.goal = function () {
     goals++
   }
 }
-//
+
+// creating instance of Football object
 let TeamA = new Football()
+// incrementing
 TeamA.goal()
 
-console.log(TeamA.goals) //undefined
+console.log("goals", TeamA.goals) //undefined
 // private data is inaccessible to us
 
-console.log(TeamA.getGoals()) // 1
+console.log("getGoals", TeamA.getGoals()) // 1
 // we are able to access internal goals count
 
 // creating new Team
@@ -89,16 +107,6 @@ console.log(TeamB.getGoals()) // 0
 /* 
 using closure allows the state of Football to be maintained within a method, 
 without letting it be directly accessed by a user of the method - because variable is available to inner methods via their closures, but not to code that lies outside the constructor.
-*/
-
-/*
-we are executing 'innerFunction' after 'outerFunction' has been executed via
-trick-> copying a referencing to the function to global variable 'later'. 
-When innerFunction executes, scope inside outerfunction is long gone. But because we have 'closure' the 'innervalue' variable will be available when we execute inner function.
-
-When we declare innerFunction inside the outer function, not only is the function
-declaration defined, but the closure is created that encompasses the function
-definition as we as all variables in scope at the point of function definition.
 */
 
 // -------------------------------------------------------------------------------------
@@ -127,14 +135,14 @@ function animateIt(elementID) {
   */
   //                       callback
   var timer = setInterval(function () {
-    if (tick < 100) {
+    if (tick < 10) {
       elem.style.left = elem.style.top = tick + "px"
       console.log("tick", tick) // increment by 1 every time till reach 100
       tick++
     } else {
       clearInterval(timer)
 
-      if (tick === 100) {
+      if (tick === 10) {
         console.log("tick accessed via a colsure.")
       }
       if (elem) {
@@ -147,7 +155,7 @@ function animateIt(elementID) {
   }, 300)
 }
 
-// animateIt("box1")
+animateIt("box1")
 // tick accessed via a colsure.
 // Element also accessed via a closure
 // Timer reference also obtained via a closure
