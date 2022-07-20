@@ -155,7 +155,7 @@ function animateIt(elementID) {
   }, 300)
 }
 
-animateIt("box1")
+// animateIt("box1")
 // tick accessed via a colsure.
 // Element also accessed via a closure
 // Timer reference also obtained via a closure
@@ -168,6 +168,7 @@ animateIt("box1")
 - private 'bubble' of variables
 */
 
+console.log("--------------")
 // -------------------------------------------------------------------------------------
 
 // ///////////////////
@@ -190,7 +191,7 @@ Two types of EXECUTION CONTEXT
 - whereas a new FUNCTION EXECUTION CONTEXT is created on each function invocation
 
 - FUNCTION EXECUTION CONTEXT is an object on which our function is invoked, which 
-- can be accessed through this keyword.
+- can be accessed through "this" keyword.
 
 WARNING: Dont confuse FUNCTION EXECUTION CONTEXT with EXECUTION CONTEXT.
 
