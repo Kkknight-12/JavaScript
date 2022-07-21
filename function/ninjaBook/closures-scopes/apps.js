@@ -403,6 +403,9 @@ try {
 function checkVarBlockScope() {
   var functionScope = "Fun"
 
+  // i is defined in block scope
+  // but i will find nearest function or global scope
+  // scope -> checkVarBlockScope()
   for (var i = 1; i < 3; i++) {
     var forMessage = globalKnight + " " + functionScope
 
@@ -426,6 +429,7 @@ const globalKnightCL = "Luffy"
 function reportActivityCL() {
   const functionActivityCL = "Jumping"
 
+  // const let are blocked scope
   for (let i = 1; i < 3; i++) {
     let forMessage = globalKnightCL + " " + functionActivityCL
 
