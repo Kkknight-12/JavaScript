@@ -375,7 +375,7 @@ console.log(secondConst)
 - an object | array initilized with const can be modified later
 */
 
-// var
+// **var**
 /* var scope is either defined in global or function lexical environment 
 
 NOTE: blocks are ignored in case of var. With Es6 we have been give const, 
