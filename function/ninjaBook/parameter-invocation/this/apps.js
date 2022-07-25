@@ -422,3 +422,23 @@ elem4.addEventListener("click", bindbt.click.bind(bindbt)) //{clicked: true, cli
 /* Whenever the button is clicked, that bound function will be invoked with the button object as its context,
  */
 console.log(bindbt) // {clicked: false, click: ƒ}
+
+// ------------------------------------------------------
+
+// let fnProp = function () {
+//   namE = "knight"
+//   return this
+// }
+// fnProp.skill = "Class A"
+// console.log(fnProp.namE) // undefined
+// console.log(fnProp.skill) // Class A
+// console.log(fnProp()) // window
+
+function fnProp() {
+  namE = "knight"
+  return this
+}
+fnProp.skill = "Class A"
+console.log("fnProp name", fnProp.namE) // undefined
+console.log(fnProp.skill) // Class A
+console.log("fnProp this", fnProp()) // window

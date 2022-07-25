@@ -94,37 +94,57 @@ console.log("------------------------")
 // ////////////////////////////////////////////////////////////////////
 
 // ////////////
-// callback  /
-// ///////////
+// callback  //
+// ////////////
+
+/*
+- a function to be called at a later time  
+*/
 var text = "you reached call back"
 function getText() {
   return text
 }
+
 function useless(ninjaCallback) {
   return ninjaCallback()
 }
-console.log(useless(getText))
+
+console.log("useless", useless(getText))
 
 // rewrite callback
+
 var text2 = "you again reached call back"
 function useless2(callback) {
   return callback()
 }
 
+// now when calling the HOF
+// we are defining callback body
+// inside annonymous function
 console.log(
   useless2(function () {
     return text2
   })
 )
 
+/*
+// arrow function
+console.log(
+  useless2( () => text2)
+)  
+*/
+
 // sorting with callback
 var values = [0, 3, 6, 7, 2, 1, 9, 3]
+
 values.sort(function (val1, val2) {
-  return val2 - val1
+  return val2 - val1 // val2 > val 1 ascending
+  // return val1 - val2 // val1 > val 2 descending
 })
+
 console.log(values) // [9, 7, 6, 3, 3, 2, 1, 0]
 
-console.log("------------------------")
+console.log("-----------Callback--ends-------------")
 // ////////////////////////////////////////////////////////////////////
 
 // //////////////////////////////////
@@ -136,19 +156,16 @@ weildSword.swordType = "katana"
 console.log(weildSword.swordType) // katana
 
 // properties must be added after you have created function
-// so you should pass empty function as properties defined
+// so you should pass empty function, as properties defined
 // while creating function will we refered as undefined when
 // when you call them
-let fnProp = function () {
-  namE = "knight"
-  return this // this will refer to window even if you use arrow function
-}
-fnProp.skill = "Class A"
-console.log(fnProp.namE) // undefined
-console.log(fnProp.skill) // Class A
-console.log(fnProp()) // window
 
-// storing function in collection
+console.log("-----------Callback--ends-------------")
+// ////////////////////////////////////////////////////////////////////
+
+// /////////////////////////////////
+// storing function in collection //
+// /////////////////////////////////
 var store = {
   nextId: 1,
   cache: {},
@@ -177,7 +194,7 @@ console.log(store.cache) // {1: ƒ, 2: ƒ}
 console.log(store.cache[1]())
 console.log(store.cache[1].id)
 
-console.log("------------------------")
+console.log("----------storing function ends--------------")
 // ////////////////////////////////////////////////////////////////////
 
 // //////////////////////////
@@ -205,3 +222,17 @@ function isPrime(value) {
 }
 console.log(isPrime(5))
 console.log(isPrime.answers) //{5: true}
+
+console.log("------------------------")
+// ////////////////////////////////////////////////////////////////////
+
+// //////////////////
+// Arrow function //
+// /////////////////
+/*
+- arrow functions are a simplification 
+- of function expressions.  
+*/
+
+// callback
+// using callback function expression

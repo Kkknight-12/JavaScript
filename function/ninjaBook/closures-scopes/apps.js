@@ -475,7 +475,7 @@ function NinjaPR() {
   // they act as private variable
   var feints = 0
   // methods are defined with this
-  // they will get attached to the
+  // as they will get attached to the
   // NinjaPR directly
   this.getFeints = function () {
     return feints
@@ -484,9 +484,23 @@ function NinjaPR() {
   this.feint = function () {
     feints++
   }
+
+  this.accesibleWithThis = "I am Accessible"
 }
 
 var ninjaPR1 = new NinjaPR()
+
+/*
+console.log(ninjaPR1)
+
+NinjaPR {
+  getFeints: [Function (anonymous)],
+  feint: [Function (anonymous)],
+  accesibleWithThis: 'I am Accessible'
+}  
+
+above mentioned properties are accessible with dot notation
+*/
 
 // not accessible directly
 if (ninjaPR1.feints === undefined) {
@@ -505,6 +519,26 @@ if (ninjaPR2.getFeints() === 0) {
   console.log("The second ninja object gets its own feints variable.")
 }
 
+/*
+- everytime we invoke a construtor function, 
+- we create a new lexical environment
+- which keeps track of variable local to 
+- contructor
+
+- whenever function is created
+- it keeps reference to the lexial environment
+- in which it was created
+- through internal [[Environment]] property
+https://www.notion.so/Closure-and-Scope-b63161840b5d40388552499c2551ef4f
+
+- Every object created with Ninja constructor gets its 
+- own methods that close around the variables
+- defined when the constructor was invoked
+- Private variables are only accessible
+- through object methods created within
+- constructor.
+*/
+
 console.log("----------------------")
 
 // -------------------------------------------------------------------------------------
@@ -521,7 +555,7 @@ function superNinja() {
     return feints
   }
 
-  // will increase "private" varaible
+  // will increment "private" varaible by 1
   this.feints = function () {
     feints++
   }
@@ -542,6 +576,7 @@ function checkPrivate() {
 }
 checkPrivate() // The imposter......varaibles!
 
+console.log("------------------")
 // -------------------------------------------------------------------------------------
 
 // //////////
