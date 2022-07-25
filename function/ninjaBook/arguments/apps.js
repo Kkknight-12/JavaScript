@@ -416,3 +416,24 @@ multiMax(193, 1, 2, 3)
 
 console.log("-----rest parameter ends-------")
 // --------------------------------------------------
+
+// ///////////////////
+// default parameter /
+// ///////////////////
+
+// takling default paramter before es6
+function performActionB(ninja, action) {
+  action = typeof action === "undefined" ? "sneak" : action
+  return ninja + " " + action
+}
+
+console.log(performActionB("hattori"))
+
+// ES6 added support for default parameters
+function performActionD(ninja, action = "sneak") {
+  return ninja + " " + action
+}
+
+console.log(performActionD("Hanzo"))
+// if we specify value, default value is overridden
+console.log(performActionD("Hanzo", "super ninja"))
