@@ -145,7 +145,7 @@ values.sort(function (val1, val2) {
 console.log(values) // [9, 7, 6, 3, 3, 2, 1, 0]
 
 console.log("-----------Callback--ends-------------")
-// ////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------
 
 // //////////////////////////////////
 // Attaching properties to function /
@@ -161,7 +161,6 @@ console.log(weildSword.swordType) // katana
 // when you call them
 
 console.log("-----------Callback--ends-------------")
-// ////////////////////////////////////////////////////////////////////
 
 // /////////////////////////////////
 // storing function in collection //
@@ -195,16 +194,16 @@ console.log(store.cache[1]())
 console.log(store.cache[1].id)
 
 console.log("----------storing function ends--------------")
-// ////////////////////////////////////////////////////////////////////
 
 // //////////////////////////
 // Self-memoizing functions /
 // //////////////////////////
 function isPrime(value) {
   if (!isPrime.answers) {
+    // adding answers property to isPrime function
     isPrime.answers = {}
   }
-  // new value will be undefined as its not stored in answer obj
+  // new value will be undefined as its not stored in answers obj
   if (isPrime.answers[value] !== undefined) {
     return isPrime.answer[value]
   }
@@ -223,8 +222,90 @@ function isPrime(value) {
 console.log(isPrime(5))
 console.log(isPrime.answers) //{5: true}
 
-console.log("------------------------")
-// ////////////////////////////////////////////////////////////////////
+console.log("--------Attaching properties to function ends----------------")
+
+// -----------------------------------------------------
+
+// ////////////////////////
+// function declarations //
+// ////////////////////////
+
+/*
+- most basic way of defining a function in JavaScript 
+function myFunc( arg1, arg2 ) {
+}
+*/
+
+function samuraiDec() {
+  return "samurai is here"
+}
+
+console.log(samuraiDec())
+
+// function within function
+function ninjaDec() {
+  function hiddenLeaf() {
+    return "you found us..."
+  }
+
+  return hiddenLeaf()
+}
+
+console.log(ninjaDec())
+
+/*
+function ninjaDec() {
+  return function hiddenLeaf() {
+    return "you found us..."
+  }
+}
+console.log(ninjaDec()())  
+*/
+console.log("--------Declaration ends----------------")
+// -----------------------------------------------------
+// //////////////////////
+// function expression //
+// //////////////////////
+/*
+- function expressions, are placed on the expression 
+- level, as the right side of a variable declaration 
+- function expression is assigned to a variable, 
+- we can use that variable to invoke the function 
+- When we want to make a function call, we use an 
+- expression that evaluates to a func- tion, followed 
+- by a pair of function call parentheses, which might
+- contain arguments.
+*/
+
+var myFuncDec = function () {}
+
+// expression as an argument of funciton call
+myFuncDec(function () {
+  // returning function exp
+  return function () {}
+})
+
+console.log("--------function expression ends----------------") +
+  // -----------------------------------------------------
+  // /////////////////////
+  // immediate function //
+  // /////////////////////
+
+  //   (function namedFunctionExpression(returnWhatYouGet) {
+  //     return returnWhatYouGet
+  //   }
+  // )(1)
+
+  // ((value) => {
+  //   var greet = "Hello"
+  //   console.log(greet + " " + value)
+  // })("IIFEs")
+
+  // + | - | ! | ~
+  // can be used in place of ( )
+// +function (val) {console.log(val)}(1)
+
+// -----------------------------------------------------
 
 // //////////////////
 // Arrow function //
