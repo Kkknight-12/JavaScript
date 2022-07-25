@@ -242,26 +242,45 @@ function samuraiDec() {
 
 console.log(samuraiDec())
 
-// function within function
-function ninjaDec() {
-  function hiddenLeaf() {
-    return "you found us..."
-  }
+console.log("--------function declaration ends-----------")
 
-  return hiddenLeaf()
+// -----------------------------------------------------
+
+// function within function
+// 1
+function ninjaDec1() {
+  return function hiddenLeaf() {
+    console.log("you found us...1")
+  }
 }
 
-console.log(ninjaDec())
+ninjaDec1()()
+
+// 2
+function ninjaDec2() {
+  function hiddenLeaf() {
+    return "you found us...2"
+  }
+
+  return hiddenLeaf() // invoking
+}
+
+console.log(ninjaDec2())
+
+// 3
+function ninjaDec3() {
+  return function hiddenLeaf() {
+    return "you found us...3"
+  }
+}
+console.log(ninjaDec3()())
 
 /*
-function ninjaDec() {
-  return function hiddenLeaf() {
-    return "you found us..."
-  }
-}
-console.log(ninjaDec()())  
+- number of invocation () is equivalent to 
+- number of function declared 
 */
-console.log("--------Declaration ends----------------")
+
+console.log("--------function within function ends----------------")
 // -----------------------------------------------------
 // //////////////////////
 // function expression //
@@ -277,39 +296,50 @@ console.log("--------Declaration ends----------------")
 - contain arguments.
 */
 
-var myFuncDec = function () {}
+// example 1
+var a = function () {}
+
+// example 2
+var myFuncDec = function (callback) {
+  return callback()()
+}
 
 // expression as an argument of funciton call
 myFuncDec(function () {
   // returning function exp
-  return function () {}
+  return function () {
+    console.log("I am running")
+  }
 })
 
-console.log("--------function expression ends----------------") +
-  // -----------------------------------------------------
-  // /////////////////////
-  // immediate function //
-  // /////////////////////
+// myFuncDec()
 
-  //   (function namedFunctionExpression(returnWhatYouGet) {
-  //     return returnWhatYouGet
-  //   }
-  // )(1)
+console.log("--------function expression ends----------------")
+// -----------------------------------------------------
+// /////////////////////
+// immediate function //
+// /////////////////////
 
-  // ((value) => {
-  //   var greet = "Hello"
-  //   console.log(greet + " " + value)
-  // })("IIFEs")
+//   (function namedFunctionExpression(returnWhatYouGet) {
+//     return returnWhatYouGet
+//   }
+// )(1)
 
-  // + | - | ! | ~
-  // can be used in place of ( )
+// ((value) => {
+//   var greet = "Hello"
+//   console.log(greet + " " + value)
+// })("IIFEs")
+
+// + | - | ! | ~
+// can be used in place of ( )
 // +function (val) {console.log(val)}(1)
 
+console.log("--------immediate function ends----------------")
 // -----------------------------------------------------
 
 // //////////////////
-// Arrow function //
-// /////////////////
+// Arrow function  //
+// //////////////////
 /*
 - arrow functions are a simplification 
 - of function expressions.  
@@ -317,3 +347,72 @@ console.log("--------function expression ends----------------") +
 
 // callback
 // using callback function expression
+var valuesA = [0, 3, 2, 5, 7, 4, 8, 1]
+
+//             param => expression
+valuesA.sort((value1, value2) => value1 - value2)
+
+console.log("-----Arrow function ends-------")
+// --------------------------------------------------
+
+// ///////////////////////
+// Arguments parameters //
+// ///////////////////////
+
+/*
+- A parameter is a variable that we list as part of a function definition.
+- An argument is a value that we pass to the function when we invoke it.
+*/
+
+//              parameter
+function assassin(name) {
+  return `${name}, "hidden blade"`
+}
+
+//                  arguments
+console.log(assassin("Ezio"))
+
+let performAction = function (person, action) {
+  return `${person} ${action}`
+}
+console.log(performAction("shot", "fire arrow"))
+
+let longBow = (range) => `${range} meter`
+
+console.log(longBow(300))
+
+/*
+- When a list of arguments is supplied as a part of 
+- a function invocation, these argments are assigned 
+- to the parameters in the function definition in the
+- order specified. The first argument gets assigned to
+- the first parameter, the second argument to the 
+- second parameter, and so on.  
+*/
+
+function practice(language, IDE, source) {
+  console.log(`I am practicing ${language} on ${IDE} from ${source}`)
+}
+
+practice("Javascript")
+// I am practicing Javascript on undefined from undefined
+
+console.log("-----Arguments parameters ends-------")
+// --------------------------------------------------
+
+// ////////////////
+// rest parameter /
+// ////////////////
+
+function multiMax(first, ...remainingNumbers) {
+  console.log(`first ${first}`)
+  console.log(`remainingNumbers ${remainingNumbers}`)
+}
+multiMax(193, 1, 2, 3)
+
+/*
+- Only the last function parameter can be a rest parameter  
+*/
+
+console.log("-----rest parameter ends-------")
+// --------------------------------------------------
