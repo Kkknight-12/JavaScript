@@ -455,6 +455,7 @@ if (
   console.table("we can't see function varaibles outside of a function")
 }
 
+console.log("----------------------")
 // -------------------------------------------------------------------------------------
 
 // ///////////////////////////////////////////////////
@@ -466,6 +467,45 @@ if (
 // ///////////////////////////////////////////
 // Mimicking private varaibles with closures /
 // ///////////////////////////////////////////
+
+// constructor function
+function NinjaPR() {
+  // variable declared inside function are
+  // not accessible form outside the function
+  // they act as private variable
+  var feints = 0
+  // methods are defined with this
+  // they will get attached to the
+  // NinjaPR directly
+  this.getFeints = function () {
+    return feints
+  }
+
+  this.feint = function () {
+    feints++
+  }
+}
+
+var ninjaPR1 = new NinjaPR()
+
+// not accessible directly
+if (ninjaPR1.feints === undefined) {
+  console.log("And the private data is inaccessible to us.")
+}
+
+ninjaPR1.feint()
+
+if (ninjaPR1.getFeints() === 1) {
+  console.log("We're able to access the internal feint count.")
+}
+
+var ninjaPR2 = new NinjaPR()
+
+if (ninjaPR2.getFeints() === 0) {
+  console.log("The second ninja object gets its own feints variable.")
+}
+
+console.log("----------------------")
 
 // -------------------------------------------------------------------------------------
 
