@@ -96,15 +96,20 @@ function infiltrate(person) {
     changed.
 
     changing parameter 
-    */
+  */
   arguments[0] = "Luffy, Zoro, Kid, Yamato"
   console.log(person) // Luffy, Zoro, Kid, Yamato
 
   /*  
     same is true if we change parameter, the changes can be observed in paramter and arguments
-     */
+  */
   person = "Sanji, Nami, Yoho Ho ho, Samurai, Ussop, Chopper are on there way"
   console.log(arguments[0]) // Sanji, Nami, Yoho Ho ho, Samurai, Ussop, Chopper are on there way
 }
 
 infiltrate("Kaido Fortress")
+/*
+- arguments object is an alias for the function parameters, if we change the arguments object, the change is also reflected in the matching function parameter.
+
+- same holds true in the other direction. If we change a parameter, the change can be observed in both the parameter and the arguments object:
+*/
