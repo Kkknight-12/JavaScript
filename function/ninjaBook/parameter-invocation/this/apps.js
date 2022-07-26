@@ -95,7 +95,7 @@ const thisObj = {
   name: "knight",
 }
 // return this which is whole object so we are getting whole object as return value
-console.log(thisObj.checkingThis())
+console.log("thisObj", thisObj.checkingThis())
 // this refer to object
 /* {
   checkingThis: [Function: getMyThis],
@@ -261,8 +261,10 @@ function Button() {
   }
 }
 let button = new Button()
-let ele = document.getElementById("test")
-ele.addEventListener("click", button.click) // <button id="test">Click me!</button>
+// let ele = document.getElementById("test")
+// ele.addEventListener("click", button.click)
+
+// <button id="test">Click me!</button>
 // with bind you can bind the object button and send it with the event listner
 // so when ever click invoke the function, the function will
 // refer to object button
@@ -347,11 +349,11 @@ function Button2() {
     })
 }
 let button2 = new Button2()
-let elem2 = document.getElementById("test2")
-console.log(button2.click === Button2.click)
-elem2.addEventListener("click", button2.click) // Button2 {clicked: true, click: ƒ}
+// let elem2 = document.getElementById("test2")
+// console.log(button2.click === Button2.click)
+// elem2.addEventListener("click", button2.click) // Button2 {clicked: true, click: ƒ}
 
-console.log(button2) // Button2 {clicked: false, click: ƒ}
+// console.log(button2) // Button2 {clicked: false, click: ƒ}
 
 // ------------------------------------------------------------------------------
 
@@ -386,8 +388,8 @@ let bt = {
     console.log(this)
   },
 }
-let elem3 = document.getElementById("test3")
-elem3.addEventListener("click", bt.click)
+// let elem3 = document.getElementById("test3")
+// elem3.addEventListener("click", bt.click)
 /* 
 Arrow functions pick up the value of the this parameter at the moment of their creation. Because the click arrow function is created as a property value on an object literal, and the object literal is created in global code, the this value of the arrow function will be the this value of the global code.
 */
@@ -417,8 +419,8 @@ let bindbt = {
   },
 }
 
-let elem4 = document.getElementById("test4")
-elem4.addEventListener("click", bindbt.click.bind(bindbt)) //{clicked: true, click: ƒ}
+// let elem4 = document.getElementById("test4")
+// elem4.addEventListener("click", bindbt.click.bind(bindbt)) //{clicked: true, click: ƒ}
 /* Whenever the button is clicked, that bound function will be invoked with the button object as its context,
  */
 console.log(bindbt) // {clicked: false, click: ƒ}
