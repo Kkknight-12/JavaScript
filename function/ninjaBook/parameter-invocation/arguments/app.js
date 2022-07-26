@@ -4,7 +4,7 @@
 /* 
 - function invocations are usually passed two implicit
 parametes: arguments and this 
-implite means that these parameters aren't explicitly
+implicit means that these parameters aren't explicitly
 listed in the function signature, but are silenty passed to the function
 and accessible within the function
 
@@ -17,6 +17,10 @@ function abc(a, b, b) {
   console.log(`argument 1 is ${arguments[0]}`) // argument 1 is a
   console.log(`argument 2 is ${arguments[1]}`) // argument 2 is b
   console.log(`argument 3 is ${arguments[2]}`) // argument 3 is c
+  console.log("arguments", arguments)
+  // { '0': 'a', '1': 'b', '2': 'c' }
+  console.log("typeof arguments", typeof arguments)
+  // object
 }
 
 abc("a", "b", "c")
@@ -24,19 +28,20 @@ abc("a", "b", "c")
 // checking the length of arguments passed
 // with arguments.length
 function agrLength(a, b, c, d) {
-  console.log(arguments.length)
+  console.log("arguments length", arguments.length)
 }
 agrLength("a", "b", "c", "d") // // 4
 
 // ------------------------------------------------------------------------------------
 
 /*
-arguments parameter is not and array, array method won't
+arguments parameter is not an array, array method won't
 work on it
 */
 
 function sum() {
   var sum = 0
+  console.log("typeof sum args", typeof arguments)
   for (var i = 0; i < arguments.length; i++) {
     sum += arguments[i]
   }
