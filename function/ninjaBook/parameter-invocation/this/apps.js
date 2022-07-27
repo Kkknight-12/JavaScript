@@ -129,6 +129,8 @@ We dont need make different copy of getMyThis to perform exact same processing o
 different object.
 */
 
+console.log("----------Invoking a function as method----------")
+
 // ------------------------------------------------------------------------------
 
 // ///////////////////////////////////////
@@ -150,9 +152,9 @@ function whatMyContext() {
 // invoking
 console.log("whatMyContext->", whatMyContext()) // global window object
 const a = new whatMyContext()
-console.log(a) // whatMyContext {}
+console.log("whatMyContext ", a) // whatMyContext {}
 
-console.log(typeof a) // object
+console.log("typeof a is", typeof a) // object
 
 /* 
 re-calling Function() constructors from chapter.
@@ -187,6 +189,10 @@ as many new copy as we want and each time the property of new Knight
 will be borrowed by new function.
 */
 
+// ///////////////////////////////
+// constructor return premitive //
+// ///////////////////////////////
+
 // adding a return value of the function
 function Knight1() {
   this.skill = function () {
@@ -205,12 +211,24 @@ console.log(typeof samurai1.skill === "function") // true
 - if we call it as a constructor
 - with new key word a new samurai1 object is constructed and returned 
 
-- Test varify that the return value of 1 is ignored and 
+- Test varify that the return value of 1 IS IGNORED and 
 - that a new, initialzed object has been returend from new*/
+
+// /////////////////////////////////////////
+// constructor return non premitive vlaue //
+// /////////////////////////////////////////
 
 let puppy = {
   labradors: false,
   re: this,
+  func: function () {
+    return () => {
+      return this
+    }
+  },
+  arrow: () => {
+    return this
+  },
 }
 
 function Dog() {
@@ -225,7 +243,17 @@ console.log("DOG", dog)
 // {labrador: false, re: Window}
 console.log(dog === puppy) // true
 console.log(dog.labrador === puppy) // false
-console.log(dog.re)
+console.log("dog.re", dog.re)
+console.log("dog.func", dog.func()())
+/*
+{
+  labradors: false,
+  re: {},
+  func: [Function: func],
+  arrow: [Function: arrow]
+}  
+*/
+console.log("dog.arrow", dog.arrow()) // {}
 
 /* 
 when we return an object from a contructor function, that object ( puppy ) 
