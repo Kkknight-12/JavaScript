@@ -220,14 +220,28 @@ console.log(typeof samurai1.skill === "function") // true
 
 let puppy = {
   labradors: false,
-  re: this,
+  re: this, // empty object
   func: function () {
-    return () => {
-      return this
+    return this // object
+  },
+  nestedFunc: function () {
+    return function () {
+      return this // global
     }
   },
+  nestedFunc2: function () {
+    return () => this // object
+  },
   arrow: () => {
-    return this
+    return this // empty object
+  },
+  nestedArrow: () => {
+    return () => this // empty object
+  },
+  nestedArrow2: () => {
+    return function () {
+      return this // global object
+    }
   },
 }
 
@@ -243,17 +257,22 @@ console.log("DOG", dog)
 // {labrador: false, re: Window}
 console.log(dog === puppy) // true
 console.log(dog.labrador === puppy) // false
-console.log("dog.re", dog.re)
-console.log("dog.func", dog.func()())
+console.log("dog.re", dog.re) // empty { }
+console.log("dog.func", dog.func()) // object
 /*
 {
   labradors: false,
   re: {},
   func: [Function: func],
+  nestedFunc: [Function: nestedFunc],
   arrow: [Function: arrow]
 }  
 */
-console.log("dog.arrow", dog.arrow()) // {}
+console.log("dog.nestedFunc", dog.nestedFunc()()) // global
+console.log("dog.nestedFunc2", dog.nestedFunc2()()) // object
+console.log("dog.arrow", dog.arrow()) // empty object
+console.log("dog.nestedArrow", dog.nestedArrow()()) //  empty object
+console.log("dog.nestedArrow2", dog.nestedArrow2()()) // // global
 
 /* 
 when we return an object from a contructor function, that object ( puppy ) 
@@ -274,6 +293,81 @@ summary
 - and a newly created object is returned
 */
 
+function WhatIsThis() {
+  this.normalFunc = function () {
+    return this // object
+  }
+  this.arrowFunc = () => {
+    return this // object
+  }
+  this.nestedNormal = function () {
+    return function () {
+      return this // global
+    }
+  }
+  this.nestedNormal2 = function () {
+    return () => this // object
+  }
+
+  this.nestedArrow = () => {
+    return () => this // object
+  }
+
+  this.nestedArrow2 = () => {
+    return function () {
+      return this // global
+    }
+  }
+}
+
+const getWhatIsThis = new WhatIsThis()
+// object
+console.log("normalFunc", getWhatIsThis.normalFunc())
+// object
+console.log("arrowFunc", getWhatIsThis.arrowFunc())
+// global
+console.log("nestedNormal", getWhatIsThis.nestedNormal()())
+// object
+console.log("nestedNormal2", getWhatIsThis.nestedNormal2()())
+// object
+console.log("nestedArrow", getWhatIsThis.nestedArrow()())
+// global
+console.log("nestedArrow2", getWhatIsThis.nestedArrow2()())
+
+// --------------------------------------------------------------
+
+const WhatIsThisInObj = {
+  normalFunc: function () {
+    return this // object
+  },
+  arrowFunc: () => {
+    return this // empty object
+  },
+  nestedNormal: function () {
+    return function () {
+      return this // global
+    }
+  },
+  nestedNormal2: function () {
+    return () => this // object
+  },
+
+  nestedArrow: () => {
+    return () => this // empty object
+  },
+  nestedArrow2: () => {
+    return function () {
+      return this // global
+    }
+  },
+}
+
+console.log("normalFunc Obj", WhatIsThisInObj.normalFunc())
+console.log("arrowFunc Obj", WhatIsThisInObj.arrowFunc())
+console.log("nestedNormal Obj", WhatIsThisInObj.nestedNormal()())
+console.log("nestedNormal2 Obj", WhatIsThisInObj.nestedNormal2()())
+console.log("nestedArrow Obj", WhatIsThisInObj.nestedArrow()())
+console.log("nestedArrow2 Obj", WhatIsThisInObj.nestedArrow2()())
 // ------------------------------------------------------------------------------
 
 // /////////////////////////
