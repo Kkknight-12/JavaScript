@@ -368,6 +368,8 @@ console.log("nestedNormal Obj", WhatIsThisInObj.nestedNormal()())
 console.log("nestedNormal2 Obj", WhatIsThisInObj.nestedNormal2()())
 console.log("nestedArrow Obj", WhatIsThisInObj.nestedArrow()())
 console.log("nestedArrow2 Obj", WhatIsThisInObj.nestedArrow2()())
+
+console.log("------Constructor ends------------")
 // ------------------------------------------------------------------------------
 
 // /////////////////////////
@@ -378,19 +380,21 @@ function Button() {
   this.clicked = false
   this.click = function () {
     this.clicked = true // this refer to window object when invoked with click
-    console.log(this)
-    console.log(button.clicked) // false
+    console.log("BUTTON this", this)
+    console.log("button.clicked", button.clicked) // false
   }
 }
 let button = new Button()
-// let ele = document.getElementById("test")
-// ele.addEventListener("click", button.click)
+let ele = document.getElementById("test")
+// ele.addEventListener("click", button.click) // false
 
-// <button id="test">Click me!</button>
-// with bind you can bind the object button and send it with the event listner
-// so when ever click invoke the function, the function will
-// refer to object button
-// ele.addEventListener( 'click', button.click.bind(button) )
+/*  
+<button id="test">Click me!</button>
+with bind you can bind the object button and send it with the event listner
+so when ever click invoke the function, the function will
+refer to object button
+*/
+ele.addEventListener("click", button.click.bind(button)) // true
 
 function juggle() {
   let result = 0
