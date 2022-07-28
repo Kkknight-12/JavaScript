@@ -50,6 +50,48 @@ function samurai() {
 }
 console.log(samurai()) // return undefined
 
+//
+function WhatIsThis() {
+  this.normalFunc = function () {
+    return this // object
+  }
+  this.arrowFunc = () => {
+    return this // object
+  }
+  this.nestedNormal = function () {
+    return function () {
+      return this // global
+    }
+  }
+  this.nestedNormal2 = function () {
+    return () => this // object
+  }
+
+  this.nestedArrow = () => {
+    return () => this // object
+  }
+
+  this.nestedArrow2 = () => {
+    return function () {
+      return this // global
+    }
+  }
+}
+
+const getWhatIsThis = new WhatIsThis()
+// object
+console.log("normalFunc", getWhatIsThis.normalFunc())
+// object
+console.log("arrowFunc", getWhatIsThis.arrowFunc())
+// global
+console.log("nestedNormal", getWhatIsThis.nestedNormal()())
+// object
+console.log("nestedNormal2", getWhatIsThis.nestedNormal2()())
+// object
+console.log("nestedArrow", getWhatIsThis.nestedArrow()())
+// global
+console.log("nestedArrow2", getWhatIsThis.nestedArrow2()())
+
 // ------------------------------------------------------------------------------
 
 // ////////////////////////////////
@@ -128,6 +170,39 @@ getMyThis is invoked.
 We dont need make different copy of getMyThis to perform exact same processing on
 different object.
 */
+
+const WhatIsThisInObj = {
+  normalFunc: function () {
+    return this // object
+  },
+  arrowFunc: () => {
+    return this // empty object
+  },
+  nestedNormal: function () {
+    return function () {
+      return this // global
+    }
+  },
+  nestedNormal2: function () {
+    return () => this // object
+  },
+
+  nestedArrow: () => {
+    return () => this // empty object
+  },
+  nestedArrow2: () => {
+    return function () {
+      return this // global
+    }
+  },
+}
+
+console.log("normalFunc Obj", WhatIsThisInObj.normalFunc())
+console.log("arrowFunc Obj", WhatIsThisInObj.arrowFunc())
+console.log("nestedNormal Obj", WhatIsThisInObj.nestedNormal()())
+console.log("nestedNormal2 Obj", WhatIsThisInObj.nestedNormal2()())
+console.log("nestedArrow Obj", WhatIsThisInObj.nestedArrow()())
+console.log("nestedArrow2 Obj", WhatIsThisInObj.nestedArrow2()())
 
 console.log("----------Invoking a function as method----------")
 
@@ -293,82 +368,6 @@ summary
 - and a newly created object is returned
 */
 
-function WhatIsThis() {
-  this.normalFunc = function () {
-    return this // object
-  }
-  this.arrowFunc = () => {
-    return this // object
-  }
-  this.nestedNormal = function () {
-    return function () {
-      return this // global
-    }
-  }
-  this.nestedNormal2 = function () {
-    return () => this // object
-  }
-
-  this.nestedArrow = () => {
-    return () => this // object
-  }
-
-  this.nestedArrow2 = () => {
-    return function () {
-      return this // global
-    }
-  }
-}
-
-const getWhatIsThis = new WhatIsThis()
-// object
-console.log("normalFunc", getWhatIsThis.normalFunc())
-// object
-console.log("arrowFunc", getWhatIsThis.arrowFunc())
-// global
-console.log("nestedNormal", getWhatIsThis.nestedNormal()())
-// object
-console.log("nestedNormal2", getWhatIsThis.nestedNormal2()())
-// object
-console.log("nestedArrow", getWhatIsThis.nestedArrow()())
-// global
-console.log("nestedArrow2", getWhatIsThis.nestedArrow2()())
-
-// --------------------------------------------------------------
-
-const WhatIsThisInObj = {
-  normalFunc: function () {
-    return this // object
-  },
-  arrowFunc: () => {
-    return this // empty object
-  },
-  nestedNormal: function () {
-    return function () {
-      return this // global
-    }
-  },
-  nestedNormal2: function () {
-    return () => this // object
-  },
-
-  nestedArrow: () => {
-    return () => this // empty object
-  },
-  nestedArrow2: () => {
-    return function () {
-      return this // global
-    }
-  },
-}
-
-console.log("normalFunc Obj", WhatIsThisInObj.normalFunc())
-console.log("arrowFunc Obj", WhatIsThisInObj.arrowFunc())
-console.log("nestedNormal Obj", WhatIsThisInObj.nestedNormal()())
-console.log("nestedNormal2 Obj", WhatIsThisInObj.nestedNormal2()())
-console.log("nestedArrow Obj", WhatIsThisInObj.nestedArrow()())
-console.log("nestedArrow2 Obj", WhatIsThisInObj.nestedArrow2()())
-
 console.log("------Constructor ends------------")
 // ------------------------------------------------------------------------------
 
@@ -381,15 +380,41 @@ function Button() {
   this.click = function () {
     this.clicked = true // this refer to window object when invoked with click
     console.log("BUTTON this", this)
-    console.log("button.clicked", button.clicked) // false
+
+    this.insider = function () {
+      return this
+    }
+    return this
   }
 }
-let button = new Button()
-let ele = document.getElementById("test")
-// ele.addEventListener("click", button.click) // false
 
-/*  
-<button id="test">Click me!</button>
+// /////////////////////////////
+// call with addEventListener //
+// /////////////////////////////
+/*
+function Button() {
+  console.log("THIS outside", this)
+}
+
+ele.addEventListener("click", () => Button()) 
+
+after clicking the event you can see that this will refer to the window object
+
+reason -> before dot, the thing that is calling the function is an HTML element attached to DOM
+*/
+
+// /////////////////
+// call as method //
+// /////////////////
+
+let button = new Button()
+console.log("button.click", button.click()) // Button object
+console.log("button.clicked", button.clicked) // true
+console.log("button.insider", button.insider()) // Button object
+let ele = document.getElementById("test")
+// ele.addEventListener("click", button.click) // HTML Element button
+
+/* 
 with bind you can bind the object button and send it with the event listner
 so when ever click invoke the function, the function will
 refer to object button
@@ -402,9 +427,11 @@ function juggle() {
     result += arguments[n]
   }
   this.result = result
-  // return result;
+  // return result
 }
-// console.log(juggle(1,2,3))
+
+console.log("juggle", juggle(1, 2, 3)) // 6
+
 let ninja1 = {}
 let ninja2 = {
   name: "ninja2", // you can also use an object the already have property
