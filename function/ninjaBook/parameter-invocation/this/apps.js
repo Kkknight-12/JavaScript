@@ -430,8 +430,6 @@ function juggle() {
   // return result
 }
 
-console.log("juggle", juggle(1, 2, 3)) // 6
-
 let ninja1 = {}
 let ninja2 = {
   name: "ninja2", // you can also use an object the already have property
@@ -449,19 +447,25 @@ is passed directly in the argument list rather than as an array
 juggle.apply(ninja1, [1, 2, 3, 4, 5])
 juggle.call(ninja2, 6, 7, 8, 9)
 
-console.log(ninja1) // {result: 15}
-console.log(ninja2) // {name: "ninja2", rank: 2, result: 30}
+console.log("ninja1", ninja1) // {result: 15}
+console.log("ninja2", ninja2) // {name: "ninja2", rank: 2, result: 30}
 
+// ------------------------------------------------------------------
 // ///////////////////////////////
 // forcing context in call back //
 // ///////////////////////////////
 
 let weapons = [{ type: "kusarigama" }, { type: "katana" }, { type: "odachi" }]
-console.log(weapons[0]) // { type: "kusarigama" } // typeof -> object
-console.log(typeof weapons) // typeof -> object
+// console.log(weapons[0]) // { type: "kusarigama" } // typeof -> object
+// console.log(typeof weapons) // typeof -> object
 
 function foreach(list, callback) {
   for (let n = 0; n < list.length; n++) {
+    /* 
+    - using call to enforce this to be
+    - the list element passed 
+    */
+    //              this,  arguments
     callback.call(list[n], n) // { type: "kusarigama" }, passing in 'n'
   }
 }
@@ -494,25 +498,27 @@ we can use call and apply to get result. But we will using 'bind' and
 */
 
 function Button2() {
-  ;(this.clicked = false),
-    (this.click = () => {
-      ;(this.clicked = true), // this will refer to nearest scope
-        console.log(this.clicked) // Button2 {clicked: true, click: ƒ}
-      console.log(button2.clicked) // true
-    })
+  this.clicked = false
+  this.click = () => {
+    this.clicked = true // this will refer to nearest scope
+    console.log(this.clicked) // Button2 {clicked: true, click: ƒ}
+    console.log(button2.clicked) // true
+  }
 }
 let button2 = new Button2()
-// let elem2 = document.getElementById("test2")
-// console.log(button2.click === Button2.click)
-// elem2.addEventListener("click", button2.click) // Button2 {clicked: true, click: ƒ}
+let elem2 = document.getElementById("test2")
 
-// console.log(button2) // Button2 {clicked: false, click: ƒ}
+console.log("before click button2.click", button2.clicked) // flase
+console.log(button2.click())
+console.log("after click button2.click", button2.clicked) // true
+
+elem2.addEventListener("click", button2.click) // Button2 {clicked: true, click: ƒ}
 
 // ------------------------------------------------------------------------------
 
-// ////////////////////////////
-//  strange behavior of this //
-// ////////////////////////////
+// ///////////////////////////
+// strange behavior of this //
+// ///////////////////////////
 
 // this in normal function in object
 const doggy = {
@@ -531,29 +537,35 @@ const doggy = {
 doggy.bark()
 // Woof!
 doggy.barkTwice()
+// woof!
+// THIS clicked false
 
-// this in arrow function in object
+///////////////////////////////////////
+// this in arrow function in object  //
+///////////////////////////////////////
 let bt = {
   clicked: false,
   // arrow function
   click: () => {
+    // this is global
+    // so if won't changes bt.clicked
     this.clicked = true
-    console.log(this)
+    /*
+    // global obj 
+    */
+    console.log("bt.click", this)
   },
 }
-// let elem3 = document.getElementById("test3")
-// elem3.addEventListener("click", bt.click)
-/* 
-Arrow functions pick up the value of the this parameter at the moment of their creation. Because the click arrow function is created as a property value on an object literal, and the object literal is created in global code, the this value of the arrow function will be the this value of the global code.
-*/
 
-// b is created in global context
-let b = {
-  click: () => {
-    return this
-  },
-}
-console.log(b.click()) // when we call arrow function it will refer to window
+bt.click() // global obj
+console.log("bt.clicked", bt.clicked) // false
+
+let elem3 = document.getElementById("test3")
+elem3.addEventListener("click", bt.click) // window object
+
+/* 
+Arrow function picks up the value of the this parameter at the moment of their creation. Because the click arrow function is created as a property value on an object literal, and the object literal is created in global code, the this value of the arrow function will be the this value of the global code.
+*/
 
 // ------------------------------------------------------------------------------
 
@@ -567,33 +579,15 @@ bind method is available to all functions, and is designed to create and return 
 let bindbt = {
   clicked: false,
   click: function () {
-    ;(this.clicked = true), console.log(this) // bindbt{clicked: true, click: ƒ}
+    this.clicked = true
+    console.log(this) // bindbt{clicked: true, click: ƒ}
     console.log(bindbt.clicked) // true
   },
 }
 
-// let elem4 = document.getElementById("test4")
-// elem4.addEventListener("click", bindbt.click.bind(bindbt)) //{clicked: true, click: ƒ}
+let elem4 = document.getElementById("test4")
+elem4.addEventListener("click", bindbt.click.bind(bindbt)) //{clicked: true, click: ƒ}
 /* Whenever the button is clicked, that bound function will be invoked with the button object as its context,
  */
-console.log(bindbt) // {clicked: false, click: ƒ}
 
 // ------------------------------------------------------
-
-// let fnProp = function () {
-//   namE = "knight"
-//   return this
-// }
-// fnProp.skill = "Class A"
-// console.log(fnProp.namE) // undefined
-// console.log(fnProp.skill) // Class A
-// console.log(fnProp()) // window
-
-function fnProp() {
-  namE = "knight"
-  return this
-}
-fnProp.skill = "Class A"
-console.log("fnProp name", fnProp.namE) // undefined
-console.log(fnProp.skill) // Class A
-console.log("fnProp this", fnProp()) // window

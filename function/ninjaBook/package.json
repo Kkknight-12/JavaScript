@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon parameter-invocation/this/apps.js"
+    "dev": "nodemon prototype/prototypes.js"
   },
   "author": "",
   "license": "ISC",
