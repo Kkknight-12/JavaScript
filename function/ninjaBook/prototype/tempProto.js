@@ -16,3 +16,10 @@ console.log("ninja 1 swingSword after reset", ninja1.swingSword)
 
 ninja2 = new Ninja()
 console.log("ninja 2 swingSword", ninja2.swingSword)
+
+console.log("=================")
+
+const obj1 = { name: "raju", skills: { primary: "BE dev", secondary: "AWS" } }
+console.log(obj1)
+
+const obj2 = { ...obj1 }
