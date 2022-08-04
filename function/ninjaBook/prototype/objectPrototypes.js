@@ -171,6 +171,8 @@ NinjaSE.prototype.swingSword = function () {
   return this.swung
 }
 
+console.log("ninja3 instanceof NinjaSE", ninja3 instanceof NinjaSE)
+
 if (ninja3.swingSword()) {
   console.log("Method exists, even out of order.")
 }
@@ -179,7 +181,7 @@ if (ninja3.swingSword()) {
 // new we are resetting the prototype
 // watch carefully we are setting new prototype
 // we are not adding a new prototype prooerty
-Ninja.prototype = {
+NinjaSE.prototype = {
   pierce: function () {
     return true
   },
@@ -188,9 +190,13 @@ Ninja.prototype = {
 if (ninja3.swingSword()) {
   console.log("Our ninja can still swing!")
 }
+
+// but
+console.log("is ninja3 still instanceof NinjaSE", ninja3 instanceof NinjaSE)
+
 // Our ninja can still swing!
 
-const ninja4 = new Ninja()
+const ninja4 = new NinjaSE()
 if (ninja4.pierce()) {
   console.log("Newly created ninjas can pierce")
 }
@@ -206,6 +212,7 @@ if (!ninja4.swingSword) {
 - our Ninja can still swing sword, because it 
 - keep reference to Old Ninja prototype
 */
+console.log("------END-------")
 
 // -------------------------------------------------------------------------------------
 
@@ -229,6 +236,8 @@ if (ninjaOT.constructor === NinjaOT) {
 }
 // The ninja object was created by the Ninja function.
 
+console.log("------END-------")
+
 // ///////////////////////////////////////////////////////
 // instatiating new object using refernce to constructor /
 // ///////////////////////////////////////////////////////
@@ -246,6 +255,7 @@ if (ninjaRE !== ninjaRE2) {
   console.log("But not the same Ninja!")
 }
 
+console.log("------END-------")
 ///////////////////////////
 // Achieving inheritance
 ////////////////////////////
@@ -326,10 +336,10 @@ if (ninja1API instanceof Object) {
 - Internal mechanism to search method.
 - first Js will check ninja object itself,
 - then will check person object, 
-- then will check person object
-- prototype
+- then will check person object prototype
 */
 
+console.log("-------END Inhetitance-------")
 // -------------------------------------------------------------------------------------
 
 // ///////////////////////////////////////////
@@ -354,6 +364,8 @@ checkConnection()
 */
 console.log(ninja1API.constructor) // [Function: PersonAIP]
 
+console.log("---------END--------")
+
 // ///////////////////////
 // Object.defineProperty /
 // ///////////////////////
@@ -375,9 +387,10 @@ function checkSneak() {
 }
 checkSneak()
 // we can access sneak property
-console.log(ninjaDP.sneak)
+console.log(ninjaDP.sneak) // true
 
 // but its not iterable
+// we have set enumerable: false,
 for (let props in ninjaDP) {
   if (props != undefined) {
     console.log("enumerable property : ", props)
@@ -385,7 +398,7 @@ for (let props in ninjaDP) {
 }
 
 /*  
-- by setting enumerable tp false
+- by setting enumerable to false
 - we can be sure that the property won't appear
 - when using the for in loop
 */
