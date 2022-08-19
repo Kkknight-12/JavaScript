@@ -39,13 +39,15 @@ function returnNewNinja() {
 console.log(returnNewNinja())
 
 console.log("------------------------")
-// ////////////////////////////////////////////////////////////////////
+
+// ----------------------------------------------------------------------
 
 // //////////////////////////////////////////////////
 // functions posses all the capabilities of object  /
 // can be treated link object                       /
 // called first-class object                        /
 // //////////////////////////////////////////////////
+
 // Assignment
 var ninjaFn = function () {}
 console.log(ninjaFn)
@@ -84,14 +86,15 @@ console.log(returnSamuraiFun())
 // function can posses property that can be dynamically
 // created and assigned;
 // NOTE: properties must be assigned after you have
-// created empty function, else they will be return undefined
+// created function, else they will be return undefined
 // when you call them
 var ninjafunction = function () {}
 ninjafunction.ninja = "shadow clone jutsu"
 console.log(ninjafunction.ninja) // shadow clone jutsu
 
 console.log("------------------------")
-// ////////////////////////////////////////////////////////////////////
+
+// ----------------------------------------------------------------------
 
 // ////////////
 // callback  //
@@ -118,9 +121,14 @@ function useless2(callback) {
   return callback()
 }
 
-// now when calling the HOF
-// we are defining callback body
-// inside annonymous function
+// better approach for callback
+
+/*  
+- now when calling the HOF
+- we are defining callback body
+- inside annonymous function
+*/
+
 console.log(
   useless2(function () {
     return text2
@@ -128,7 +136,7 @@ console.log(
 )
 
 /*
-// arrow function
+- arrow function
 console.log(
   useless2( () => text2)
 )  
@@ -188,7 +196,9 @@ function knight() {
 store.add(knight)
 // assert( store.add(knight), "Function was safely added.");
 // assert( store.add(knight), "but it was only added once.");
-store.add(function netninja() {})
+store.add(function netninja() {
+  return "I am ninja"
+})
 console.log(store.cache) // {1: ƒ, 2: ƒ}
 console.log(store.cache[1]())
 console.log(store.cache[1].id)
