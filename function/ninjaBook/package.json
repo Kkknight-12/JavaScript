@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon arguments/apps.js"
+    "dev": "nodemon closures-scopes/apps.js"
   },
   "author": "",
   "license": "ISC",

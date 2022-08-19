@@ -257,7 +257,7 @@ console.log("--------function declaration ends-----------")
 // -----------------------------------------------------
 
 // function within function
-// 1
+// Example 1
 function ninjaDec1() {
   return function hiddenLeaf() {
     console.log("you found us...1")
@@ -266,7 +266,16 @@ function ninjaDec1() {
 
 ninjaDec1()()
 
-// 2
+// Example 2
+function ninjaDec3() {
+  return function hiddenLeaf() {
+    return "you found us...3"
+  }
+}
+
+console.log(ninjaDec3()())
+
+// Example 3
 function ninjaDec2() {
   function hiddenLeaf() {
     return "you found us...2"
@@ -277,20 +286,13 @@ function ninjaDec2() {
 
 console.log(ninjaDec2())
 
-// 3
-function ninjaDec3() {
-  return function hiddenLeaf() {
-    return "you found us...3"
-  }
-}
-console.log(ninjaDec3()())
-
 /*
-- number of invocation () is equivalent to 
+- number of invocation "()" is equivalent to 
 - number of function declared 
 */
 
 console.log("--------function within function ends----------------")
+
 // -----------------------------------------------------
 // //////////////////////
 // function expression //
@@ -301,7 +303,7 @@ console.log("--------function within function ends----------------")
 - function expression is assigned to a variable, 
 - we can use that variable to invoke the function 
 - When we want to make a function call, we use an 
-- expression that evaluates to a func- tion, followed 
+- expression that evaluates to a function, followed 
 - by a pair of function call parentheses, which might
 - contain arguments.
 */
@@ -314,7 +316,7 @@ var myFuncDec = function (callback) {
   return callback()()
 }
 
-// expression as an argument of funciton call
+// expression as an argument of function call
 myFuncDec(function () {
   // returning function exp
   return function () {
