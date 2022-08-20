@@ -58,11 +58,13 @@ definition as we as all variables in scope at the point of function definition.
 */
 
 console.log("-----------------")
+
 // -------------------------------------------------------------------------------------
 
 // ///////////////////
 // private variable //
 // ///////////////////
+
 console.log("PRIVATE VARIABLES")
 /* 
 - private variables — properties of an object that are hidden from outside parties.
@@ -108,6 +110,8 @@ console.log(TeamB.getGoals()) // 0
 using closure allows the state of Football to be maintained within a method, 
 without letting it be directly accessed by a user of the method - because variable is available to inner methods via their closures, but not to code that lies outside the constructor.
 */
+
+console.log("----PRIVATE VARIABLES INTRO ENDS-----")
 
 // -------------------------------------------------------------------------------------
 
@@ -156,6 +160,7 @@ function animateIt(elementID) {
 }
 
 // animateIt("box1")
+
 // tick accessed via a colsure.
 // Element also accessed via a closure
 // Timer reference also obtained via a closure
@@ -168,7 +173,7 @@ function animateIt(elementID) {
 - private 'bubble' of variables
 */
 
-console.log("--------------")
+console.log("-------using closure with callbacks ENDS-------")
 // -------------------------------------------------------------------------------------
 
 // ///////////////////
