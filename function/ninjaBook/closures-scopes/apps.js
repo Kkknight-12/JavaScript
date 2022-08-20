@@ -235,7 +235,7 @@ sneak("second")
 // /////////////////////
 
 /* 
-- LEXICAL ENVIRONMENT is used to keep track of mapping from identifiers to 
+- LEXICAL ENVIRONMENT keep track of mapping from identifiers to 
 - specific varaibles.
 ------------------------------------------------------------------
 |- All JavaScript variables must be identified with unique names.  |
@@ -268,7 +268,8 @@ console.log(ninjaLE)
 
 - nesting () is contained within gloabal code
 - report is nested within nesting function
-- loop is nested within report function*/
+- loop is nested within report function
+*/
 
 // global variable and function
 var ninjaN = "Misashi"
@@ -294,8 +295,7 @@ nesting()
 /* 
 - each of these code structure gets an associated lexical environment
 - everytime code is evaluated.
-- inner code structure has access to varaibles defined in outter code
- 
+- inner code structure has access to varaibles defined in outer code
 */
 
 // -------------------------------------------------------------------------------------
@@ -401,7 +401,7 @@ reportActivity()
 try {
   console.log(functionActivity)
 } catch (error) {
-  console.error(error) // functionActivity is not defined
+  console.error(error) // ReferenceError: functionActivity is not defined
 }
 
 // var dont work in block scope
@@ -428,7 +428,6 @@ function checkVarBlockScope() {
 checkVarBlockScope()
 
 // **const and let**
-
 const globalKnightCL = "Luffy"
 
 function reportActivityCL() {
@@ -446,7 +445,7 @@ function reportActivityCL() {
   // you can't access varaible declared with let or const inside
   // the block scope | loop outiside the scope
   if (typeof i === "undefined" && typeof forMessage === "undefined") {
-    console.log("loop varaible are not accessible outiside the loop") // loop varaible are not accessible outiside the loop
+    console.log("loop varaible are not accessible outside the loop") // loop varaible are not accessible outiside the loop
   }
 }
 
