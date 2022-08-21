@@ -508,15 +508,17 @@ above mentioned properties are accessible with dot notation
 
 // not accessible directly
 if (ninjaPR1.feints === undefined) {
-  console.log("And the private data is inaccessible to us.")
+  console.log("private data is inaccessible to us.")
 }
 
+// increment function
 ninjaPR1.feint()
 
 if (ninjaPR1.getFeints() === 1) {
   console.log("We're able to access the internal feint count.")
 }
 
+// new instance
 var ninjaPR2 = new NinjaPR()
 
 if (ninjaPR2.getFeints() === 0) {
@@ -538,12 +540,13 @@ https://www.notion.so/Closure-and-Scope-b63161840b5d40388552499c2551ef4f
 - Every object created with Ninja constructor gets its 
 - own methods that close around the variables
 - defined when the constructor was invoked
+
 - Private variables are only accessible
 - through object methods created within
 - constructor.
 */
 
-console.log("----------------------")
+console.log("-------Private Variable ENDS---------------")
 
 // -------------------------------------------------------------------------------------
 
@@ -569,18 +572,23 @@ var ninja1 = new superNinja()
 // incrementing feints
 ninja1.feints()
 
+// creating an imposter { } 😅
 var imposter = {}
 // copying the method from ninja1 object
 imposter.getFients = ninja1.getFients
+imposter.feints = ninja1.feints
+
+// imposter incrementing feints
+imposter.feints()
 
 function checkPrivate() {
-  if (imposter.getFients() === 1) {
-    console.log("The imposter has access to the feints variables!")
+  if (imposter.getFients() === 2) {
+    console.log("The imposter has access and can manipulate feints value..!")
   }
 }
-checkPrivate() // The imposter......varaibles!
+checkPrivate() // The imposter......variables!
 
-console.log("------------------")
+console.log("-------Private Variables Caveat ENDS-----------")
 // -------------------------------------------------------------------------------------
 
 // //////////
