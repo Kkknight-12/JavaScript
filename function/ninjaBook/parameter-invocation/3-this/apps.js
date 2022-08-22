@@ -60,7 +60,7 @@ function WhatIsThis() {
   }
   this.nestedNormal = function () {
     return function () {
-      return this // global
+      // return this // global
     }
   }
   this.nestedNormal2 = function () {
@@ -73,7 +73,7 @@ function WhatIsThis() {
 
   this.nestedArrow2 = () => {
     return function () {
-      return this // global
+      // return this // global
     }
   }
 }
@@ -149,7 +149,7 @@ console.log(thisObj.getNameValue()) // knight
 
 /* 
 Look closely the getMyThis and getName are normal function.
-And this in normal function refer to windows.
+And "this" in normal function refer to windows.
 But We are invoking these function with the help of object thisObj
 so left side of dot is thisObj which means this will refer to 
 thisObj which is invoking it.
@@ -180,7 +180,7 @@ const WhatIsThisInObj = {
   },
   nestedNormal: function () {
     return function () {
-      return this // global
+      // return this // global
     }
   },
   nestedNormal2: function () {
@@ -192,7 +192,7 @@ const WhatIsThisInObj = {
   },
   nestedArrow2: () => {
     return function () {
-      return this // global
+      // return this // global
     }
   },
 }
@@ -222,12 +222,13 @@ object insatances.
 
 // we use keyword 'new' to invoke constructor function
 function whatMyContext() {
-  return this
+  this.name = "whatMyContext function"
+  // return this // global
 }
 // invoking
 console.log("whatMyContext->", whatMyContext()) // global window object
 const a = new whatMyContext()
-console.log("whatMyContext ", a) // whatMyContext {}
+console.log("new whatMyContext-> a ", a) // whatMyContext { name: 'whatMyContext function' }
 
 console.log("typeof a is", typeof a) // object
 
@@ -301,7 +302,7 @@ let puppy = {
   },
   nestedFunc: function () {
     return function () {
-      return this // global
+      // return this // global
     }
   },
   nestedFunc2: function () {
@@ -315,7 +316,7 @@ let puppy = {
   },
   nestedArrow2: () => {
     return function () {
-      return this // global object
+      // return this // global object
     }
   },
 }
